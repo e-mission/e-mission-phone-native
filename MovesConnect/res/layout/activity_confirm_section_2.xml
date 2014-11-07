@@ -1,0 +1,234 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="left"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ConfirmSectionActivity" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:height="@dimen/activity_horizontal_margin"
+                    android:text="We detected you a trip"
+                    android:textSize="@dimen/activity_horizontal_margin" >
+
+                    <requestFocus />
+                </EditText>
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/tableRow5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/editText3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start time"
+                        android:textSize="@dimen/activity_horizontal_margin" />
+
+                    <EditText
+                        android:id="@+id/startTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unknown"
+                        android:textSize="@dimen/activity_horizontal_margin" />
+
+                    <EditText
+	                    android:id="@+id/editText2"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:ems="10"
+	                    android:text="Is this correct?"
+	                    android:textSize="@dimen/activity_horizontal_margin" />
+
+                
+
+
+                </TableRow>
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/tableRow6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/editText4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End time  "
+                        android:textSize="@dimen/activity_horizontal_margin" />
+
+                    <EditText
+                        android:id="@+id/endTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unknown"
+                        android:textSize="@dimen/activity_horizontal_margin" />
+
+                    <RadioButton
+                        android:id="@+id/yesButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onModeCorrect"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onModeWrong"
+                        android:text="No" />
+
+                </TableRow>
+
+                
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/tableRow7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/editText5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mode       "
+                        android:textSize="@dimen/activity_horizontal_margin" />
+
+                    <EditText
+                        android:id="@+id/autoMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unknown"
+                        android:textSize="@dimen/activity_horizontal_margin" />
+
+                    <ScrollView
+		            android:id="@+id/scrollView1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" >
+		
+		            <LinearLayout
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:orientation="vertical" >
+
+		                <EditText
+		                    android:id="@+id/editText9"
+		                    android:layout_width="145dp"
+		                    android:layout_height="wrap_content"
+		                    android:ems="10"
+		                    android:text="Please specify"
+		                    android:textSize="@dimen/activity_horizontal_margin" />
+
+		                <RadioGroup
+		                    android:id="@+id/userOverrideMode"
+				            android:layout_width="match_parent"
+				            android:layout_height="150dp" >
+				
+				            <RadioButton
+				                android:id="@+id/walking"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:text="walking" />
+				
+				            <RadioButton
+				                android:id="@+id/cycling"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:text="cycling" />
+				
+				            <RadioButton
+				                android:id="@+id/bus"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:text="bus" />
+				
+				            <RadioButton
+				                android:id="@+id/train"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:text="train" />
+				
+				            <RadioButton
+				                android:id="@+id/car"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:text="car" />
+		                </RadioGroup>
+		             </LinearLayout>
+        		</ScrollView>
+
+                </TableRow>
+
+            </TableRow>
+        </TableLayout>
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/linearLayout1"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginLeft="87dp"
+	        android:orientation="horizontal" >
+	    </LinearLayout>
+
+        <fragment
+            android:id="@+id/fragment1"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

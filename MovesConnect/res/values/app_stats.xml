@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="metadata_os_version">client_os_version</string>
+    <string name="metadata_app_version">client_app_version</string>
+    <string name="confirmlist_resume">confirmlist_resume</string>
+    <string name="confirmlist_auth_not_done">confirmlist_auth_not_done</string>
+    <string name="confirmlist_ucs_size">confirmlist_ucs_size</string>
+    <string name="sync_launched">sync_launched</string>
+    <string name="sync_push_list_size">sync_push_list_size</string>
+    <string name="sync_pull_list_size">sync_pull_list_size</string>
+    <string name="sync_duration">sync_duration</string>
+    <string name="result_display_duration">result_display_duration</string>
+    <string name="result_display_failed">result_display_failed</string>
+    <string name="battery_level">battery_level</string>
+    <string name="button_sync_forced">button_sync_forced</string>
+    <string name="button_moves_linked">button_moves_linked</string>
+    <string name="button_account_changed">button_account_changed</string>
+    <string name="button_confirm_all">button_confirm_all</string>
+    <string name="button_confirm_all_skipped">button_confirm_all_skipped</string>
+</resources>

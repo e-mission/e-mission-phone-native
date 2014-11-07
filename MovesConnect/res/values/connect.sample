@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="connect_url">https://my.host.org</string>
+    <!-- 
+        Use this URL to connect to localhost from the emulator.
+        In order to connect from a physical device, find the external IP of
+        your laptop, and use http://<external_ip>:8080
+    <string name="connect_url">http://10.0.3.2:8080</string> -->
+    <string name="google_webapp_client_id">Get from https://console.developers.google.com</string>
+    <string name="moves_client_id">Get from https://dev.moves-app.com</string>
+</resources>
