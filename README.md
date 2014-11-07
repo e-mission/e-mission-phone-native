@@ -21,6 +21,7 @@ our server, then you can get the key files from:
 https://repo.eecs.berkeley.edu/git/users/shankari/e-mission-keys.git
 
 If not, please get your own copies of the following keys:
+
 * Google Developer Console
   - Android key
   - iOS key
@@ -30,6 +31,7 @@ If not, please get your own copies of the following keys:
   - Client secret
 
 And then copy over the sample files from these locations and replace the values appropriately:
+
     # MovesConnect/res/values/connect.xml
     # iOS/CFC\_Tracker/CFC\_Tracker/connect.plist
 

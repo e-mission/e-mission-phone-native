@@ -4,14 +4,6 @@ Installation instructions:
 - Instructions on installing the frameworks and the bundle
   http://stackoverflow.com/questions/19202218/receiving-a-check-dependencies-warning-skipping-file-error-in-xcode
 
-For google+:
-- Install all the frameworks described here:
-  https://developers.google.com/+/mobile/ios/getting-started
-- Install the bundle using
-  (Project + Target) -> Build Phases -> Copy Bundle Resources
-- Instructions on installing the frameworks and the bundle
-  http://stackoverflow.com/questions/19202218/receiving-a-check-dependencies-warning-skipping-file-error-in-xcode
-
 In order to change the bundle name, you have the edit the following locations:
 - The bundle ID in the google developer client key 
 - The redirect URL in moves
