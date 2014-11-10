@@ -14,6 +14,14 @@ If you are part of the e-mission team, and are using our keys from the
 e-mission-keys repository, then you should also copy over my keystore, which is
 checked in the same location.
 
+This project is currently intended to be compiled using Android Studio, or
+Eclipse with the ADT plugin. This development environment can be downloaded
+from: http://developer.android.com/sdk/index.html
+
+Then, this project can be imported using File -> Import -> Existing Android
+Code into Workspace, selecting the top level e-mission-phone directory, and
+then selecting the MovesConnect project.
+
 In order to compile this project, you need to import google play services into
 your workspace. It is best to copy the google play services library into the
 source directory, in order to avoid inadvertently checking in a path that is
