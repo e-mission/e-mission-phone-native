@@ -1,0 +1,84 @@
+2014-11-10 18:49:53.282 E-MissionApp[12977:856501] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/EA968436-08FC-499B-8FED-B41893F350D0/Library/Cookies/Cookies.binarycookies
+2014-11-10 18:49:53.603 E-MissionApp[12977:856501] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-10 18:49:53.604 E-MissionApp[12977:856501] Multi-tasking -> Device: YES, App: YES
+2014-11-10 18:49:53.627 E-MissionApp[12977:856501] Unlimited access to network resources
+2014-11-10 18:49:53.635 E-MissionApp[12977:856501] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-10 18:49:54.525 E-MissionApp[12977:856501] Resetting plugins due to page load.
+2014-11-10 18:49:54.658 E-MissionApp[12977:856501] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/DF259323-1ADA-4944-A66E-F80E698CA258/E-MissionApp.app/www/index.html
+2014-11-10 23:00:27.258 E-MissionApp[13543:881889] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/28F1C4BB-8AC8-4F56-94CE-CCE93B00ECD7/Library/Cookies/Cookies.binarycookies
+2014-11-10 23:00:27.542 E-MissionApp[13543:881889] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-10 23:00:27.542 E-MissionApp[13543:881889] Multi-tasking -> Device: YES, App: YES
+2014-11-10 23:00:27.559 E-MissionApp[13543:881889] Unlimited access to network resources
+2014-11-10 23:00:27.564 E-MissionApp[13543:881889] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-10 23:00:28.389 E-MissionApp[13543:881889] Resetting plugins due to page load.
+2014-11-10 23:00:28.497 E-MissionApp[13543:881889] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/502866E6-D052-416F-96B2-F7DD6D1E0001/E-MissionApp.app/www/index.html
+2014-11-10 23:01:50.994 E-MissionApp[13644:883153] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/1FD9E185-E824-48E0-847C-717C6B584E01/Library/Cookies/Cookies.binarycookies
+2014-11-10 23:01:51.130 E-MissionApp[13644:883153] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-10 23:01:51.130 E-MissionApp[13644:883153] Multi-tasking -> Device: YES, App: YES
+2014-11-10 23:01:51.135 E-MissionApp[13644:883153] Unlimited access to network resources
+2014-11-10 23:01:51.139 E-MissionApp[13644:883153] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-10 23:01:51.693 E-MissionApp[13644:883153] Resetting plugins due to page load.
+2014-11-10 23:01:51.753 E-MissionApp[13644:883153] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/9E52274A-9D5E-433B-89C9-5F09B21DD8A2/E-MissionApp.app/www/index.html
+2014-11-10 23:26:27.938 E-MissionApp[14487:896874] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/C45C076A-F1C1-4F4E-BBA3-7DE8D1A5BA50/Library/Cookies/Cookies.binarycookies
+2014-11-10 23:26:28.078 E-MissionApp[14487:896874] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-10 23:26:28.079 E-MissionApp[14487:896874] Multi-tasking -> Device: YES, App: YES
+2014-11-10 23:26:28.084 E-MissionApp[14487:896874] Unlimited access to network resources
+2014-11-10 23:26:28.088 E-MissionApp[14487:896874] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-10 23:26:28.679 E-MissionApp[14487:896874] Resetting plugins due to page load.
+2014-11-10 23:26:28.742 E-MissionApp[14487:896874] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/68EABD48-F96C-4A55-B938-0D93D8C29F87/E-MissionApp.app/www/index.html
+2014-11-10 23:26:28.771 E-MissionApp[14487:896874] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/C45C076A-F1C1-4F4E-BBA3-7DE8D1A5BA50/Documents
+2014-11-10 23:26:28.773 E-MissionApp[14487:896874] Good news: SQLite is thread safe!
+2014-11-10 23:34:21.911 E-MissionApp[14976:902447] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/5CB1E0F7-A7C8-4EE5-AC4A-2F831A08CCAC/Library/Cookies/Cookies.binarycookies
+2014-11-10 23:34:22.069 E-MissionApp[14976:902447] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-10 23:34:22.069 E-MissionApp[14976:902447] Multi-tasking -> Device: YES, App: YES
+2014-11-10 23:34:22.075 E-MissionApp[14976:902447] Unlimited access to network resources
+2014-11-10 23:34:22.078 E-MissionApp[14976:902447] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-10 23:34:22.765 E-MissionApp[14976:902447] Resetting plugins due to page load.
+2014-11-10 23:34:22.847 E-MissionApp[14976:902447] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/897F65C6-6F39-42A7-9C15-DE3F2F6695AA/E-MissionApp.app/www/index.html
+2014-11-10 23:34:22.868 E-MissionApp[14976:902447] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/5CB1E0F7-A7C8-4EE5-AC4A-2F831A08CCAC/Documents
+2014-11-10 23:34:22.869 E-MissionApp[14976:902447] Good news: SQLite is thread safe!
+2014-11-10 23:56:51.383 E-MissionApp[15095:911429] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/446147A8-BF10-41E3-913C-5BCAE00F227B/Library/Cookies/Cookies.binarycookies
+2014-11-10 23:56:51.537 E-MissionApp[15095:911429] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-10 23:56:51.538 E-MissionApp[15095:911429] Multi-tasking -> Device: YES, App: YES
+2014-11-10 23:56:51.544 E-MissionApp[15095:911429] Unlimited access to network resources
+2014-11-10 23:56:51.548 E-MissionApp[15095:911429] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-10 23:56:52.154 E-MissionApp[15095:911429] Resetting plugins due to page load.
+2014-11-10 23:56:52.228 E-MissionApp[15095:911429] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/642BCE83-7385-4ED7-81F5-166D58363A40/E-MissionApp.app/www/index.html
+2014-11-10 23:56:52.262 E-MissionApp[15095:911429] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/446147A8-BF10-41E3-913C-5BCAE00F227B/Documents
+2014-11-10 23:56:52.263 E-MissionApp[15095:911429] Good news: SQLite is thread safe!
