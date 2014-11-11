@@ -1,0 +1,5 @@
+Apache Cordova (Apache License 2.0)
+http://cordova.apache.org/
+
+sqlite3 cordova plugin (mostly under MIT, some parts under Apache)
+https://github.com/brodysoft/Cordova-SQLitePlugin
