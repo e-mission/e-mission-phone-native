@@ -31,7 +31,7 @@ The project is set up to use google play services from the source directory.
 In order to copy over google play services, do:
 
     $ cd MovesConnect
-    $ cp $ANDROID_HOME/sdk/extras/google/google_play_services_froyo/libproject/google-play-services_lib .
+    $ cp $ANDROID_HOME/sdk/extras/google/google_play_services/libproject/google-play-services_lib .
 
 In order to import google play services, you need to import the library project
 into your workspace.
@@ -39,8 +39,15 @@ into your workspace.
 To do this: Click File > Import, select Android > Existing Android Code into
 Workspace, and browse to the copy of the library project to import it.
 
+Or, if you import the main project *after* copying over the google play services,
+it will automagically import google play services as well.
+
 IMPORTANT: Remember to use the copy that is in the MovesConnect directory NOT
 the one in your SDK directory.
+
+Finally, the unit test project will have errors by default. In order to resolve
+those, you need to make it reference the main project. To do this:
+- click on project -> properties -> java build path -> projects and add the main project to the list
 
 The onboarding flow is implemented as a state machine, as described at:
 https://docs.google.com/a/berkeley.edu/document/d/1OYeo5ccUcTD-9tyMr4PysoS6R9e3rNDl1SCPXnF30b0/edit?usp=sharing
