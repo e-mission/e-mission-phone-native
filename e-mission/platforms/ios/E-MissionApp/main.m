@@ -30,6 +30,7 @@ int main(int argc, char* argv[])
 {
     @autoreleasepool {
         int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+        NSLog(@"I have modified this app!");
         return retVal;
     }
 }

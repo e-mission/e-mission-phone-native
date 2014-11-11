@@ -31,5 +31,6 @@ public class CordovaApp extends CordovaActivity
         super.init();
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+        System.out.println("I have modified this file!");
     }
 }
