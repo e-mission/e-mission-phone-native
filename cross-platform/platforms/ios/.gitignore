@@ -1,0 +1,10 @@
+*.mode1v3
+*.perspectivev3
+*.pbxuser
+.DS_Store
+build/
+cordova/console.log
+**/xcshareddata
+**/xcuserdata
+**/GoogleOpenSource.framework/
+E-MissionApp/connect.plist

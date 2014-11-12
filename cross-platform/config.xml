@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="edu.berkeley.eecs.e_mission" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>E-MissionApp</name>
+    <description>
+        E-Mission: Data driven carbon footprint reduction
+    </description>
+    <author email="e-mission-dev@lists.eecs.berkeley.edu" href="http://e-mission.eecs.berkeley.edu">
+        E-Mission Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <platform name="android">
+      <preference name="ShowTitle" value="true"/>
+    </platform>
+</widget>
