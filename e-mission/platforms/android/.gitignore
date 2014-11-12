@@ -17,3 +17,4 @@ out
 /build
 
 /google-play-services_lib
+res/values/connect.xml
