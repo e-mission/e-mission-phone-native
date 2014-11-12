@@ -26,8 +26,22 @@
 //
 
 #import "MainViewController.h"
+#import "SignInViewController.h"
+#import "ClientStatsDatabase.h"
+#import "HTMLDisplayCommunicationHelper.h"
+
+@interface MainViewController () {
+    ClientStatsDatabase* _statsDb;
+}
+@property(strong, nonatomic) SignInViewController *signInViewController;
+@property(strong, nonatomic) UIViewController *resultSummaryViewController;
+@property BOOL hasShownResults;
+@end
+
 
 @implementation MainViewController
+static NSString * const kMainStoryboardName = @"MainStoryboard_iPhone";
+static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
@@ -75,6 +89,58 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    // Let's add the auth and result bar buttons just to highlight that this is a hybrid app
+    [self initializeAuthResultBarButtons];
+    self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:kMainStoryboardName bundle:nil];
+    self.resultSummaryViewController = [sb instantiateViewControllerWithIdentifier:kResultSummaryStoryboardID];
+    _statsDb = [[ClientStatsDatabase alloc] init];
+}
+
+- (void)initializeAuthResultBarButtons
+{
+    UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Auth" style:UIBarButtonItemStyleBordered target: self action:@selector(showSignInView:)];
+    UIBarButtonItem *resultButton = [[UIBarButtonItem alloc] initWithTitle:@"Result" style:UIBarButtonItemStyleBordered target: self action:@selector(showResults:)];
+    /*    UIBarButtonItem *stupidAppReviewButton = [[UIBarButtonItem alloc] initWithTitle:@"SAP" style:UIBarButtonItemStyleBordered target: self action:@selector(showManualTripScreen:)];
+     self.navigationItem.leftBarButtonItems = @[authButton, resultButton, stupidAppReviewButton];
+     */
+    self.navigationItem.leftBarButtonItems = @[authButton, resultButton];
+}
+
+- (void)showSignInView:(id)sender
+{
+    if ([self.navigationController.viewControllers containsObject:self.signInViewController]) {
+        // the sign in view is already visible, don't need to push it again
+        NSLog(@"sign in view is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self.navigationController pushViewController:self.signInViewController animated:YES];
+    }
+}
+
+- (void)showResults:(id)sender
+{
+    long startTime = [ClientStatsDatabase getCurrentTimeMillis];
+    if ([self.navigationController.viewControllers containsObject:self.resultSummaryViewController]) {
+        // the result summary is already visible, don't need to push it again
+        NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self.navigationController pushViewController:self.resultSummaryViewController animated:YES];
+    }
+    // NSLog(@"subviews are %@", self.resultSummaryViewController.view.subviews);
+    // NSLog(@"view with tag 0 is %@", [self.resultSummaryViewController.view viewWithTag:0]);
+    // UIWebView *webView = (UIWebView*)[self.resultSummaryViewController.view viewWithTag:0];
+    UIWebView *webView = (UIWebView*)self.resultSummaryViewController.view.subviews[0];
+    // [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/compare"]]];
+    [HTMLDisplayCommunicationHelper displayResultSummary:webView
+                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                           // This is currently used only for generating stats, need to figure out how to display errors
+                                           long endTime = [ClientStatsDatabase getCurrentTimeMillis];
+                                           NSString* endTimeStr = [ClientStatsDatabase getCurrentTimeMillisString];
+                                           [_statsDb storeMeasurement:@"result_display_duration" value:[@(endTime - startTime) stringValue] ts:endTimeStr];
+                                           if(error != NULL) {
+                                               [_statsDb storeMeasurement:@"result_display_failed" value:NULL ts:endTimeStr];
+                                           }
+                                       }];
 }
 
 - (void)viewDidUnload
