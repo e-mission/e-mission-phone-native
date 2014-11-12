@@ -86,6 +86,9 @@ static NSString * const runMultipleTimes = @"appHasRunMoreThanOnce";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*
+     * This is the implementation in the original AppDelegate that loads the webview.
+     * In our case, we want to load the webview (the list view) only after the 
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
 
 #if __has_feature(objc_arc)
@@ -110,6 +113,8 @@ static NSString * const runMultipleTimes = @"appHasRunMoreThanOnce";
 
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    */
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

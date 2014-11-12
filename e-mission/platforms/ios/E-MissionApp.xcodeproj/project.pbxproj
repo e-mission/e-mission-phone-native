@@ -114,6 +114,8 @@
 		D026769F1A135FCC002B5D7A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D026769E1A135FCC002B5D7A /* MapKit.framework */; };
 		D02676A11A13607B002B5D7A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A01A13607B002B5D7A /* Security.framework */; };
 		D02676A71A136122002B5D7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A61A136122002B5D7A /* SystemConfiguration.framework */; };
+		D02676A91A13CE74002B5D7A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D02676A81A13CE74002B5D7A /* Images.xcassets */; };
+		D02676AC1A13DBAA002B5D7A /* connect.plist in Resources */ = {isa = PBXBuildFile; fileRef = D02676AB1A13DBAA002B5D7A /* connect.plist */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 /* End PBXBuildFile section */
 
@@ -286,6 +288,8 @@
 		D02676A21A1360C1002B5D7A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D02676A41A1360FC002B5D7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D02676A61A136122002B5D7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D02676A81A13CE74002B5D7A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "E-MissionApp/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+		D02676AB1A13DBAA002B5D7A /* connect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = connect.plist; path = "E-MissionApp/connect.plist"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		DFD5E9ACE2D54475A90AC51D /* SQLitePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQLitePlugin.m; path = com.brodysoft.sqlitePlugin/SQLitePlugin.m; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
@@ -428,6 +432,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D02676A81A13CE74002B5D7A /* Images.xcassets */,
 				30A0434214DC770100060A13 /* de.lproj */,
 				30A0434514DC770100060A13 /* se.lproj */,
 				1F766FDB13BBADB100FB74C0 /* en.lproj */,
@@ -530,6 +535,7 @@
 		D02675E31A135C42002B5D7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D02676AB1A13DBAA002B5D7A /* connect.plist */,
 				D02676281A135C91002B5D7A /* ActionSheetPickers */,
 				D026763A1A135C91002B5D7A /* app_stats.plist */,
 				D026763B1A135C91002B5D7A /* ClientStats.db */,
@@ -668,6 +674,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 510;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 9DZFVH97CB;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "E-MissionApp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -722,6 +733,7 @@
 				D02676931A135C91002B5D7A /* transport-invert.jpg in Resources */,
 				7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */,
 				D02676971A135C91002B5D7A /* TripSections.db in Resources */,
+				D02676A91A13CE74002B5D7A /* Images.xcassets in Resources */,
 				D026767D1A135C91002B5D7A /* EMissionTerms.html in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				D026767E1A135C91002B5D7A /* InfoPlist.strings in Resources */,
@@ -729,6 +741,7 @@
 				D02676911A135C91002B5D7A /* train-invert.jpg in Resources */,
 				D02676871A135C91002B5D7A /* air-invert.jpg in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
+				D02676AC1A13DBAA002B5D7A /* connect.plist in Resources */,
 				D026768E1A135C91002B5D7A /* cycling.jpg in Resources */,
 				D02676891A135C91002B5D7A /* bus-invert.jpg in Resources */,
 				D026767A1A135C91002B5D7A /* EMission_large.png in Resources */,
@@ -908,7 +921,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -921,7 +937,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "E-MissionApp/E-MissionApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -937,7 +953,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "E-MissionApp";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -945,7 +961,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -956,7 +975,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "E-MissionApp/E-MissionApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -972,7 +991,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "E-MissionApp";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

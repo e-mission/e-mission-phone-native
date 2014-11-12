@@ -8,6 +8,7 @@
 
 #import "MasterNavController.h"
 #import "ConnectionSettings.h"
+#import "MainViewController.h"
 // Used to determine whether we are running in the simulator
 #import <TargetConditionals.h>
 
@@ -118,8 +119,19 @@
         tempController.hideDownloadMovesButtonController = YES;
         [self pushViewController:controller animated:YES];
     } else {
+        /*
         controller = [board instantiateViewControllerWithIdentifier:@"MasterViewController"];
+         */
+        // This is the main controller for the ios app
+        controller = [[MainViewController alloc] init];
         [self setViewControllers:[[NSArray alloc] initWithObjects:controller, nil] animated:YES]; // for coming out of onboarding process
+        
+        // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
+        // If necessary, uncomment the line below to override it.
+        // self.viewController.startPage = @"index.html";
+        
+        // NOTE: To customize the view's frame size (which defaults to full screen), override
+        // [self.viewController viewWillAppear:] in your view controller.
     }
 }
 
