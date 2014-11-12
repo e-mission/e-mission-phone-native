@@ -215,6 +215,7 @@ public class ConfirmSectionListActivity extends Activity {
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.i(TAG, "onCreateOptionsMenu called");
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.options_menu, menu);
 		return true;
