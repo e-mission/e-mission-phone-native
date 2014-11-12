@@ -40,6 +40,7 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D00698421A13EB0400EE2CBC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
+		D00698441A13ECA300EE2CBC /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D00698431A13ECA300EE2CBC /* Icons.xcassets */; };
 		D02676111A135C65002B5D7A /* AuthCompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E51A135C65002B5D7A /* AuthCompletionHandler.m */; };
 		D02676121A135C65002B5D7A /* AuthInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E71A135C65002B5D7A /* AuthInspectorViewController.m */; };
 		D02676131A135C65002B5D7A /* ClientStatsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E91A135C65002B5D7A /* ClientStatsDatabase.m */; };
@@ -115,7 +116,6 @@
 		D026769F1A135FCC002B5D7A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D026769E1A135FCC002B5D7A /* MapKit.framework */; };
 		D02676A11A13607B002B5D7A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A01A13607B002B5D7A /* Security.framework */; };
 		D02676A71A136122002B5D7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A61A136122002B5D7A /* SystemConfiguration.framework */; };
-		D02676A91A13CE74002B5D7A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D02676A81A13CE74002B5D7A /* Images.xcassets */; };
 		D02676AC1A13DBAA002B5D7A /* connect.plist in Resources */ = {isa = PBXBuildFile; fileRef = D02676AB1A13DBAA002B5D7A /* connect.plist */; };
 		D02676D41A13E42F002B5D7A /* E_MissionApp_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676D31A13E42F002B5D7A /* E_MissionApp_Tests.m */; };
 		D02676DD1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676DA1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m */; };
@@ -199,6 +199,7 @@
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* E-MissionApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "E-MissionApp-Info.plist"; path = "../E-MissionApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9A9A97ACAC0F41FB9C348BA2 /* SQLitePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLitePlugin.h; path = com.brodysoft.sqlitePlugin/SQLitePlugin.h; sourceTree = "<group>"; };
+		D00698431A13ECA300EE2CBC /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = SOURCE_ROOT; };
 		D02675E41A135C65002B5D7A /* AuthCompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthCompletionHandler.h; sourceTree = "<group>"; };
 		D02675E51A135C65002B5D7A /* AuthCompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthCompletionHandler.m; sourceTree = "<group>"; };
 		D02675E61A135C65002B5D7A /* AuthInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthInspectorViewController.h; sourceTree = "<group>"; };
@@ -310,7 +311,6 @@
 		D02676A21A1360C1002B5D7A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D02676A41A1360FC002B5D7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D02676A61A136122002B5D7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		D02676A81A13CE74002B5D7A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "E-MissionApp/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		D02676AB1A13DBAA002B5D7A /* connect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = connect.plist; path = "E-MissionApp/connect.plist"; sourceTree = "<group>"; };
 		D02676CF1A13E42E002B5D7A /* E-MissionApp Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "E-MissionApp Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D02676D21A13E42F002B5D7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -477,7 +477,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D02676A81A13CE74002B5D7A /* Images.xcassets */,
+				D00698431A13ECA300EE2CBC /* Icons.xcassets */,
 				30A0434214DC770100060A13 /* de.lproj */,
 				30A0434514DC770100060A13 /* se.lproj */,
 				1F766FDB13BBADB100FB74C0 /* en.lproj */,
@@ -822,7 +822,6 @@
 				D02676931A135C91002B5D7A /* transport-invert.jpg in Resources */,
 				7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */,
 				D02676971A135C91002B5D7A /* TripSections.db in Resources */,
-				D02676A91A13CE74002B5D7A /* Images.xcassets in Resources */,
 				D026767D1A135C91002B5D7A /* EMissionTerms.html in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				D026767E1A135C91002B5D7A /* InfoPlist.strings in Resources */,
@@ -872,6 +871,7 @@
 				D02676741A135C91002B5D7A /* connect.plist.sample in Resources */,
 				D02676851A135C91002B5D7A /* OngoingTripsManual.db in Resources */,
 				D02676791A135C91002B5D7A /* E-Mission-Info.plist in Resources */,
+				D00698441A13ECA300EE2CBC /* Icons.xcassets in Resources */,
 				D02676731A135C91002B5D7A /* ClientStats.db in Resources */,
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
@@ -1037,8 +1037,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1077,8 +1077,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1135,7 +1135,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1181,7 +1181,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
