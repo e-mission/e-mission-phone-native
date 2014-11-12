@@ -7,6 +7,7 @@
 //
 
 #import "ClientStatsDatabase.h"
+#import <UIKit/UIKit.h>
 
 // Table name
 #define TABLE_CLIENT_STATS @"clientStats"

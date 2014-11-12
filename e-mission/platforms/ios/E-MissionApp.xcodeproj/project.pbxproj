@@ -39,6 +39,7 @@
 		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
+		D00698421A13EB0400EE2CBC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
 		D02676111A135C65002B5D7A /* AuthCompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E51A135C65002B5D7A /* AuthCompletionHandler.m */; };
 		D02676121A135C65002B5D7A /* AuthInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E71A135C65002B5D7A /* AuthInspectorViewController.m */; };
 		D02676131A135C65002B5D7A /* ClientStatsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E91A135C65002B5D7A /* ClientStatsDatabase.m */; };
@@ -116,6 +117,20 @@
 		D02676A71A136122002B5D7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A61A136122002B5D7A /* SystemConfiguration.framework */; };
 		D02676A91A13CE74002B5D7A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D02676A81A13CE74002B5D7A /* Images.xcassets */; };
 		D02676AC1A13DBAA002B5D7A /* connect.plist in Resources */ = {isa = PBXBuildFile; fileRef = D02676AB1A13DBAA002B5D7A /* connect.plist */; };
+		D02676D41A13E42F002B5D7A /* E_MissionApp_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676D31A13E42F002B5D7A /* E_MissionApp_Tests.m */; };
+		D02676DD1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676DA1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m */; };
+		D02676DE1A13E4A2002B5D7A /* SampleTrips.json in Resources */ = {isa = PBXBuildFile; fileRef = D02676DB1A13E4A2002B5D7A /* SampleTrips.json */; };
+		D02676DF1A13E4A2002B5D7A /* TripSectionDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676DC1A13E4A2002B5D7A /* TripSectionDatabaseTests.m */; };
+		D07A00741A13E6090010D532 /* ClientStatsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675E91A135C65002B5D7A /* ClientStatsDatabase.m */; };
+		D07A00751A13E6230010D532 /* TripSection.m in Sources */ = {isa = PBXBuildFile; fileRef = D026760E1A135C65002B5D7A /* TripSection.m */; };
+		D07A00761A13E6260010D532 /* TripSectionDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676101A135C65002B5D7A /* TripSectionDatabase.m */; };
+		D07A00781A13E6CA0010D532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07A00771A13E6CA0010D532 /* UIKit.framework */; };
+		D07A00791A13E7EF0010D532 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 423D7BB209594537A14A94F6 /* libsqlite3.dylib */; };
+		D07A007A1A13E7F60010D532 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
+		D07A007B1A13E8000010D532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07A00771A13E6CA0010D532 /* UIKit.framework */; };
+		D07A007C1A13E8640010D532 /* TrackLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D026760C1A135C65002B5D7A /* TrackLocation.m */; };
+		D07A007F1A13E95B0010D532 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		D07A00811A13EAA40010D532 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A21A1360C1002B5D7A /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +148,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
+		};
+		D02676D51A13E42F002B5D7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = "E-MissionApp";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -290,6 +312,13 @@
 		D02676A61A136122002B5D7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D02676A81A13CE74002B5D7A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "E-MissionApp/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		D02676AB1A13DBAA002B5D7A /* connect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = connect.plist; path = "E-MissionApp/connect.plist"; sourceTree = "<group>"; };
+		D02676CF1A13E42E002B5D7A /* E-MissionApp Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "E-MissionApp Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D02676D21A13E42F002B5D7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D02676D31A13E42F002B5D7A /* E_MissionApp_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E_MissionApp_Tests.m; sourceTree = "<group>"; };
+		D02676DA1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientStatsDatabaseTests.m; sourceTree = "<group>"; };
+		D02676DB1A13E4A2002B5D7A /* SampleTrips.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleTrips.json; sourceTree = "<group>"; };
+		D02676DC1A13E4A2002B5D7A /* TripSectionDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripSectionDatabaseTests.m; sourceTree = "<group>"; };
+		D07A00771A13E6CA0010D532 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		DFD5E9ACE2D54475A90AC51D /* SQLitePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQLitePlugin.m; path = com.brodysoft.sqlitePlugin/SQLitePlugin.m; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
@@ -303,6 +332,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07A00781A13E6CA0010D532 /* UIKit.framework in Frameworks */,
 				D02676A71A136122002B5D7A /* SystemConfiguration.framework in Frameworks */,
 				D02676A11A13607B002B5D7A /* Security.framework in Frameworks */,
 				D026769F1A135FCC002B5D7A /* MapKit.framework in Frameworks */,
@@ -313,6 +343,19 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				0012D4CAF5C740FB9A9C1B6A /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D02676CC1A13E42E002B5D7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00698421A13EB0400EE2CBC /* MobileCoreServices.framework in Frameworks */,
+				D07A00811A13EAA40010D532 /* CFNetwork.framework in Frameworks */,
+				D07A007F1A13E95B0010D532 /* AssetsLibrary.framework in Frameworks */,
+				D07A007B1A13E8000010D532 /* UIKit.framework in Frameworks */,
+				D07A007A1A13E7F60010D532 /* libCordova.a in Frameworks */,
+				D07A00791A13E7EF0010D532 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* E-MissionApp.app */,
+				D02676CF1A13E42E002B5D7A /* E-MissionApp Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -413,6 +457,7 @@
 				307C750510C5A3420062BCA9 /* Plugins */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				D02676D01A13E42F002B5D7A /* E-MissionApp Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -448,6 +493,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D07A00771A13E6CA0010D532 /* UIKit.framework */,
 				D02676A61A136122002B5D7A /* SystemConfiguration.framework */,
 				D02676A41A1360FC002B5D7A /* Foundation.framework */,
 				D02676A21A1360C1002B5D7A /* CFNetwork.framework */,
@@ -636,6 +682,26 @@
 			path = "E-MissionApp/WYPopoverController";
 			sourceTree = "<group>";
 		};
+		D02676D01A13E42F002B5D7A /* E-MissionApp Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D02676DA1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m */,
+				D02676DB1A13E4A2002B5D7A /* SampleTrips.json */,
+				D02676DC1A13E4A2002B5D7A /* TripSectionDatabaseTests.m */,
+				D02676D31A13E42F002B5D7A /* E_MissionApp_Tests.m */,
+				D02676D11A13E42F002B5D7A /* Supporting Files */,
+			);
+			path = "E-MissionApp Tests";
+			sourceTree = "<group>";
+		};
+		D02676D11A13E42F002B5D7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D02676D21A13E42F002B5D7A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +733,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* E-MissionApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D02676CE1A13E42E002B5D7A /* E-MissionApp Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D02676D71A13E42F002B5D7A /* Build configuration list for PBXNativeTarget "E-MissionApp Tests" */;
+			buildPhases = (
+				D02676CB1A13E42E002B5D7A /* Sources */,
+				D02676CC1A13E42E002B5D7A /* Frameworks */,
+				D02676CD1A13E42E002B5D7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D02676D61A13E42F002B5D7A /* PBXTargetDependency */,
+			);
+			name = "E-MissionApp Tests";
+			productName = "E-MissionApp Tests";
+			productReference = D02676CF1A13E42E002B5D7A /* E-MissionApp Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -677,6 +761,10 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 9DZFVH97CB;
+					};
+					D02676CE1A13E42E002B5D7A = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
 				};
 			};
@@ -705,6 +793,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* E-MissionApp */,
+				D02676CE1A13E42E002B5D7A /* E-MissionApp Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -791,6 +880,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D02676CD1A13E42E002B5D7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D02676DE1A13E4A2002B5D7A /* SampleTrips.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -855,6 +952,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D02676CB1A13E42E002B5D7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D07A007C1A13E8640010D532 /* TrackLocation.m in Sources */,
+				D02676D41A13E42F002B5D7A /* E_MissionApp_Tests.m in Sources */,
+				D02676DF1A13E4A2002B5D7A /* TripSectionDatabaseTests.m in Sources */,
+				D02676DD1A13E4A2002B5D7A /* ClientStatsDatabaseTests.m in Sources */,
+				D07A00751A13E6230010D532 /* TripSection.m in Sources */,
+				D07A00741A13E6090010D532 /* ClientStatsDatabase.m in Sources */,
+				D07A00761A13E6260010D532 /* TripSectionDatabase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -862,6 +973,11 @@
 			isa = PBXTargetDependency;
 			name = CordovaLib;
 			targetProxy = 301BF550109A68C00062928A /* PBXContainerItemProxy */;
+		};
+		D02676D61A13E42F002B5D7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* E-MissionApp */;
+			targetProxy = D02676D51A13E42F002B5D7A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -921,8 +1037,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -961,8 +1077,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1086,6 +1202,75 @@
 			};
 			name = Release;
 		};
+		D02676D81A13E42F002B5D7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "E-MissionApp Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/E-MissionApp.app/E-MissionApp";
+			};
+			name = Debug;
+		};
+		D02676D91A13E42F002B5D7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "E-MissionApp Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/E-MissionApp.app/E-MissionApp";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1103,6 +1288,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D02676D71A13E42F002B5D7A /* Build configuration list for PBXNativeTarget "E-MissionApp Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D02676D81A13E42F002B5D7A /* Debug */,
+				D02676D91A13E42F002B5D7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
