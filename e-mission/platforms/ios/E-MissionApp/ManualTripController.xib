@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManualTripController">
+            <connections>
+                <outlet property="modePicker" destination="1Z6-le-Nen" id="MLO-7t-3f3"/>
+                <outlet property="startLocationLabel" destination="bIV-PC-DZc" id="7wN-hR-OSf"/>
+                <outlet property="startTimeLabel" destination="CzZ-1C-j8p" id="yJI-xE-amb"/>
+                <outlet property="startTripButton" destination="Mu9-F7-TlI" id="Fhi-11-acY"/>
+                <outlet property="statusLabel" destination="GJI-6C-Xcu" id="iVN-kP-yeh"/>
+                <outlet property="stopTripButton" destination="9tB-ZW-Fej" id="ptn-zo-fIh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mu9-F7-TlI">
+                    <rect key="frame" x="20" y="193" width="111" height="47"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="Start Trip">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="16" y="312" width="111" height="47"/>
+                    </variation>
+                    <connections>
+                        <action selector="startTrip:" destination="-1" eventType="touchUpInside" id="LRn-SJ-tZr"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="statusLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJI-6C-Xcu">
+                    <rect key="frame" x="27" y="138" width="104" height="47"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="34" y="139" width="104" height="47"/>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="35" y="335" width="104" height="47"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="startLocationLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIV-PC-DZc">
+                    <rect key="frame" x="139" y="119" width="143" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="143" y="292" width="143" height="21"/>
+                    </variation>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tB-ZW-Fej">
+                    <rect key="frame" x="131" y="201" width="102" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="End Trip">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="133" y="321" width="102" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="endTrip:" destination="-1" eventType="touchUpInside" id="i7m-f6-XWO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z6-le-Nen">
+                    <rect key="frame" x="145" y="142" width="97" height="40"/>
+                    <state key="normal" title="Pick Mode">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="136" y="143" width="97" height="40"/>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="135" y="342" width="97" height="40"/>
+                    </variation>
+                    <connections>
+                        <action selector="popupMode:" destination="-1" eventType="touchUpInside" id="nD4-WD-IsE"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="startTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzZ-1C-j8p">
+                    <rect key="frame" x="27" y="119" width="72" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="35" y="292" width="72" height="21"/>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+        </view>
+    </objects>
+</document>

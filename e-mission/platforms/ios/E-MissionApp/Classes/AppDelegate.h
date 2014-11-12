@@ -21,11 +21,12 @@
 //  AppDelegate.h
 //  E-MissionApp
 //
-//  Created by ___FULLUSERNAME___ on ___DATE___.
-//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
+//  Created by Kalyanaraman Shankari on 3/23/14.
+//  Copyright (c) 2014 Kalyanaraman Shankari. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "SetUpViewController.h"
 
 #import <Cordova/CDVViewController.h>
 
@@ -38,5 +39,7 @@
 
 @property (nonatomic, strong) IBOutlet UIWindow* window;
 @property (nonatomic, strong) IBOutlet CDVViewController* viewController;
+
++(NSString *)runMultipleTimes;
 
 @end

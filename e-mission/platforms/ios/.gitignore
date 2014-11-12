@@ -4,3 +4,6 @@
 .DS_Store
 build/
 cordova/console.log
+**/xcshareddata
+**/xcuserdata
+**/GoogleOpenSource.framework/
