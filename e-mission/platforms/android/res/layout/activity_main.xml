@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="16dp">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="&lt;Email>"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/authStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noGoogleAuthString"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/googleSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="googleSignIn"
+            android:text="@string/googleSignIn" />
+
+        <TextView
+            android:id="@+id/linkToMovesStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noLinkToMovesString"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/linkToMoves"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:enabled = "false"
+            android:text="@string/link_to_moves" />
+ 
+        <Button
+            android:id="@+id/scheduleSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onScheduleSync"
+            android:text="@string/scheduleSync" />
+
+        <Button
+            android:id="@+id/forceSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onForceSync"
+            android:text="@string/forceSync" />
+
+        <Button
+            android:id="@+id/getTokenButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getServerToken"
+            android:text="Get Server Token" />
+<!--  
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="showList"
+            android:text="Show Trips Needing Confirmation" />
+-->
+        <TextView
+            android:id="@+id/tokenView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+<!-- 
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show only low confidence trips" />
+ -->
+
+    </LinearLayout>
+    
+</LinearLayout>

@@ -15,3 +15,5 @@ gen
 out
 # Gradle builds
 /build
+
+/google-play-services_lib
