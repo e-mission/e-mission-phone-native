@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.cordova.CordovaActivity;
 import org.json.JSONException;
 
 import android.view.View;
@@ -43,7 +44,7 @@ import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
-public class ConfirmSectionListActivity extends Activity {
+public class ConfirmSectionListActivity extends CordovaActivity {
 	private ListView lv;
 	private boolean hasShownResults = false;
 
@@ -71,11 +72,19 @@ public class ConfirmSectionListActivity extends Activity {
     private static final long SYNC_INTERVAL = 2 * 60 * 60; // Changed to 10 secs to debug syncing issues on some android versions
     // END: variables to set up the automatic syncing
 
-	protected void onCreate(Bundle savedInstanceBundle) {
+    @Override
+	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
+        super.init();
+        
+        // Set by <content src="index.html" /> in config.xml
+        loadUrl(launchUrl);
+
+        /*
 		setContentView(R.layout.activity_confirm_section_list_1);
 		lv = (ListView) findViewById(R.id.listView);
 		confirmAll = (Button) findViewById(R.id.confirmAll);
+		*/
 
 		Intent intent = getIntent();
 
@@ -181,11 +190,13 @@ public class ConfirmSectionListActivity extends Activity {
 		if (onlyUnsure == true) {
 			showLowConfidence(ucs);
 		}
+		/*
 		if (ucs.size() > 0) {
 			confirmAll.setEnabled(true);
 		} else {
 			confirmAll.setEnabled(false);
 		}
+
 		Log.d(TAG, "created ucs");
 		Log.d(TAG, "ucs.size(): " + ucs.size());
 		statsHelper.storeMeasurement(getString(R.string.confirmlist_ucs_size), String.valueOf(ucs.size()), resumeTs);
@@ -199,6 +210,7 @@ public class ConfirmSectionListActivity extends Activity {
 		// lv.setOnItemClickListener(this);
 		arrBoolean = new boolean[ucs.size()];
 		Log.d(TAG, "arrboolean.length: " + arrBoolean.length);
+		*/
 
 		System.out.println("ucs = " + ucs);
 		// ucsArray = new ArrayAdapter<UnclassifiedSection>(this,
