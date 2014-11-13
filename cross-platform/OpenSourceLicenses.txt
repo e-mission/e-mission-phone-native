@@ -3,3 +3,10 @@ http://cordova.apache.org/
 
 sqlite3 cordova plugin (mostly under MIT, some parts under Apache)
 https://github.com/brodysoft/Cordova-SQLitePlugin
+
+The following components of jquery:
+https://jquery.org/license/
+    - qunit (MIT license)
+
+A query plugin to run tests in phantomJS (no license):
+    https://github.com/jonkemp/qunit-phantomjs-runner
