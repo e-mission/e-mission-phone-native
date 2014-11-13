@@ -12,7 +12,7 @@
 <script src="qunit-1.15.0.js"></script>
 <script type="text/javascript" src="../cordova.js"></script>
 <script type="text/javascript" src="../js/dbHelper.js"></script>
-<!-- <script type="text/javascript" src="tests/dbHelper.tests.js"></script> -->
+<script type="text/javascript" src="dbHelper.tests.js"></script>
 <script type="text/javascript">
 (function () {
   'use strict';
@@ -22,6 +22,9 @@
   document.addEventListener("deviceready", doAllTests, false);
 
   function doAllTests() {
+    dbHelperTests.doAllTests();
+
+    /*
     QUnit.config.testTimeout = 25000; // 25 sec.
 
     QUnit.test ("hello test", function(assert) {
@@ -33,6 +36,7 @@
         dbHelper.pragmaExample();
         assert.ok(1 == "1", "Passed!");
     });
+    */
   }
 })();
 </script>

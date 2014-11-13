@@ -349,3 +349,37 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-11-12 23:25:20.150 E-MissionApp[27791:818668] Resetting plugins due to page load.
 2014-11-12 23:25:20.182 E-MissionApp[27791:818668] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/2D89CD5E-B8F0-47DA-BBA9-E16CB0AB7B78/E-MissionApp.app/www/tests/index.html?testNumber=2
 2014-11-12 23:25:20.197 E-MissionApp[27791:818668] Good news: SQLite is thread safe!
+2014-11-12 23:59:56.141 E-MissionApp[27791:835165] Terminating since there is no system app.
+2014-11-13 09:40:08.991 E-MissionApp[34567:872736] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/E2F39789-27B3-4955-B181-BF44BFE891F3/Library/Cookies/Cookies.binarycookies
+2014-11-13 09:40:09.277 E-MissionApp[34567:872736] creating new AuthCompletionHandler sharedInstance
+2014-11-13 09:40:09.313 E-MissionApp[34567:872736] The last viewed version number: 1.0
+2014-11-13 09:40:09.317 E-MissionApp[34567:872736] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-13 09:40:09.317 E-MissionApp[34567:872736] Multi-tasking -> Device: YES, App: YES
+2014-11-13 09:40:09.334 E-MissionApp[34567:872736] Unlimited access to network resources
+2014-11-13 09:40:09.351 E-MissionApp[34567:872736] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-13 09:40:09.959 E-MissionApp[34567:872736] SignInView.initWithNibName called!
+2014-11-13 09:40:09.959 E-MissionApp[34567:872736] SignInView.gppInit called!
+2014-11-13 09:40:09.960 E-MissionApp[34567:872736] About to add delegate, nListeners = 0
+2014-11-13 09:40:09.960 E-MissionApp[34567:872736] After adding delegate, nListeners = 1
+2014-11-13 09:40:10.091 E-MissionApp[34567:872736] applicationDidBecomeActive called
+2014-11-13 09:40:10.095 E-MissionApp[34567:872736] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-13 09:40:10.095 E-MissionApp[34567:872736] The rootViewController is: MasterNavController
+2014-11-13 09:40:10.148 E-MissionApp[34567:872736] Resetting plugins due to page load.
+2014-11-13 09:40:10.263 E-MissionApp[34567:872736] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/C0BC5177-9D58-41A4-BCF1-290D8E7150EB/E-MissionApp.app/www/index.html
+2014-11-13 09:40:10.302 E-MissionApp[34567:872736] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/E2F39789-27B3-4955-B181-BF44BFE891F3/Documents
+2014-11-13 09:40:10.309 E-MissionApp[34567:872736] Good news: SQLite is thread safe!
+2014-11-13 09:40:21.591 E-MissionApp[34567:872736] Resetting plugins due to page load.
+2014-11-13 09:40:21.644 E-MissionApp[34567:872736] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/C0BC5177-9D58-41A4-BCF1-290D8E7150EB/E-MissionApp.app/www/tests/index.html
+2014-11-13 09:40:21.678 E-MissionApp[34567:872736] Good news: SQLite is thread safe!
+2014-11-13 09:43:04.029 E-MissionApp[34567:872736] HTMLDisplayCommunicationHelper.displayResultSummary called!
+2014-11-13 09:43:04.030 E-MissionApp[34567:872736] CommunicationHelper.execute called!
+2014-11-13 09:43:04.030 E-MissionApp[34567:872736] tryToAuthenticate called
+2014-11-13 09:43:04.030 E-MissionApp[34567:872736] About to add delegate, nListeners = 1
+2014-11-13 09:43:04.030 E-MissionApp[34567:872736] After adding delegate, nListeners = 2
+2014-11-13 09:43:04.036 E-MissionApp[34567:872736] callback should be called, we will deal with it there
