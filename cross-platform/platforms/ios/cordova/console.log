@@ -97,3 +97,255 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-11-11 00:33:20.946 E-MissionApp[15923:932151] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/6D33FC2B-C7C6-46C8-B38A-CD24B67E14F6/E-MissionApp.app/www/index.html
 2014-11-11 00:33:20.968 E-MissionApp[15923:932151] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/E1077AEB-C116-4800-A3F4-482E71FE336D/Documents
 2014-11-11 00:33:20.970 E-MissionApp[15923:932151] Good news: SQLite is thread safe!
+2014-11-12 19:10:20.422 E-MissionApp[19734:686068] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/3148FB81-80AA-4DE5-B655-05FE0A211FE5/Library/Cookies/Cookies.binarycookies
+2014-11-12 19:10:20.627 E-MissionApp[19734:686068] Copying file from /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/3148FB81-80AA-4DE5-B655-05FE0A211FE5/Documents/TripSections.db to /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/709F42A8-74EC-430F-A030-DC77C7E2D5D8/E-MissionApp.app/TripSections.db
+2014-11-12 19:10:20.638 E-MissionApp[19734:686068] Copying file from /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/3148FB81-80AA-4DE5-B655-05FE0A211FE5/Documents/ClientStats.db to /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/709F42A8-74EC-430F-A030-DC77C7E2D5D8/E-MissionApp.app/ClientStats.db
+2014-11-12 19:10:20.648 E-MissionApp[19734:686068] creating new AuthCompletionHandler sharedInstance
+2014-11-12 19:10:20.703 E-MissionApp[19734:686068] The last viewed version number: (null)
+2014-11-12 19:10:21.454 E-MissionApp[19734:686068] Unknown class InfoView in Interface Builder file.
+2014-11-12 19:10:21.515 E-MissionApp[19734:686068] applicationDidBecomeActive called
+2014-11-12 19:10:21.518 E-MissionApp[19734:686068] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 19:10:21.519 E-MissionApp[19734:686068] The rootViewController is: MasterNavController
+2014-11-12 19:10:40.555 E-MissionApp[19734:686068] Saving version number
+2014-11-12 19:10:40.567 E-MissionApp[19734:686068] The last viewed version number: (null)
+2014-11-12 19:10:41.916 E-MissionApp[19734:686068] Saving version number
+2014-11-12 19:10:41.936 E-MissionApp[19734:686068] The last viewed version number: 1.0
+2014-11-12 19:10:41.948 E-MissionApp[19734:686068] About to add delegate, nListeners = 0
+2014-11-12 19:10:41.948 E-MissionApp[19734:686068] After adding delegate, nListeners = 1
+2014-11-12 19:10:41.948 E-MissionApp[19734:686068] attempting connection to moves
+2014-11-12 19:10:41.948 E-MissionApp[19734:686068] enableGoogleButton called
+2014-11-12 19:10:45.446 E-MissionApp[19734:686068] LogIn With Google button clicked.
+2014-11-12 19:11:13.684 E-MissionApp[19734:686068] AuthCompletionHandler.finishedWithAuth called, nListeners = 1
+2014-11-12 19:11:13.684 E-MissionApp[19734:686068] AuthCompletionHandler.finishedWithAuth notifying listener 0
+2014-11-12 19:11:13.685 E-MissionApp[19734:686068] OnBoardViewController.finishedWithAuth called with auth = GTMOAuth2Authentication 0x7a6861c0: {accessToken="ya29.vQA07lWS6MVILzBlrRMYC81Z56kRwhv7nP-WqzJveXKd4Swn2kxKJURLaqASiF2EPWEFZ6G4KvFYWw", refreshToken="1/UxkgR7cy-vw9_yLA4wvXIv0ZQLqBSdNhdkIng8G_VOUMEudVrK5jSpoR30zcRFq6", code="4/0oinrgUaRVl_KaF36od2wrS2fNtfW14LaIBgskKCob4", expirationDate="2014-11-13 04:11:13 +0000"} and error = (null)
+2014-11-12 19:11:13.692 E-MissionApp[19734:686068] CommunicationHelper.getCustomSettings called!
+2014-11-12 19:11:13.692 E-MissionApp[19734:686068] CommunicationHelper.execute called!
+2014-11-12 19:11:13.692 E-MissionApp[19734:686068] currAuth = GTMOAuth2Authentication 0x7a6861c0: {accessToken="ya29.vQA07lWS6MVILzBlrRMYC81Z56kRwhv7nP-WqzJveXKd4Swn2kxKJURLaqASiF2EPWEFZ6G4KvFYWw", refreshToken="1/UxkgR7cy-vw9_yLA4wvXIv0ZQLqBSdNhdkIng8G_VOUMEudVrK5jSpoR30zcRFq6", code="4/0oinrgUaRVl_KaF36od2wrS2fNtfW14LaIBgskKCob4", expirationDate="2014-11-13 04:11:13 +0000"}, canAuthorize = YES, expiresIn = 3600, expirationDate = 2014-11-13 04:11:13 +0000, expired = NO
+2014-11-12 19:11:13.693 E-MissionApp[19734:686068] Existing auth token not expired, posting to host
+2014-11-12 19:11:13.693 E-MissionApp[19734:686068] postToHost called with url = /profile/create -- https://e-mission.eecs.berkeley.edu/
+2014-11-12 19:11:13.693 E-MissionApp[19734:686068] session queue = <NSOperationQueue: 0x7c042780>{name = 'NSOperationQueue Main Queue'}, mainQueue = <NSOperationQueue: 0x7c042780>{name = 'NSOperationQueue Main Queue'}
+2014-11-12 19:11:13.696 E-MissionApp[19734:686068] disableGoogleButton called
+2014-11-12 19:11:14.308 E-MissionApp[19734:686068] CommunicationHelper.getCustomSettings called!
+2014-11-12 19:11:14.308 E-MissionApp[19734:686068] CommunicationHelper.execute called!
+2014-11-12 19:11:14.308 E-MissionApp[19734:686068] currAuth = GTMOAuth2Authentication 0x7a6861c0: {accessToken="ya29.vQA07lWS6MVILzBlrRMYC81Z56kRwhv7nP-WqzJveXKd4Swn2kxKJURLaqASiF2EPWEFZ6G4KvFYWw", refreshToken="1/UxkgR7cy-vw9_yLA4wvXIv0ZQLqBSdNhdkIng8G_VOUMEudVrK5jSpoR30zcRFq6", code="4/0oinrgUaRVl_KaF36od2wrS2fNtfW14LaIBgskKCob4", expirationDate="2014-11-13 04:11:13 +0000"}, canAuthorize = YES, expiresIn = 3600, expirationDate = 2014-11-13 04:11:13 +0000, expired = NO
+2014-11-12 19:11:14.309 E-MissionApp[19734:686068] Existing auth token not expired, posting to host
+2014-11-12 19:11:14.309 E-MissionApp[19734:686068] postToHost called with url = /profile/settings -- https://e-mission.eecs.berkeley.edu/
+2014-11-12 19:11:14.309 E-MissionApp[19734:686068] session queue = <NSOperationQueue: 0x7c042780>{name = 'NSOperationQueue Main Queue'}, mainQueue = <NSOperationQueue: 0x7c042780>{name = 'NSOperationQueue Main Queue'}
+2014-11-12 19:11:20.803 E-MissionApp[19734:686068] applicationDidEnterBackground called
+2014-11-12 19:11:33.912 E-MissionApp[19827:687269] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/D651D40D-BB07-4FE7-9B93-EC29F6176334/Library/Cookies/Cookies.binarycookies
+2014-11-12 19:11:34.053 E-MissionApp[19827:687269] creating new AuthCompletionHandler sharedInstance
+2014-11-12 19:11:34.087 E-MissionApp[19827:687269] The last viewed version number: 1.0
+2014-11-12 19:11:34.091 E-MissionApp[19827:687269] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 19:11:34.091 E-MissionApp[19827:687269] Multi-tasking -> Device: YES, App: YES
+2014-11-12 19:11:34.111 E-MissionApp[19827:687269] Unlimited access to network resources
+2014-11-12 19:11:34.127 E-MissionApp[19827:687269] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 19:11:34.561 E-MissionApp[19827:687269] SignInView.initWithNibName called!
+2014-11-12 19:11:34.561 E-MissionApp[19827:687269] SignInView.gppInit called!
+2014-11-12 19:11:34.562 E-MissionApp[19827:687269] About to add delegate, nListeners = 0
+2014-11-12 19:11:34.562 E-MissionApp[19827:687269] After adding delegate, nListeners = 1
+2014-11-12 19:11:34.640 E-MissionApp[19827:687269] Resetting plugins due to page load.
+2014-11-12 19:11:34.670 E-MissionApp[19827:687269] applicationDidBecomeActive called
+2014-11-12 19:11:34.674 E-MissionApp[19827:687269] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 19:11:34.674 E-MissionApp[19827:687269] The rootViewController is: MasterNavController
+2014-11-12 19:11:34.736 E-MissionApp[19827:687269] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/AE4D9BE7-F74F-4549-B41D-FFBB31ADC96A/E-MissionApp.app/www/index.html
+2014-11-12 19:12:51.229 E-MissionApp[19827:687269] In SignInViewController.viewWillAppear, authentication is NULL, trying to re-authenticate
+2014-11-12 19:12:53.549 E-MissionApp[19827:687269] HTMLDisplayCommunicationHelper.displayResultSummary called!
+2014-11-12 19:12:53.550 E-MissionApp[19827:687269] CommunicationHelper.execute called!
+2014-11-12 19:12:53.550 E-MissionApp[19827:687269] currAuth = GTMOAuth2Authentication 0x78e97620: {refreshToken="1/UxkgR7cy-vw9_yLA4wvXIv0ZQLqBSdNhdkIng8G_VOUMEudVrK5jSpoR30zcRFq6"}, canAuthorize = YES, expiresIn = (null), expirationDate = (null), expired = YES
+2014-11-12 19:12:53.550 E-MissionApp[19827:687269] Existing auth token expired, refreshing...
+2014-11-12 19:12:53.791 E-MissionApp[19827:687269] Refresh completion block called, refreshed token is GTMOAuth2Authentication 0x78e97620: {accessToken="ya29.vQATnv9RHj2N97-iCPPWlLq3u0DV75_Q9u8-DZVYzX3YaQS9JPyjDAbazney0hYrUsQV3lgzoS5y8A", refreshToken="1/UxkgR7cy-vw9_yLA4wvXIv0ZQLqBSdNhdkIng8G_VOUMEudVrK5jSpoR30zcRFq6", expirationDate="2014-11-13 04:12:53 +0000"}
+2014-11-12 19:12:53.792 E-MissionApp[19827:687269] Refresh is really done, posting to host
+2014-11-12 19:12:53.792 E-MissionApp[19827:687269] postToHost called with url = https://e-mission.eecs.berkeley.edu/compare
+2014-11-12 20:38:55.025 E-MissionApp[20598:725386] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/AB7A51B9-528C-47EE-ADD8-3865400B3DF1/Library/Cookies/Cookies.binarycookies
+2014-11-12 20:38:55.306 E-MissionApp[20598:725386] creating new AuthCompletionHandler sharedInstance
+2014-11-12 20:38:55.360 E-MissionApp[20598:725386] The last viewed version number: 1.0
+2014-11-12 20:38:55.365 E-MissionApp[20598:725386] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 20:38:55.366 E-MissionApp[20598:725386] Multi-tasking -> Device: YES, App: YES
+2014-11-12 20:38:55.380 E-MissionApp[20598:725386] Unlimited access to network resources
+2014-11-12 20:38:55.407 E-MissionApp[20598:725386] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 20:38:56.101 E-MissionApp[20598:725386] SignInView.initWithNibName called!
+2014-11-12 20:38:56.101 E-MissionApp[20598:725386] SignInView.gppInit called!
+2014-11-12 20:38:56.102 E-MissionApp[20598:725386] About to add delegate, nListeners = 0
+2014-11-12 20:38:56.103 E-MissionApp[20598:725386] After adding delegate, nListeners = 1
+2014-11-12 20:38:56.293 E-MissionApp[20598:725386] applicationDidBecomeActive called
+2014-11-12 20:38:56.303 E-MissionApp[20598:725386] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 20:38:56.304 E-MissionApp[20598:725386] The rootViewController is: MasterNavController
+2014-11-12 20:38:56.360 E-MissionApp[20598:725386] Resetting plugins due to page load.
+2014-11-12 20:38:56.538 E-MissionApp[20598:725386] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/7DBDCD91-57A7-4501-B84D-9CA95CBF6B16/E-MissionApp.app/www/index.html
+2014-11-12 20:38:56.607 E-MissionApp[20598:725386] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/AB7A51B9-528C-47EE-ADD8-3865400B3DF1/Documents
+2014-11-12 20:38:56.615 E-MissionApp[20598:725386] Good news: SQLite is thread safe!
+2014-11-12 22:02:37.696 E-MissionApp[22207:775085] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/7F7AEB1C-CDEF-4DA3-94BB-ED134E312FC0/Library/Cookies/Cookies.binarycookies
+2014-11-12 22:02:37.932 E-MissionApp[22207:775085] creating new AuthCompletionHandler sharedInstance
+2014-11-12 22:02:37.969 E-MissionApp[22207:775085] The last viewed version number: 1.0
+2014-11-12 22:02:37.972 E-MissionApp[22207:775085] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 22:02:37.973 E-MissionApp[22207:775085] Multi-tasking -> Device: YES, App: YES
+2014-11-12 22:02:37.978 E-MissionApp[22207:775085] Unlimited access to network resources
+2014-11-12 22:02:38.011 E-MissionApp[22207:775085] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 22:02:38.472 E-MissionApp[22207:775085] SignInView.initWithNibName called!
+2014-11-12 22:02:38.473 E-MissionApp[22207:775085] SignInView.gppInit called!
+2014-11-12 22:02:38.474 E-MissionApp[22207:775085] About to add delegate, nListeners = 0
+2014-11-12 22:02:38.474 E-MissionApp[22207:775085] After adding delegate, nListeners = 1
+2014-11-12 22:02:38.567 E-MissionApp[22207:775085] applicationDidBecomeActive called
+2014-11-12 22:02:38.571 E-MissionApp[22207:775085] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 22:02:38.571 E-MissionApp[22207:775085] The rootViewController is: MasterNavController
+2014-11-12 22:02:38.618 E-MissionApp[22207:775085] Resetting plugins due to page load.
+2014-11-12 22:02:38.746 E-MissionApp[22207:775085] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/EAA61DC4-2878-41A9-A305-DB9C9582B339/E-MissionApp.app/www/index.html
+2014-11-12 22:02:38.775 E-MissionApp[22207:775085] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/7F7AEB1C-CDEF-4DA3-94BB-ED134E312FC0/Documents
+2014-11-12 22:02:38.782 E-MissionApp[22207:775085] Good news: SQLite is thread safe!
+2014-11-12 22:02:47.609 E-MissionApp[22207:775085] Resetting plugins due to page load.
+2014-11-12 22:02:47.942 E-MissionApp[22207:775085] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/EAA61DC4-2878-41A9-A305-DB9C9582B339/E-MissionApp.app/www/index_tests.html
+2014-11-12 22:12:36.992 E-MissionApp[22434:779864] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/9053B90C-3C97-4822-B39D-2D556BE38B66/Library/Cookies/Cookies.binarycookies
+2014-11-12 22:12:37.136 E-MissionApp[22434:779864] creating new AuthCompletionHandler sharedInstance
+2014-11-12 22:12:37.172 E-MissionApp[22434:779864] The last viewed version number: 1.0
+2014-11-12 22:12:37.176 E-MissionApp[22434:779864] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 22:12:37.177 E-MissionApp[22434:779864] Multi-tasking -> Device: YES, App: YES
+2014-11-12 22:12:37.182 E-MissionApp[22434:779864] Unlimited access to network resources
+2014-11-12 22:12:37.200 E-MissionApp[22434:779864] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 22:12:37.624 E-MissionApp[22434:779864] SignInView.initWithNibName called!
+2014-11-12 22:12:37.624 E-MissionApp[22434:779864] SignInView.gppInit called!
+2014-11-12 22:12:37.625 E-MissionApp[22434:779864] About to add delegate, nListeners = 0
+2014-11-12 22:12:37.625 E-MissionApp[22434:779864] After adding delegate, nListeners = 1
+2014-11-12 22:12:37.674 E-MissionApp[22434:779864] applicationDidBecomeActive called
+2014-11-12 22:12:37.681 E-MissionApp[22434:779864] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 22:12:37.682 E-MissionApp[22434:779864] The rootViewController is: MasterNavController
+2014-11-12 22:12:37.726 E-MissionApp[22434:779864] Resetting plugins due to page load.
+2014-11-12 22:12:37.793 E-MissionApp[22434:779864] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/584AC6DA-0E42-4430-AC6D-52F99D5CBEBE/E-MissionApp.app/www/index.html
+2014-11-12 22:12:37.823 E-MissionApp[22434:779864] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/9053B90C-3C97-4822-B39D-2D556BE38B66/Documents
+2014-11-12 22:12:37.825 E-MissionApp[22434:779864] Good news: SQLite is thread safe!
+2014-11-12 22:12:54.407 E-MissionApp[22434:779864] Resetting plugins due to page load.
+2014-11-12 22:12:54.467 E-MissionApp[22434:779864] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/584AC6DA-0E42-4430-AC6D-52F99D5CBEBE/E-MissionApp.app/www/index_tests.html
+2014-11-12 22:28:12.611 E-MissionApp[23532:789436] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/647E21ED-4C52-408E-BC38-15B2D48F1737/Library/Cookies/Cookies.binarycookies
+2014-11-12 22:28:12.735 E-MissionApp[23532:789436] creating new AuthCompletionHandler sharedInstance
+2014-11-12 22:28:12.767 E-MissionApp[23532:789436] The last viewed version number: 1.0
+2014-11-12 22:28:12.770 E-MissionApp[23532:789436] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 22:28:12.771 E-MissionApp[23532:789436] Multi-tasking -> Device: YES, App: YES
+2014-11-12 22:28:12.776 E-MissionApp[23532:789436] Unlimited access to network resources
+2014-11-12 22:28:12.792 E-MissionApp[23532:789436] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 22:28:13.201 E-MissionApp[23532:789436] SignInView.initWithNibName called!
+2014-11-12 22:28:13.201 E-MissionApp[23532:789436] SignInView.gppInit called!
+2014-11-12 22:28:13.202 E-MissionApp[23532:789436] About to add delegate, nListeners = 0
+2014-11-12 22:28:13.203 E-MissionApp[23532:789436] After adding delegate, nListeners = 1
+2014-11-12 22:28:13.257 E-MissionApp[23532:789436] applicationDidBecomeActive called
+2014-11-12 22:28:13.261 E-MissionApp[23532:789436] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 22:28:13.261 E-MissionApp[23532:789436] The rootViewController is: MasterNavController
+2014-11-12 22:28:13.307 E-MissionApp[23532:789436] Resetting plugins due to page load.
+2014-11-12 22:28:13.382 E-MissionApp[23532:789436] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/70179ECE-C54C-4F6D-A85D-DA4496BEBCCA/E-MissionApp.app/www/index.html
+2014-11-12 22:28:13.417 E-MissionApp[23532:789436] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/647E21ED-4C52-408E-BC38-15B2D48F1737/Documents
+2014-11-12 22:28:13.418 E-MissionApp[23532:789436] Good news: SQLite is thread safe!
+2014-11-12 22:28:21.819 E-MissionApp[23532:789436] Resetting plugins due to page load.
+2014-11-12 22:28:21.859 E-MissionApp[23532:789436] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/70179ECE-C54C-4F6D-A85D-DA4496BEBCCA/E-MissionApp.app/www/index_tests.html
+2014-11-12 22:28:21.887 E-MissionApp[23532:789436] Good news: SQLite is thread safe!
+2014-11-12 22:30:45.072 E-MissionApp[23895:791605] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/B33208C3-2CB8-4E39-8038-08CA57EC94A4/Library/Cookies/Cookies.binarycookies
+2014-11-12 22:30:45.224 E-MissionApp[23895:791605] creating new AuthCompletionHandler sharedInstance
+2014-11-12 22:30:45.259 E-MissionApp[23895:791605] The last viewed version number: 1.0
+2014-11-12 22:30:45.262 E-MissionApp[23895:791605] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 22:30:45.262 E-MissionApp[23895:791605] Multi-tasking -> Device: YES, App: YES
+2014-11-12 22:30:45.267 E-MissionApp[23895:791605] Unlimited access to network resources
+2014-11-12 22:30:45.283 E-MissionApp[23895:791605] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 22:30:45.721 E-MissionApp[23895:791605] SignInView.initWithNibName called!
+2014-11-12 22:30:45.721 E-MissionApp[23895:791605] SignInView.gppInit called!
+2014-11-12 22:30:45.722 E-MissionApp[23895:791605] About to add delegate, nListeners = 0
+2014-11-12 22:30:45.722 E-MissionApp[23895:791605] After adding delegate, nListeners = 1
+2014-11-12 22:30:45.784 E-MissionApp[23895:791605] applicationDidBecomeActive called
+2014-11-12 22:30:45.788 E-MissionApp[23895:791605] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 22:30:45.788 E-MissionApp[23895:791605] The rootViewController is: MasterNavController
+2014-11-12 22:30:45.834 E-MissionApp[23895:791605] Resetting plugins due to page load.
+2014-11-12 22:30:45.905 E-MissionApp[23895:791605] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/055409BA-27AA-4295-9353-1D56DE385E4A/E-MissionApp.app/www/index.html
+2014-11-12 22:30:45.934 E-MissionApp[23895:791605] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/B33208C3-2CB8-4E39-8038-08CA57EC94A4/Documents
+2014-11-12 22:30:45.935 E-MissionApp[23895:791605] Good news: SQLite is thread safe!
+2014-11-12 22:30:55.246 E-MissionApp[23895:791605] Resetting plugins due to page load.
+2014-11-12 22:30:55.287 E-MissionApp[23895:791605] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/055409BA-27AA-4295-9353-1D56DE385E4A/E-MissionApp.app/www/index_tests.html
+2014-11-12 22:30:55.314 E-MissionApp[23895:791605] Good news: SQLite is thread safe!
+2014-11-12 22:34:57.783 E-MissionApp[24359:794602] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/8F8F49F4-1FD8-44BF-A16C-826FC35134A5/Library/Cookies/Cookies.binarycookies
+2014-11-12 22:34:57.929 E-MissionApp[24359:794602] creating new AuthCompletionHandler sharedInstance
+2014-11-12 22:34:57.962 E-MissionApp[24359:794602] The last viewed version number: 1.0
+2014-11-12 22:34:57.965 E-MissionApp[24359:794602] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 22:34:57.965 E-MissionApp[24359:794602] Multi-tasking -> Device: YES, App: YES
+2014-11-12 22:34:57.970 E-MissionApp[24359:794602] Unlimited access to network resources
+2014-11-12 22:34:57.987 E-MissionApp[24359:794602] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 22:34:58.412 E-MissionApp[24359:794602] SignInView.initWithNibName called!
+2014-11-12 22:34:58.413 E-MissionApp[24359:794602] SignInView.gppInit called!
+2014-11-12 22:34:58.414 E-MissionApp[24359:794602] About to add delegate, nListeners = 0
+2014-11-12 22:34:58.414 E-MissionApp[24359:794602] After adding delegate, nListeners = 1
+2014-11-12 22:34:58.475 E-MissionApp[24359:794602] applicationDidBecomeActive called
+2014-11-12 22:34:58.479 E-MissionApp[24359:794602] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 22:34:58.479 E-MissionApp[24359:794602] The rootViewController is: MasterNavController
+2014-11-12 22:34:58.524 E-MissionApp[24359:794602] Resetting plugins due to page load.
+2014-11-12 22:34:58.602 E-MissionApp[24359:794602] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/27E1818D-09B4-4D67-9F63-0A80D27E2443/E-MissionApp.app/www/index.html
+2014-11-12 22:34:58.630 E-MissionApp[24359:794602] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/8F8F49F4-1FD8-44BF-A16C-826FC35134A5/Documents
+2014-11-12 22:34:58.631 E-MissionApp[24359:794602] Good news: SQLite is thread safe!
+2014-11-12 22:35:07.160 E-MissionApp[24359:794602] Resetting plugins due to page load.
+2014-11-12 22:35:07.213 E-MissionApp[24359:794602] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/27E1818D-09B4-4D67-9F63-0A80D27E2443/E-MissionApp.app/www/tests/index.html
+2014-11-12 22:35:07.241 E-MissionApp[24359:794602] Good news: SQLite is thread safe!
+2014-11-12 23:24:41.897 E-MissionApp[27791:818668] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/BFE9104F-1124-406D-A97C-5AE3F8F1450E/Library/Cookies/Cookies.binarycookies
+2014-11-12 23:24:42.070 E-MissionApp[27791:818668] creating new AuthCompletionHandler sharedInstance
+2014-11-12 23:24:42.102 E-MissionApp[27791:818668] The last viewed version number: 1.0
+2014-11-12 23:24:42.105 E-MissionApp[27791:818668] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-12 23:24:42.105 E-MissionApp[27791:818668] Multi-tasking -> Device: YES, App: YES
+2014-11-12 23:24:42.111 E-MissionApp[27791:818668] Unlimited access to network resources
+2014-11-12 23:24:42.127 E-MissionApp[27791:818668] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-12 23:24:42.551 E-MissionApp[27791:818668] SignInView.initWithNibName called!
+2014-11-12 23:24:42.552 E-MissionApp[27791:818668] SignInView.gppInit called!
+2014-11-12 23:24:42.553 E-MissionApp[27791:818668] About to add delegate, nListeners = 0
+2014-11-12 23:24:42.553 E-MissionApp[27791:818668] After adding delegate, nListeners = 1
+2014-11-12 23:24:42.645 E-MissionApp[27791:818668] applicationDidBecomeActive called
+2014-11-12 23:24:42.649 E-MissionApp[27791:818668] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-11-12 23:24:42.649 E-MissionApp[27791:818668] The rootViewController is: MasterNavController
+2014-11-12 23:24:42.695 E-MissionApp[27791:818668] Resetting plugins due to page load.
+2014-11-12 23:24:42.779 E-MissionApp[27791:818668] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/2D89CD5E-B8F0-47DA-BBA9-E16CB0AB7B78/E-MissionApp.app/www/index.html
+2014-11-12 23:24:42.809 E-MissionApp[27791:818668] Detected docs path: /Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Data/Application/BFE9104F-1124-406D-A97C-5AE3F8F1450E/Documents
+2014-11-12 23:24:42.810 E-MissionApp[27791:818668] Good news: SQLite is thread safe!
+2014-11-12 23:24:51.994 E-MissionApp[27791:818668] Resetting plugins due to page load.
+2014-11-12 23:24:52.034 E-MissionApp[27791:818668] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/2D89CD5E-B8F0-47DA-BBA9-E16CB0AB7B78/E-MissionApp.app/www/tests/index.html
+2014-11-12 23:24:52.060 E-MissionApp[27791:818668] Good news: SQLite is thread safe!
+2014-11-12 23:25:20.150 E-MissionApp[27791:818668] Resetting plugins due to page load.
+2014-11-12 23:25:20.182 E-MissionApp[27791:818668] Finished load of: file:///Users/shankari/Library/Developer/CoreSimulator/Devices/F595A06F-D65D-4284-B8B5-054D652FA2BB/data/Containers/Bundle/Application/2D89CD5E-B8F0-47DA-BBA9-E16CB0AB7B78/E-MissionApp.app/www/tests/index.html?testNumber=2
+2014-11-12 23:25:20.197 E-MissionApp[27791:818668] Good news: SQLite is thread safe!
