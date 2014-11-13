@@ -17,7 +17,7 @@
 #import "ClientStatsDatabase.h"
 #import "Constants.h"
 #import "ActionSheetStringPicker.h"
-#import "ManualTripController.h"
+
 
 // BEGIN: Headers needed for authentication
 #import "SignInViewController.h"
@@ -33,7 +33,6 @@
 }
 @property(strong, nonatomic) SignInViewController *signInViewController;
 @property(strong, nonatomic) UIViewController *resultSummaryViewController;
-@property(strong, nonatomic) ManualTripController *manualTripController;
 @property BOOL hasShownResults;
 @end
 
@@ -76,7 +75,6 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
-    self.manualTripController = [[ManualTripController alloc] initWithNibName:nil bundle:nil];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:kMainStoryboardName bundle:nil];
     
@@ -280,8 +278,6 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     if ([self.navigationController.viewControllers containsObject:self.signInViewController]) {
         // the sign in view is already visible, don't need to push it again
         NSLog(@"sign in view is already in the navigation chain, skipping the push to the controller...");
-    } else {
-        [self.navigationController pushViewController:self.manualTripController animated:YES];
     }
 }
 
