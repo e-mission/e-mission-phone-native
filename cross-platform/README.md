@@ -14,13 +14,23 @@ Add the sqlite plugin to ensure that we can access the database from the javascr
 Note: This project was created using the following cordova command
     $ cordova create e-mission edu.berkeley.eecs.e_mission E-MissionApp
 
-The unit testing uses the phantomjs headless browser, as recommended by:
+THe unit tests can be run in emulation mode by clicking on the "Run Tests" link
+in the main UI screen.
+
+When emulating, the ios console is available at platforms/ios/cordova/console.log, while the android console log is available using adb logcat.
+
+They can also be run without user intervention by using the phantomjs headless
+browser, as recommended by:
     http://blogs.telerik.com/appbuilder/posts/13-12-05/using-qunit-to-unit-test-phonegap-cordova-applications
 
 The browser, and the associated plugin for qunit are packaged into:
     https://github.com/jonkemp/node-qunit-phantomjs
 
-The tests can then be run using the following commands:    
+NOTE: The following commands only work if the tests are inline (i.e. included
+in the index.html file). If they are pulled out into a separate javascript
+file, the commands hang. I have filed an issue for this (issue #3).
+
+The tests can then be run using the following commands:
 
     bash-3.2$ node-qunit-phantomjs platforms/android/assets/www/tests/index.html 
     Testing ../../../../../Users/shankari/e-mission/e-mission-phone/cross-platform/platforms/android/assets/www/tests/index.html
