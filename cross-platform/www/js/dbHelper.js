@@ -1,3 +1,8 @@
+// CONSTANTS
+var KEY_SECTION_BLOB = "sectionJsonBlob";
+var TABLE_CURR_TRIPS = "currTrips";
+var KEY_USER_CLASSIFICATION = "userClassification";
+
 var dbHelper = {
     pragmaExample: function() {
         var db = window.sqlitePlugin.openDatabase({name: "my.db"});
@@ -34,4 +39,20 @@ var dbHelper = {
           });
         });
     }
+}
+
+var tripSectionDBHelper = {
+  getUncommitedSections: function() {
+    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db"});
+
+    db.transaction(function(tx) {
+      tx.executeSql("select " + KEY_SECTION_BLOB + " from " + TABLE_CURR_TRIPS + " where " + KEY_USER_CLASSIFICATION + " is null", [], function(tx, tripList) {
+        console.log("length of tripList: " + tripList.rows.length);
+        // use an alert in the place where you call this function so that you can see if these objects work in javascript
+        return tripList;
+      }, function(e) {
+        console.log("ERROR: " + e.message);
+      });
+    });
+  }
 }
