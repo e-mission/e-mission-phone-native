@@ -141,10 +141,9 @@ static TripSectionDatabase *_database;
             // Remember that while reading results, the index starts from 0
             NSString* userMode = [[NSString alloc] initWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
             
-            int nBytes = sqlite3_column_bytes(compiledStatement, 1);
-            NSData* rawBlob = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 1) length:nBytes];
+            NSString* rawClob = [[NSString alloc] initWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 1)];
             TripSection *currSection = [[TripSection alloc] init];
-            [currSection loadFromJSONData:rawBlob withUserMode:userMode];
+            [currSection loadFromJSONString:rawClob withUserMode:userMode];
             [resultList addObject:currSection];
         }
     } else {
@@ -237,13 +236,11 @@ static TripSectionDatabase *_database;
              * Although the indices in the prepared statements for update and delete start from 1, the indices
              * for select start from 0. So when inserting, we bind to 1, 2 and 3. and while deleting, we retrieve from 0.
              */
-            int nBytes = sqlite3_column_bytes(compiledStatement, 0);
-            NSLog(@"blob size = %d", nBytes);
-            NSData* rawBlob = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 0) length:nBytes];
-            // NSLog(@"blob = %@", rawBlob);
-            if (rawBlob != NULL) {
+            NSString* rawClob = [[NSString alloc] initWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
+            // NSLog(@"blob = %@", rawClob);
+            if (rawClob != NULL) {
                 TripSection *currSection = [[TripSection alloc] init];
-                [currSection loadFromJSONData:rawBlob];
+                [currSection loadFromJSONString:rawClob];
                 if (currSection.tripId != nil) {
                     // There was an error in parsing the blob, so we are going to ignore the object
                     // Note that if we had a proper constructor that would take the string as input
