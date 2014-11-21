@@ -23,7 +23,15 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -35,7 +43,13 @@
         "com.brodysoft.sqlitePlugin": {
             "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
         },
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "edu.berkeley.eecs.${PRODUCT_NAME:rfc1034identifier}"
+        },
         "org.apache.cordova.console": {
+            "PACKAGE_NAME": "edu.berkeley.eecs.${PRODUCT_NAME:rfc1034identifier}"
+        },
+        "com.ionic.keyboard": {
             "PACKAGE_NAME": "edu.berkeley.eecs.${PRODUCT_NAME:rfc1034identifier}"
         }
     },

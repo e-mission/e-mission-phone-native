@@ -51,11 +51,9 @@
 		D02676191A135C65002B5D7A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675F51A135C65002B5D7A /* DetailViewController.m */; };
 		D026761A1A135C65002B5D7A /* HTMLDisplayCommunicationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675F71A135C65002B5D7A /* HTMLDisplayCommunicationHelper.m */; };
 		D026761B1A135C65002B5D7A /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675F91A135C65002B5D7A /* InfoViewController.m */; };
-		D026761D1A135C65002B5D7A /* ManualTripController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675FC1A135C65002B5D7A /* ManualTripController.m */; };
 		D026761E1A135C65002B5D7A /* MasterNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02675FE1A135C65002B5D7A /* MasterNavController.m */; };
 		D026761F1A135C65002B5D7A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676001A135C65002B5D7A /* MasterViewController.m */; };
 		D02676201A135C65002B5D7A /* OnBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676021A135C65002B5D7A /* OnBoardViewController.m */; };
-		D02676211A135C65002B5D7A /* OngoingTripsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676041A135C65002B5D7A /* OngoingTripsDatabase.m */; };
 		D02676221A135C65002B5D7A /* PopupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676061A135C65002B5D7A /* PopupTableViewController.m */; };
 		D02676231A135C65002B5D7A /* SetUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D02676081A135C65002B5D7A /* SetUpViewController.m */; };
 		D02676241A135C65002B5D7A /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026760A1A135C65002B5D7A /* SignInViewController.m */; };
@@ -131,7 +129,11 @@
 		D07A007F1A13E95B0010D532 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		D07A00811A13EAA40010D532 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A21A1360C1002B5D7A /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		DB2D6676C5D44406AE7E8D95 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F2EAABB83437D8DE07E82 /* CDVLogger.m */; };
+		D9D7E6921A156A9900E97AE6 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D7E6911A156A9900E97AE6 /* GoogleOpenSource.framework */; };
+		23A4051BEADA49C187EF456A /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1057F6119CF41FA9A0437A6 /* CDVDevice.m */; };
+		A5592FD5964B4E9F9B9999D4 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFBF1F7AD74D6BA0033E25 /* CDVLogger.m */; };
+		699DF5ECC94046BBB2F4240E /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC4C88FFA3748FE93219DCF /* IonicKeyboard.m */; };
+		CBE7A1ECAD7A404D8F696EFD /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 944F2CD9439A425A822C059F /* UIWebViewExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,16 +224,12 @@
 		D02675F71A135C65002B5D7A /* HTMLDisplayCommunicationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLDisplayCommunicationHelper.m; sourceTree = "<group>"; };
 		D02675F81A135C65002B5D7A /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		D02675F91A135C65002B5D7A /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		D02675FB1A135C65002B5D7A /* ManualTripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualTripController.h; sourceTree = "<group>"; };
-		D02675FC1A135C65002B5D7A /* ManualTripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualTripController.m; sourceTree = "<group>"; };
 		D02675FD1A135C65002B5D7A /* MasterNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterNavController.h; sourceTree = "<group>"; };
 		D02675FE1A135C65002B5D7A /* MasterNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterNavController.m; sourceTree = "<group>"; };
 		D02675FF1A135C65002B5D7A /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		D02676001A135C65002B5D7A /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		D02676011A135C65002B5D7A /* OnBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnBoardViewController.h; sourceTree = "<group>"; };
 		D02676021A135C65002B5D7A /* OnBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnBoardViewController.m; sourceTree = "<group>"; };
-		D02676031A135C65002B5D7A /* OngoingTripsDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingTripsDatabase.h; sourceTree = "<group>"; };
-		D02676041A135C65002B5D7A /* OngoingTripsDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingTripsDatabase.m; sourceTree = "<group>"; };
 		D02676051A135C65002B5D7A /* PopupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupTableViewController.h; sourceTree = "<group>"; };
 		D02676061A135C65002B5D7A /* PopupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupTableViewController.m; sourceTree = "<group>"; };
 		D02676071A135C65002B5D7A /* SetUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpViewController.h; sourceTree = "<group>"; };
@@ -320,13 +318,20 @@
 		D02676DC1A13E4A2002B5D7A /* TripSectionDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripSectionDatabaseTests.m; sourceTree = "<group>"; };
 		D07A00771A13E6CA0010D532 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		D9D7E6911A156A9900E97AE6 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		DFD5E9ACE2D54475A90AC51D /* SQLitePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQLitePlugin.m; path = com.brodysoft.sqlitePlugin/SQLitePlugin.m; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "E-MissionApp/config.xml"; sourceTree = "<group>"; };
-		DA8F2EAABB83437D8DE07E82 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		F3BEBE778D664221864CF5B8 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		E1057F6119CF41FA9A0437A6 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A1B1588B13E1437BBFE3E611 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		CFBFBF1F7AD74D6BA0033E25 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		98DC0F396FB04010B9766ACE /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		2BC4C88FFA3748FE93219DCF /* IonicKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "IonicKeyboard.m"; path = "com.ionic.keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		944F2CD9439A425A822C059F /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "com.ionic.keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		AB05031AA1534F67ABBF23E1 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "com.ionic.keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		E7753978E0194A4FA04DE909 /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "com.ionic.keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +349,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
+				D9D7E6921A156A9900E97AE6 /* GoogleOpenSource.framework in Frameworks */,
 				0012D4CAF5C740FB9A9C1B6A /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,16 +395,12 @@
 				D02675F71A135C65002B5D7A /* HTMLDisplayCommunicationHelper.m */,
 				D02675F81A135C65002B5D7A /* InfoViewController.h */,
 				D02675F91A135C65002B5D7A /* InfoViewController.m */,
-				D02675FB1A135C65002B5D7A /* ManualTripController.h */,
-				D02675FC1A135C65002B5D7A /* ManualTripController.m */,
 				D02675FD1A135C65002B5D7A /* MasterNavController.h */,
 				D02675FE1A135C65002B5D7A /* MasterNavController.m */,
 				D02675FF1A135C65002B5D7A /* MasterViewController.h */,
 				D02676001A135C65002B5D7A /* MasterViewController.m */,
 				D02676011A135C65002B5D7A /* OnBoardViewController.h */,
 				D02676021A135C65002B5D7A /* OnBoardViewController.m */,
-				D02676031A135C65002B5D7A /* OngoingTripsDatabase.h */,
-				D02676041A135C65002B5D7A /* OngoingTripsDatabase.m */,
 				D02676051A135C65002B5D7A /* PopupTableViewController.h */,
 				D02676061A135C65002B5D7A /* PopupTableViewController.m */,
 				D02676071A135C65002B5D7A /* SetUpViewController.h */,
@@ -495,6 +497,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9D7E6911A156A9900E97AE6 /* GoogleOpenSource.framework */,
 				D07A00771A13E6CA0010D532 /* UIKit.framework */,
 				D02676A61A136122002B5D7A /* SystemConfiguration.framework */,
 				D02676A41A1360FC002B5D7A /* Foundation.framework */,
@@ -524,8 +527,14 @@
 			children = (
 				DFD5E9ACE2D54475A90AC51D /* SQLitePlugin.m */,
 				9A9A97ACAC0F41FB9C348BA2 /* SQLitePlugin.h */,
-				DA8F2EAABB83437D8DE07E82 /* CDVLogger.m */,
-				F3BEBE778D664221864CF5B8 /* CDVLogger.h */,
+				E1057F6119CF41FA9A0437A6 /* CDVDevice.m */,
+				A1B1588B13E1437BBFE3E611 /* CDVDevice.h */,
+				CFBFBF1F7AD74D6BA0033E25 /* CDVLogger.m */,
+				98DC0F396FB04010B9766ACE /* CDVLogger.h */,
+				2BC4C88FFA3748FE93219DCF /* IonicKeyboard.m */,
+				944F2CD9439A425A822C059F /* UIWebViewExtension.m */,
+				AB05031AA1534F67ABBF23E1 /* IonicKeyboard.h */,
+				E7753978E0194A4FA04DE909 /* UIWebViewExtension.h */,
 			);
 			name = Plugins;
 			path = "E-MissionApp/Plugins";
@@ -927,13 +936,11 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				D02676181A135C65002B5D7A /* CustomSettings.m in Sources */,
 				D02676111A135C65002B5D7A /* AuthCompletionHandler.m in Sources */,
-				D02676211A135C65002B5D7A /* OngoingTripsDatabase.m in Sources */,
 				D02676161A135C65002B5D7A /* ConsentViewController.m in Sources */,
 				D02676251A135C65002B5D7A /* TrackLocation.m in Sources */,
 				D026766F1A135C91002B5D7A /* ActionSheetStringPicker.m in Sources */,
 				D026766D1A135C91002B5D7A /* ActionSheetDistancePicker.m in Sources */,
 				D02676131A135C65002B5D7A /* ClientStatsDatabase.m in Sources */,
-				D026761D1A135C65002B5D7A /* ManualTripController.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				D026761B1A135C65002B5D7A /* InfoViewController.m in Sources */,
 				D026766A1A135C91002B5D7A /* AbstractActionSheetPicker.m in Sources */,
@@ -953,7 +960,10 @@
 				D02676991A135C91002B5D7A /* WYStoryboardPopoverSegue.m in Sources */,
 				D02676201A135C65002B5D7A /* OnBoardViewController.m in Sources */,
 				D026761F1A135C65002B5D7A /* MasterViewController.m in Sources */,
-				DB2D6676C5D44406AE7E8D95 /* CDVLogger.m in Sources */,
+				23A4051BEADA49C187EF456A /* CDVDevice.m in Sources */,
+				A5592FD5964B4E9F9B9999D4 /* CDVLogger.m in Sources */,
+				699DF5ECC94046BBB2F4240E /* IonicKeyboard.m in Sources */,
+				CBE7A1ECAD7A404D8F696EFD /* UIWebViewExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,6 +1060,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/E-MissionApp",
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1090,6 +1101,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/E-MissionApp",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "E-MissionApp/E-MissionApp-Prefix.pch";
