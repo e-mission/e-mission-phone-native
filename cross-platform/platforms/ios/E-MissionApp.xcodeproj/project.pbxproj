@@ -131,6 +131,7 @@
 		D07A007F1A13E95B0010D532 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		D07A00811A13EAA40010D532 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A21A1360C1002B5D7A /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
+		DB2D6676C5D44406AE7E8D95 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F2EAABB83437D8DE07E82 /* CDVLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +325,8 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "E-MissionApp/config.xml"; sourceTree = "<group>"; };
+		DA8F2EAABB83437D8DE07E82 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		F3BEBE778D664221864CF5B8 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +524,8 @@
 			children = (
 				DFD5E9ACE2D54475A90AC51D /* SQLitePlugin.m */,
 				9A9A97ACAC0F41FB9C348BA2 /* SQLitePlugin.h */,
+				DA8F2EAABB83437D8DE07E82 /* CDVLogger.m */,
+				F3BEBE778D664221864CF5B8 /* CDVLogger.h */,
 			);
 			name = Plugins;
 			path = "E-MissionApp/Plugins";
@@ -948,6 +953,7 @@
 				D02676991A135C91002B5D7A /* WYStoryboardPopoverSegue.m in Sources */,
 				D02676201A135C65002B5D7A /* OnBoardViewController.m in Sources */,
 				D026761F1A135C65002B5D7A /* MasterViewController.m in Sources */,
+				DB2D6676C5D44406AE7E8D95 /* CDVLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

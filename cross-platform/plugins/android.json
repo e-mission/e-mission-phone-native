@@ -30,6 +30,9 @@
     "installed_plugins": {
         "com.brodysoft.sqlitePlugin": {
             "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
         }
     },
     "dependent_plugins": {}

@@ -11,7 +11,8 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "com.brodysoft.sqlitePlugin": "1.0.3"
+    "com.brodysoft.sqlitePlugin": "1.0.3",
+    "org.apache.cordova.console": "0.2.11"
 }
 // BOTTOM OF METADATA
 });

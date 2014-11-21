@@ -22,6 +22,9 @@
     <feature name="SQLitePlugin">
         <param name="ios-package" value="SQLitePlugin" />
     </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
     <name>E-MissionApp</name>
     <description>
         E-Mission: Data driven carbon footprint reduction

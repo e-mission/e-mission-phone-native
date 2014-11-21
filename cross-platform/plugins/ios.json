@@ -21,6 +21,10 @@
                         {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"ios-package\" value=\"SQLitePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -30,6 +34,9 @@
     "installed_plugins": {
         "com.brodysoft.sqlitePlugin": {
             "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "edu.berkeley.eecs.${PRODUCT_NAME:rfc1034identifier}"
         }
     },
     "dependent_plugins": {}
