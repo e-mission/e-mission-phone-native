@@ -87,6 +87,9 @@
 
     NSArray* classifiedStep1 = [tripSectionDb getAndDeleteClassifiedSections];
     assert([classifiedStep1 count] == 2);
+    NSLog(@"classifiedStep1[0].userMode = %@ and classifiedStep1[0].userMode = %@",
+          ((TripSection*)classifiedStep1[0]).userMode,
+           ((TripSection*)classifiedStep1[1]).userMode);
     assert([((TripSection*)classifiedStep1[0]).userMode isEqual:@"walking"]);
     assert([((TripSection*)classifiedStep1[1]).userMode isEqual:@"cycling"]);
     
