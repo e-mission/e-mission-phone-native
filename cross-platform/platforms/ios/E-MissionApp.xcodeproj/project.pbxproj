@@ -130,10 +130,10 @@
 		D07A00811A13EAA40010D532 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02676A21A1360C1002B5D7A /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		D9D7E6921A156A9900E97AE6 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D7E6911A156A9900E97AE6 /* GoogleOpenSource.framework */; };
-		23A4051BEADA49C187EF456A /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E1057F6119CF41FA9A0437A6 /* CDVDevice.m */; };
 		A5592FD5964B4E9F9B9999D4 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBFBF1F7AD74D6BA0033E25 /* CDVLogger.m */; };
-		699DF5ECC94046BBB2F4240E /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC4C88FFA3748FE93219DCF /* IonicKeyboard.m */; };
-		CBE7A1ECAD7A404D8F696EFD /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 944F2CD9439A425A822C059F /* UIWebViewExtension.m */; };
+		EC2FA79160AF4D2A95FBADA2 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF37A122AF847C3AE11747A /* CDVDevice.m */; };
+		078D1DA58CFA4CB783A32370 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CDCDDFFBB4E78845FAA17 /* IonicKeyboard.m */; };
+		550AD0A48862495897EACAFE /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C2A55D2FB40AC8B49A8E4 /* UIWebViewExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,14 +324,14 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "E-MissionApp/config.xml"; sourceTree = "<group>"; };
-		E1057F6119CF41FA9A0437A6 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		A1B1588B13E1437BBFE3E611 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		CFBFBF1F7AD74D6BA0033E25 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		98DC0F396FB04010B9766ACE /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		2BC4C88FFA3748FE93219DCF /* IonicKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "IonicKeyboard.m"; path = "com.ionic.keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		944F2CD9439A425A822C059F /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "com.ionic.keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		AB05031AA1534F67ABBF23E1 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "com.ionic.keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		E7753978E0194A4FA04DE909 /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "com.ionic.keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		8DF37A122AF847C3AE11747A /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		849E0F2C2C964B7686FEE622 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BA6CDCDDFFBB4E78845FAA17 /* IonicKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "IonicKeyboard.m"; path = "com.ionic.keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		935C2A55D2FB40AC8B49A8E4 /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "com.ionic.keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		5861EB0E60D14AC1B7C30E32 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "com.ionic.keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		7422DCA7FFA1488A999F7A57 /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "com.ionic.keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,14 +527,14 @@
 			children = (
 				DFD5E9ACE2D54475A90AC51D /* SQLitePlugin.m */,
 				9A9A97ACAC0F41FB9C348BA2 /* SQLitePlugin.h */,
-				E1057F6119CF41FA9A0437A6 /* CDVDevice.m */,
-				A1B1588B13E1437BBFE3E611 /* CDVDevice.h */,
 				CFBFBF1F7AD74D6BA0033E25 /* CDVLogger.m */,
 				98DC0F396FB04010B9766ACE /* CDVLogger.h */,
-				2BC4C88FFA3748FE93219DCF /* IonicKeyboard.m */,
-				944F2CD9439A425A822C059F /* UIWebViewExtension.m */,
-				AB05031AA1534F67ABBF23E1 /* IonicKeyboard.h */,
-				E7753978E0194A4FA04DE909 /* UIWebViewExtension.h */,
+				8DF37A122AF847C3AE11747A /* CDVDevice.m */,
+				849E0F2C2C964B7686FEE622 /* CDVDevice.h */,
+				BA6CDCDDFFBB4E78845FAA17 /* IonicKeyboard.m */,
+				935C2A55D2FB40AC8B49A8E4 /* UIWebViewExtension.m */,
+				5861EB0E60D14AC1B7C30E32 /* IonicKeyboard.h */,
+				7422DCA7FFA1488A999F7A57 /* UIWebViewExtension.h */,
 			);
 			name = Plugins;
 			path = "E-MissionApp/Plugins";
@@ -960,10 +960,10 @@
 				D02676991A135C91002B5D7A /* WYStoryboardPopoverSegue.m in Sources */,
 				D02676201A135C65002B5D7A /* OnBoardViewController.m in Sources */,
 				D026761F1A135C65002B5D7A /* MasterViewController.m in Sources */,
-				23A4051BEADA49C187EF456A /* CDVDevice.m in Sources */,
 				A5592FD5964B4E9F9B9999D4 /* CDVLogger.m in Sources */,
-				699DF5ECC94046BBB2F4240E /* IonicKeyboard.m in Sources */,
-				CBE7A1ECAD7A404D8F696EFD /* UIWebViewExtension.m in Sources */,
+				EC2FA79160AF4D2A95FBADA2 /* CDVDevice.m in Sources */,
+				078D1DA58CFA4CB783A32370 /* IonicKeyboard.m in Sources */,
+				550AD0A48862495897EACAFE /* UIWebViewExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

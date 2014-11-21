@@ -39,10 +39,10 @@
         "com.brodysoft.sqlitePlugin": {
             "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
         },
-        "org.apache.cordova.device": {
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
         },
-        "org.apache.cordova.console": {
+        "org.apache.cordova.device": {
             "PACKAGE_NAME": "edu.berkeley.eecs.e_mission"
         },
         "com.ionic.keyboard": {
