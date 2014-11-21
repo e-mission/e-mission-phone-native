@@ -114,7 +114,7 @@
 
 - (void)loadFromJSONString:(NSString *)jsonString withUserMode:(NSString*) userMode {
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    [self loadFromJSONData:jsonData];
+    [self loadFromJSONData:jsonData withUserMode:userMode];
 }
 
 - (NSDictionary*) saveToJSON {
@@ -135,7 +135,7 @@
 
 - (NSString*)saveToJSONString {
     NSData *bytesToSend = [self saveToJSONData];
-    NSString *strToSend = [NSString stringWithUTF8String:[bytesToSend bytes]];
+    NSString *strToSend = [[NSString alloc] initWithData:bytesToSend encoding:NSUTF8StringEncoding];
     return strToSend;
 }
 
@@ -158,7 +158,7 @@
 
 - (NSString*) saveAllToJSONString {
     NSData* rawData = [self saveAllToJSONData];
-    return [NSString stringWithUTF8String:[rawData bytes]];
+    return [[NSString alloc] initWithData:rawData encoding:NSUTF8StringEncoding];
 }
 
 - (void) setSelectedMode:(NSString*)selectedMode {

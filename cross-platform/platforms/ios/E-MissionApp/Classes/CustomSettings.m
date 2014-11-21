@@ -66,8 +66,7 @@ static CustomSettings *sharedInstance;
 
 - (NSString *)getResultsURL
 {
-    return @"http://localhost:8080/compare";
-//    return [customSettingsDict objectForKey:@"result_url"];
+    return [customSettingsDict objectForKey:@"result_url"];
 }
 
 @end

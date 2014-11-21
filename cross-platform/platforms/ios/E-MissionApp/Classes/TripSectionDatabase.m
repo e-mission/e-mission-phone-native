@@ -140,7 +140,6 @@ static TripSectionDatabase *_database;
         while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
             // Remember that while reading results, the index starts from 0
             NSString* userMode = [[NSString alloc] initWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
-            
             NSString* rawClob = [[NSString alloc] initWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 1)];
             TripSection *currSection = [[TripSection alloc] init];
             [currSection loadFromJSONString:rawClob withUserMode:userMode];
@@ -216,8 +215,12 @@ static TripSectionDatabase *_database;
 
     sqlite3_bind_text(insertCompiledStatement, 1, [currSection.tripId UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(insertCompiledStatement, 2, [currSection.sectionId UTF8String], -1, SQLITE_TRANSIENT);
-    NSData* rawBlob = [currSection saveAllToJSONData];
-    sqlite3_bind_blob(insertCompiledStatement, 3, [rawBlob bytes], [rawBlob length], SQLITE_TRANSIENT);
+    NSString* rawClob = [currSection saveAllToJSONString];
+    NSLog(@"raw CLOB = %@", rawClob);
+//    NSLog(@"DONE PRINTING NEW CLOB");
+//    rawClob = @"{'trip_id': 'test_trip_1', 'section_id': 0}";
+//    NSLog(@"modified raw CLOB = %@", rawClob);
+    sqlite3_bind_text(insertCompiledStatement, 3, [rawClob UTF8String], -1, SQLITE_TRANSIENT);
     NSInteger insExeCode = sqlite3_step(insertCompiledStatement);
     NSLog(@"exec code = %ld while executing insert statement", (long)insExeCode);
     sqlite3_reset(insertCompiledStatement);
