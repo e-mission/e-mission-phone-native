@@ -17,3 +17,7 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+window.onerror = function (errorMsg, url, lineNumber) {
+    alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
+}
