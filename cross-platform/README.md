@@ -11,6 +11,11 @@ platforms that you are interested in building (currently ios and android).
 Add the sqlite plugin to ensure that we can access the database from the javascript
     $ cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin
 
+Add plugins to support the ionic project
+    $ cordova plugin add org.apache.cordova.device
+    $ cordova plugin add org.apache.cordova.console
+    $ cordova plugin add com.ionic.keyboard
+
 Note: This project was created using the following cordova command
     $ cordova create e-mission edu.berkeley.eecs.e_mission E-MissionApp
 
