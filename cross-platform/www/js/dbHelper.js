@@ -46,12 +46,12 @@ var tripSectionDbHelper = {
     var db = window.sqlitePlugin.openDatabase({name: "TripSections.db"});
 
     db.transaction(function(tx) {
-      tx.executeSql("select " + KEY_SECTION_BLOB + " from " + TABLE_CURR_TRIPS + " where " + KEY_USER_CLASSIFICATION + " is null", [], function(tx, tripList) {
+      // tx.executeSql("select " + KEY_SECTION_BLOB + " from " + TABLE_CURR_TRIPS + " where " + KEY_USER_CLASSIFICATION + " is null", [], function(tx, tripList) {
+        tx.executeSql("select " + "*" + " from " + TABLE_CURR_TRIPS , [], function(tx, tripList) {
         console.log("number of rows in tripList: " + tripList.rows.length);
-        console.log("Testing btoa and atob: ");
         console.log("Printing Trips:");
-        for (i = 0; i < tripList.rows.length; i++) {
-          console.log("Trip: " + tripList.rows.item(i).sectionJsonBlob);
+        for (i = 0; i < tripList.rows.length; i++) {  
+          console.log("Trip: " + JSON.stringify(tripList.rows.item(i)));
         }
         console.log("Done printing");
         // use an alert in the place where you call this function so that you can see if these objects work in javascript
@@ -60,5 +60,49 @@ var tripSectionDbHelper = {
         console.log("ERROR: " + e.message);
       });
     });
+  }
+}
+
+var tripSection = {
+  tripId: "",
+  sectionId: "",
+  trackPoints: [],
+  startTime: null,
+  endTime: null,
+  autoMode: "",
+  selMode: "",               // the mode the user will select
+  confidence: -1.0,
+  userMode: "",
+  loadFromJSON: function(jsonObject) {
+    this.tripId = jsonObject.trip_id;
+    this.sectionId = jsonObject.section_id;
+    //[{"track_location":{"type":"Point","coordinates":[-122.2940501821,37.9250113486]},"time":"20141116T100054-0800"},{"track_location":{"type":"Point","coordinates":[-122.2944105623,37.9251194763]},"time":"20141116T100132-0800"},{"track_location":{"type":"Point","coordinates":[-122.294729509,37.9250114113]},"time":"20141116T100154-0800"},{"track_location":{"type":"Point","coordinates":[-122.2948631259,37.9249539313]},"time":"20141116T100210-0800"},{"track_location":{"type":"Point","coordinates":[-122.2950303485,37.9246061106]},"time":"20141116T100233-0800"},{"track_location":{"type":"Point","coordinates":[-122.2951354687,37.9243027568]},"time":"20141116T100252-0800"},{"track_location":{"type":"Point","coordinates":[-122.295232153,37.9241266164]},"time":"20141116T100311-0800"},{"track_location":{"type":"Point","coordinates":[-122.2954467642,37.9238511575]},"time":"20141116T100334-0800"},{"track_location":{"type":"Point","coordinates":[-122.2955252215,37.9237799199]},"time":"20141116T100350-0800"},{"track_location":{"type":"Point","coordinates":[-122.2957380836,37.9236763728]},"time":"20141116T100406-0800"},{"track_location":{"type":"Point","coordinates":[-122.2968968743,37.9235649295]},"time":"20141116T100519-0800"},{"track_location":{"type":"Point","coordinates":[-122.2971837149,37.9237397214]},"time":"20141116T100541-0800"},{"track_location":{"type":"Point","coordinates":[-122.2973710724,37.9239336475]},"time":"20141116T100559-0800"},{"track_location":{"type":"Point","coordinates":[-122.2980347459,37.9242457398]},"time":"20141116T100652-0800"},{"track_location":{"type":"Point","coordinates":[-122.29969366,37.9268944314]},"time":"20141116T100820-0800"},{"track_location":{"type":"Point","coordinates":[-122.2993079473,37.9240372207]},"time":"20141116T100919-0800"}]
+    this.startTime = $filter('date')(jsonObject.section_start_time,"yyyyMMddTHHmmssZ"); // I don't know if I'm using angular correctly
+    this.endTime = $filter('date')(jsonObject.section_end_time, "yyyyMMddTHHmmssZ");
+    var predictedMode = jsonObject.mode; // set to mode by default and then prediction if it exists
+    var highestConfidence = 0;
+    for (var key in jsonObject.predicted_mode) {
+      var currentConfidence = jsonObject.predicted_mode[key];
+      if (currentConfidence >= highestConfidence) {
+        predictedMode = key;
+        highestConfidence = currentConfidence;
+      }
+    }
+    this.confidence = highestConfidence;
+    this.autoMode = predictedMode;
+    // selMode is only set when the user selects a mode
+    this.userMode = jsonObject.confirmed_mode;
+  },
+}
+
+var trackLocation = {
+  sampleTime: null,
+  latitude: null,
+  longitude: null,
+  first: false,
+  last: false,
+  coordinate: null,
+  loadFromJSON: function(jsonObject) {
+    
   }
 }
