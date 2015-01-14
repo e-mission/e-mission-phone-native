@@ -36,7 +36,10 @@ var app = {
         app.receivedEvent('deviceready');
         console.log("onDeviceReady");
         console.log(window);
-        dbHelper.pragmaExample();
+        var tripList = dbHelper.getUncommittedSections();
+	for trip in tripList{
+	     alert("Here is one trip in the database: " + trip.toString());
+	}
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

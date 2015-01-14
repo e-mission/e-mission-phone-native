@@ -41,7 +41,7 @@ public class ModeClassificationHelper extends SQLiteOpenHelper {
 				KEY_TRIP_ID + ", "+ KEY_SECTION_ID+" TEXT, " +
 				KEY_USER_CLASSIFICATION + " TEXT, "+
 				KEY_USER_SELECTION + " TEXT, "+
-				KEY_SECTION_BLOB + " BLOB)";
+				KEY_SECTION_BLOB + " TEXT)";
 		System.out.println("CREATE_UNCLASSIFIED_TABLE = "+CREATE_CURR_TRIPS_TABLE);
 		db.execSQL(CREATE_CURR_TRIPS_TABLE);
 	}
