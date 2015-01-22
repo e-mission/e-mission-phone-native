@@ -15,6 +15,7 @@ var dbHelperTests = {
 
         QUnit.asyncTest ("testing database and wrappers", function(assert) {
             console.log("Opening database");
+            // this doesn't cause a problem no matter what database name I use. Why is this?
             tripSectionDbHelper.getJSON({name: "TripSections.db"}, function(jsonTripList) {
                 tripList = tripSectionDbHelper.getUncommitedSections(jsonTripList);
                 assert.equal(tripList.length, 31);
