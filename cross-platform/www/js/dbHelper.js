@@ -48,8 +48,11 @@ var tripSectionDbHelper = {
   getJSON: function(database, callBack) {
     database = {name: "TripSections.db"};
     // var db = window.sqlitePlugin.openDatabase(database);
-    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db"});
-    alert("got here");
+    alert("got here 1");
+    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db"}, function(){
+      alert("got here 2");
+    });
+    alert("got here 3");
     db.transaction(function(tx) {
       tx.executeSql("select " + KEY_SECTION_BLOB + " from " + TABLE_CURR_TRIPS + " where " + KEY_USER_CLASSIFICATION + " is null", [], function(tx, tempTripList) {
         var jsonTripList = [];

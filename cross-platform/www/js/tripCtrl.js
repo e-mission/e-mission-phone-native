@@ -1,12 +1,12 @@
 function NamesCtrl($scope) {
     //DATA: Gautham, this is where you link the data.
-    $scope.names = [
-        {mode:'walking',confidence:1},
-        {mode:'car',confidence:0.5},
-        {mode:'walking',confidence:1},
-        {mode:'cycling',confidence:0.3},
-        {predictedMode:'cycling',confidence:0.3}
-    ];
+    // $scope.names = [
+    //     {mode:'walking',confidence:1},
+    //     {mode:'car',confidence:0.5},
+    //     {mode:'walking',confidence:1},
+    //     {mode:'cycling',confidence:0.3},
+    //     {predictedMode:'cycling',confidence:0.3}
+    // ];
 
     $scope.pickImage = function(item){
         if (item.mode == null) {
