@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,6 +24,66 @@
         <script type="text/javascript" src="js/tripCtrl.js"></script>
   </head>
   <body ng-app="" animation="slide-left-right-ios7">
+
+    <!-- 
+      The nav bar that will be updated as we navigate between views.
+    -->
+    <ion-content ng-controller="ListCtrl">
+    <div class="list">
+
+      <div class="item item-divider">
+        Today
+      </div>
+
+      <a id="lala" class="item" href="#">
+        <button onclick="myFunction()">Try it</button>
+
+    <script>
+    function myFunction() {
+        document.getElementById("lala").innerHTML = "Hello World";
+    }
+    </script>
+      </a>
+
+      <div class="item item-divider">
+        Yesterday
+      </div>
+      <a class="item" href="#" ng-click="cool()">
+        <h2>This {{id}} {{message}}</h2>
+      </a>
+
+      <a class="item item-icon-left" href="#">
+      <i id="lala1" onclick="myFunction()" class="icon ion-mic-a"></i>
+        <script>
+      function myFunction() {
+        document.getElementById("lala1")
+      }
+      </script>
+        Record album
+        <span class="item-note">
+          100%
+        </span>
+      </a>
+
+      <div class="item item-divider">
+        Last Week
+      </div>
+      <a class="item" href="#">
+        Trip
+      </a>
+      <a class="item" href="#">
+        Trip
+      </a>
+
+    </div>
+    </div>
+    <div ng-app="" ng-controller="NamesCtrl"> 
+
+      <ul>
+        <li ng-repeat="x in names">
+          {{ x.mode + ', ' + x.confidence }}
+        </li>
+      </ul>
 
     </div>
     <ion-list ng-controller="NamesCtrl" can-swipe="listCanSwipe">
