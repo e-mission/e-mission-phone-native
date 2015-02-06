@@ -14,40 +14,12 @@ If you are part of the e-mission team, and are using our keys from the
 e-mission-keys repository, then you should also copy over my keystore, which is
 checked in the same location.
 
-This project is currently intended to be compiled using Android Studio, or
-Eclipse with the ADT plugin. This development environment can be downloaded
-from: http://developer.android.com/sdk/index.html
+* This project is intended to be built with gradle, rather than ant.
+* In case an IDE is used, the project is intended to be used with the IntelliJ-based Android Studio, not one that is based on eclipse.
+  * This development environment can be downloaded from:
+    http://developer.android.com/sdk/index.html
 
-Then, this project can be imported using File -> Import -> Existing Android
-Code into Workspace, selecting the top level e-mission-phone directory, and
-then selecting the MovesConnect project.
-
-In order to compile this project, you need to import google play services into
-your workspace. It is best to copy the google play services library into the
-source directory, in order to avoid inadvertently checking in a path that is
-specific to your build environment.
-
-The project is set up to use google play services from the source directory.
-In order to copy over google play services, do:
-
-    $ cd MovesConnect
-    $ cp $ANDROID_HOME/sdk/extras/google/google_play_services/libproject/google-play-services_lib .
-
-In order to import google play services, you need to import the library project
-into your workspace.
-
-To do this: Click File > Import, select Android > Existing Android Code into
-Workspace, and browse to the copy of the library project to import it.
-
-Or, if you import the main project *after* copying over the google play services,
-it will automagically import google play services as well.
-
-IMPORTANT: Remember to use the copy that is in the MovesConnect directory NOT
-the one in your SDK directory.
-
-Finally, the unit test project will have errors by default. In order to resolve
-those, you need to make it reference the main project. To do this:
-- click on project -> properties -> java build path -> projects and add the main project to the list
+Then, this project can be imported using File -> Import Project and then selecting the build.gradle from from the cloned directory. Gradle already handles dependencies and test case imports, so setup is significantly easier.
 
 The onboarding flow is implemented as a state machine, as described at:
 https://docs.google.com/a/berkeley.edu/document/d/1OYeo5ccUcTD-9tyMr4PysoS6R9e3rNDl1SCPXnF30b0/edit?usp=sharing
