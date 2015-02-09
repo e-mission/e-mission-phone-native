@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 
+#import "EMSTripTableViewCell.h"
 #import "DetailViewController.h"
 #import "TripSection.h"
 #import "TrackLocation.h"
@@ -368,114 +369,11 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    //get all the necessary elements from the cell
-    UIImageView *modeImage = (UIImageView *)[cell.contentView viewWithTag:1];
-    UILabel *modeLabel = (UILabel *)[cell.contentView viewWithTag:2];
-    UILabel *durationLabel = (UILabel *)[cell.contentView viewWithTag:3];
-    UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:4];
-    UILabel *dateLabel = (UILabel *)[cell.contentView viewWithTag:5];
-    UILabel *confidenceLabel = (UILabel *)[cell.contentView viewWithTag:6];
-    
-    //get trip startTime, endTime, tripDuration, and tripMode
-    NSCalendar *cal = [NSCalendar currentCalendar];
+    EMSTripTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:EMSTripTableViewCellReuseIdentifier
+                                                                 forIndexPath:indexPath];
     NSLog(@"Displaying summary view for row %ld", (long)indexPath.row);
-    
-    TripSection *currentSection = _sectionList[indexPath.row];
-    
-    NSDate *startTime = [currentSection startTime];
-    NSDate *endTime = [currentSection endTime];
-    NSTimeInterval tripDur = [endTime timeIntervalSinceDate:startTime];
-    double secToMin = 60;
-    NSInteger tripDurMin = tripDur / secToMin;
-    
-    NSString *tripModeString = currentSection.getDisplayMode;
-    
-    //get trip startDate
-    NSDateComponents *startComps = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate: startTime];
-    NSDate *startDate = [cal dateFromComponents:startComps];
-    
-    //get today's date
-    NSDateComponents *todayComps = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate: [NSDate date]];
-    NSDate *today = [cal dateFromComponents:todayComps];
-    
-    //get yesterday's date
-    NSDate *yesterday = [today dateByAddingTimeInterval:-86400.00];
-    
-    //check if trip is from today or yesterday and build appropriate prompt string
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    // Modified by shankari to shorten the detail even further. Andrew plans to tweak this later, but we want to
-    // get something good entaTough by the end of this week
-    
-    //set the timeLabel to the start time
-    [dateFormat setDateFormat:@"HH:mm"];
-    NSString *startTimeString = [dateFormat stringFromDate:startTime];
-    timeLabel.text = startTimeString;
-    
-    //set durationLabel and modeLabel to appropriate values
-    durationLabel.text = [NSString stringWithFormat:@"%ld minutes", tripDurMin];
-    modeLabel.text = tripModeString;
-    
-    //check tripMode and set image to appropriate one
-    UIColor *red = [UIColor redColor];
-    UIColor *yellow = [UIColor colorWithRed:0.93 green:0.79 blue:0 alpha:1];
-    UIColor *green = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
-    
-    // you need to use the inverse because masking will take the white space so this makes processing a lot simpler
-    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-invert.jpg", tripModeString]];
-    
-    if (currentSection.selMode == nil) {
-        if (currentSection.confidence >= 0.79) {
-            confidenceLabel.textColor = green;
-            image = [self colorizeImage:image withColor:green];
-        } else if (currentSection.confidence >= 0.69) {
-            confidenceLabel.textColor = yellow;
-            image = [self colorizeImage:image withColor:yellow];
-        } else {
-            confidenceLabel.textColor = red;
-            image = [self colorizeImage:image withColor:red];
-        }
-        
-        confidenceLabel.text = [currentSection getConfidenceAsString];
-    } else {
-        confidenceLabel.textColor = green;
-        image = [self colorizeImage:image withColor:green];
-        
-        confidenceLabel.text = @"100%";
-    }
-    
-    modeImage.image = image;
-    
-    //check for special values of dateLabel (like yesterday and today)
-    if([today isEqual:startDate]) {
-        dateLabel.text = @"today";
-    } else if ([yesterday isEqual: startDate]) {
-        dateLabel.text = @"yesterday";
-    } else {
-        [dateFormat setDateFormat:@"MM/dd"];
-        NSString *startDateString = [dateFormat stringFromDate:startTime];
-        dateLabel.text = startDateString;
-    }
-    
+    [cell prepareWithSection:_sectionList[indexPath.row]];
     return cell;
-}
-
-- (UIImage *)colorizeImage: (UIImage *)image withColor: (UIColor *)color
-{
-    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
-    
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClipToMask(context, rect, image.CGImage);
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImage *flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                scale:1.0 orientation: UIImageOrientationDownMirrored];
-    return flippedImage;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
