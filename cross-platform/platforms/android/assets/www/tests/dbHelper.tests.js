@@ -11,10 +11,10 @@ var dbHelperTests = {
         // });
 
     	QUnit.asyncTest ("testTripSections", function(assert) {
-            console.log("Testing console logs");
-    	    console.log(tripSectionDbHelper);
-    	    tripSectionDbHelper.getUncommitedSections();
-    	    assert.ok(1 == "1", "Passed!");
+    	    var sections = tripSectionDbHelper.getUncommitedSections();
+            // console.log(sections.length);
+            // console.log(sections.length);
+    	    assert.ok(1 == 1, "Passed!");
     	});
     }
 }

@@ -1,58 +1,43 @@
+
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-<!--        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
-<!--        <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
-         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-         <link href="css/style.css" rel="stylesheet">
-        <title>Hello World</title>
-        <!-- ionic/angularjs js -->
-        <script src="lib/ionic/js/ionic.bundle.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- your app's js -->
+    <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/dbHelper.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-    </head>
-    <body ng-app="starter">
-        <!--
-        <div class="app">
-            <a href="tests/index.html">Run tests</a>
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/tripCtrl.js"></script>
+  </head>
+  <body ng-app="" animation="slide-left-right-ios7">
+
+    </div>
+    <ion-list ng-controller="NamesCtrl" can-swipe="listCanSwipe">
+      <ion-item ng-repeat="x in names" class="item-thumbnail-right  ">
+        <div class="item item-divider">
+        <div class="color-box" style="background-color: #FF850A;"></div>
+        <h2>{{x.mode}}</h2>
+        <img src={{pickImage(x)}} height="42" width="42" align="center" margin-left="500px">
+        <span class="item-note" style={{pickColor(x)}}>
+          {{x.confidence}}
+        </span>
+        <div class="color-box" style="background-color: #FF850A;"></div>
         </div>
-        -->
-      <ion-pane>
-        <ion-header-bar class="bar-stable">
-          <h1 class="title">Ionic Blank Starter</h1>
-        </ion-header-bar>
-        <ion-content>
-            <a href="tests/index.html">Run tests</a>
-        </ion-content>
-      </ion-pane>
-    </body>
+      </ion-item>
+  </body>
 </html>
