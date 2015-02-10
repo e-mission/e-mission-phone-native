@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070C42291A8981A200E6AF99 /* connect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 070C42281A8981A200E6AF99 /* connect.plist */; };
 		0776675D1A8403B600125637 /* EMSTripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0776675C1A8403B600125637 /* EMSTripTableViewCell.m */; };
 		077667601A8405CE00125637 /* UIImage+EMS.m in Sources */ = {isa = PBXBuildFile; fileRef = 0776675F1A8405CE00125637 /* UIImage+EMS.m */; };
 		077667631A84069600125637 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077667621A84069600125637 /* GoogleOpenSource.framework */; };
@@ -115,6 +116,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070C42281A8981A200E6AF99 /* connect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = connect.plist; sourceTree = "<group>"; };
 		0776675B1A8403B600125637 /* EMSTripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSTripTableViewCell.h; sourceTree = "<group>"; };
 		0776675C1A8403B600125637 /* EMSTripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSTripTableViewCell.m; sourceTree = "<group>"; };
 		0776675E1A8405CE00125637 /* UIImage+EMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EMS.h"; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				D0F2FA5B18DF5AEB000FF723 /* Default@2x.png */,
 				D0F2FA5D18DF5AEB000FF723 /* Default-568h@2x.png */,
 				AC88B78319E773C000C85C2C /* custom_settings.plist */,
+				070C42281A8981A200E6AF99 /* connect.plist */,
 				D0D7679919CB602E003597C7 /* app_stats.plist */,
 			);
 			name = "Supporting Files";
@@ -660,6 +663,7 @@
 				D008E4F11A04138E00228241 /* OngoingTripsManual.db in Resources */,
 				D0DE741E18EA6E1C0039066B /* Icons.xcassets in Resources */,
 				D0F2FA5E18DF5AEB000FF723 /* Default-568h@2x.png in Resources */,
+				070C42291A8981A200E6AF99 /* connect.plist in Resources */,
 				ACFD74851968DCD100ADDAAA /* EMissionTerms.html in Resources */,
 				D0B9C73718E26255006903E6 /* TripSections.db in Resources */,
 				ACC61A2A192E917900F7B3D0 /* walking.jpg in Resources */,
