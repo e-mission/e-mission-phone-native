@@ -18,6 +18,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define EMSAuthFinishedNotification @"EMSAuthFinishedNotification"
+
 // A view controller for the Google+ sign-in button which initiates a standard
 // OAuth 2.0 flow and provides an access token and a refresh token. A "Sign out"
 // button is provided to allow users to sign out of this application.

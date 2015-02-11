@@ -114,6 +114,7 @@ static NSString * const kSignOutAlertConfirmTitle = @"Continue";
   }
   [self reportAuthStatus];
   [self updateButtons];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EMSAuthFinishedNotification object:nil];
   [self.tableView reloadData];
 
   [super viewWillAppear:animated];
