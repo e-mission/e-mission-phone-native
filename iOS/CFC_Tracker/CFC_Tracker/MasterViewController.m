@@ -64,7 +64,13 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
                                              selector:@selector(backgroundFetchGotNewData:)
                                                  name:BackgroundRefreshNewData
                                                object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserverForName:EMSAuthFinishedNotification
+                                                      object:nil
+                                                       queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self loadResults];
+                                                  }];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self initializeAuthResultBarButtons];
@@ -251,13 +257,16 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 
 - (void)showResults:(id)sender
 {
-    long startTime = [ClientStatsDatabase getCurrentTimeMillis];
     if ([self.navigationController.viewControllers containsObject:self.resultSummaryViewController]) {
         // the result summary is already visible, don't need to push it again
         NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
     } else {
         [self.navigationController pushViewController:self.resultSummaryViewController animated:YES];
     }
+}
+
+- (void)loadResults {
+    long startTime = [ClientStatsDatabase getCurrentTimeMillis];
     // NSLog(@"subviews are %@", self.resultSummaryViewController.view.subviews);
     // NSLog(@"view with tag 0 is %@", [self.resultSummaryViewController.view viewWithTag:0]);
     // UIWebView *webView = (UIWebView*)[self.resultSummaryViewController.view viewWithTag:0];
@@ -265,14 +274,14 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     // [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/compare"]]];
     [HTMLDisplayCommunicationHelper displayResultSummary:webView
                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    // This is currently used only for generating stats, need to figure out how to display errors
+                                           // This is currently used only for generating stats, need to figure out how to display errors
                                            long endTime = [ClientStatsDatabase getCurrentTimeMillis];
                                            NSString* endTimeStr = [ClientStatsDatabase getCurrentTimeMillisString];
                                            [_statsDb storeMeasurement:@"result_display_duration" value:[@(endTime - startTime) stringValue] ts:endTimeStr];
                                            if(error != NULL) {
                                                [_statsDb storeMeasurement:@"result_display_failed" value:NULL ts:endTimeStr];
                                            }
-    }];
+                                       }];
 }
 
 - (void)showManualTripScreen:(id)sender
