@@ -18,6 +18,8 @@
 #import "Constants.h"
 #import "ActionSheetStringPicker.h"
 #import "ManualTripController.h"
+#import "NJKWebViewProgressView.h"
+#import "NJKWebViewProgress.h"
 
 // BEGIN: Headers needed for authentication
 #import "SignInViewController.h"
@@ -26,7 +28,7 @@
 #import "AuthCompletionHandler.h"
 // END: Headers needed for authentication
 
-@interface MasterViewController () {
+@interface MasterViewController () <UIWebViewDelegate, NJKWebViewProgressDelegate>  {
     NSMutableArray *_sectionList;
     TripSectionDatabase* _tripSectionDb;
     ClientStatsDatabase* _statsDb;
@@ -35,6 +37,10 @@
 @property(strong, nonatomic) UIViewController *resultSummaryViewController;
 @property(strong, nonatomic) ManualTripController *manualTripController;
 @property BOOL hasShownResults;
+
+@property (nonatomic, strong) NJKWebViewProgress *webViewProgressProxy;
+@property (nonatomic, strong) NJKWebViewProgressView *webViewProgressView;
+
 @end
 
 @implementation MasterViewController
@@ -271,6 +277,18 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     // NSLog(@"view with tag 0 is %@", [self.resultSummaryViewController.view viewWithTag:0]);
     // UIWebView *webView = (UIWebView*)[self.resultSummaryViewController.view viewWithTag:0];
     UIWebView *webView = (UIWebView*)self.resultSummaryViewController.view.subviews[0];
+    
+    self.webViewProgressProxy = [[NJKWebViewProgress alloc] init];
+    webView.delegate = self.webViewProgressProxy;
+    self.webViewProgressProxy.webViewProxyDelegate = self;
+    self.webViewProgressProxy.progressDelegate = self;
+    CGFloat progressBarHeight = 2.f;
+    CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
+    CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height - progressBarHeight, navigationBarBounds.size.width, progressBarHeight);
+    self.webViewProgressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+    self.webViewProgressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self.navigationController.navigationBar addSubview:self.webViewProgressView];
+    
     // [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/compare"]]];
     [HTMLDisplayCommunicationHelper displayResultSummary:webView
                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -282,6 +300,10 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
                                                [_statsDb storeMeasurement:@"result_display_failed" value:NULL ts:endTimeStr];
                                            }
                                        }];
+}
+
+- (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress {
+    [self.webViewProgressView setProgress:progress animated:NO];
 }
 
 - (void)showManualTripScreen:(id)sender

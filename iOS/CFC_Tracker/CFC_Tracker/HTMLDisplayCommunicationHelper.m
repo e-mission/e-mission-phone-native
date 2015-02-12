@@ -10,9 +10,8 @@
 #import "AuthCompletionHandler.h"
 #import "ConnectionSettings.h"
 
-@interface HTMLDisplayCommunicationHelper() {
+@interface HTMLDisplayCommunicationHelper()
 
-}
 @end
 
 //#define kResultSummaryURL [NSURL URLWithString: @"/compare" \
