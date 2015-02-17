@@ -32,19 +32,7 @@ public class DisplayResultSummaryActivity extends Activity {
     
     @Override
     public void onCreate(Bundle savedInstanceBundle) {
-        final Context thisContext = this;
         super.onCreate(savedInstanceBundle);
-        
-        // create a cache at application start up
-        try {
-            File httpCacheDir = new File(thisContext.getCacheDir(), "http");
-            long httpCacheSize = 10 * 1024 * 1024; // 10 MiB
-            HttpResponseCache.install(httpCacheDir, httpCacheSize);
-        }
-        catch(IOException e){
-            Log.i("HTTPCACHE", "HTTP response cache installation failed:" + e);
-        }
-        
         statsHelper = new ClientStatsHelper(this);
         setContentView(R.layout.activity_display_result_summary);
         displaySummaryView = (WebView) findViewById(R.id.displayResultSummaryView);
