@@ -34,7 +34,10 @@ public class UnclassifiedSection {
 		this.sectionBlob = sectionBlob;
 		try {
 			this.obj = new JSONObject(sectionBlob);
-			JSONObject predMap = obj.getJSONObject("predicted_mode");
+            JSONObject predMap = new JSONObject();
+            if (obj.has("predicted_mode"))  {
+                predMap = obj.getJSONObject("predicted_mode");
+            }
 			String maxString = "UNKNOWN";
 			double maxConf = 0.0;
 			Iterator<String> it = predMap.keys();
