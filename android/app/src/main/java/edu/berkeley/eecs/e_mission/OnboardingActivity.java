@@ -24,6 +24,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -166,9 +167,16 @@ public class OnboardingActivity extends Activity implements OnActionListener {
 	}
 	
 	public void getLinkToMovesComplete() {
-		final String key = "linkToMoves";
-    	final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	linkToMovesComplete = prefs.getBoolean(key, false);
+        if (Build.FINGERPRINT.startsWith("generic")) {
+            // We are running in an emulator
+            // TODO: Populate the database with some dummy data here to allow easier testing
+            linkToMovesComplete = true;
+        } else {
+            // We are running in a real device, so we want to link to moves to collect data
+            final String key = "linkToMoves";
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            linkToMovesComplete = prefs.getBoolean(key, false);
+        }
 	}
 	
 	public void getOnboardingComplete() {
