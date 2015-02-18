@@ -96,7 +96,7 @@ public class DisplayResultSummaryActivity extends Activity {
                         connection.disconnect();
                         connection = (HttpURLConnection) url.openConnection();
                         JSONObject user = new JSONObject();
-                        user.put('user', userToken);
+                        user.put("user", userToken);
 
 //                        String urlParameters  = String.format("user=%s",userToken);
 //                        byte[] postData       = urlParameters.getBytes( Charset.forName("UTF-8"));
@@ -109,8 +109,8 @@ public class DisplayResultSummaryActivity extends Activity {
                         connection.setReadTimeout( 10000 /*milliseconds*/ );
                         connection.setConnectTimeout(15000 /* milliseconds */);
                         connection.setRequestMethod("POST");
-//                        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-                        connection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+                        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+//                        connection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
                         connection.setRequestProperty("charset", "utf-8");
 //                        connection.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
 
