@@ -9,16 +9,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.berkeley.eecs.e_mission.auth.GoogleAccountManagerAuth;
 import edu.berkeley.eecs.e_mission.auth.UserProfile;
@@ -38,8 +51,8 @@ public class DisplayResultSummaryActivity extends Activity {
         displaySummaryView = (WebView) findViewById(R.id.displayResultSummaryView);
         displaySummary();
     }
-    
-    
+
+
     void displaySummary() {
         final long startMs = System.currentTimeMillis();
         final Context thisContext = this;
@@ -53,7 +66,7 @@ public class DisplayResultSummaryActivity extends Activity {
                     String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
                     System.out.println("http post result_url before httpPost " + result_url);
                     // TODO: Restructure this later to combine with the data sync class
-                    
+
                     URL url = new URL(result_url);
                     //can we preload this url?
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -61,9 +74,9 @@ public class DisplayResultSummaryActivity extends Activity {
                     connection.setUseCaches(true);
                     connection.setReadTimeout( 10000 /*milliseconds*/ );
                     connection.setConnectTimeout(15000 /* milliseconds */);
+                    connection.setRequestMethod("POST");
                     connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
                     connection.setDoOutput(true);
-                    connection.setRequestMethod("POST");
                     // allow for httpresponse caching here
                     connection.setUseCaches(true);
                     
@@ -79,22 +92,52 @@ public class DisplayResultSummaryActivity extends Activity {
                     catch (FileNotFoundException e) {
                         // Resource not cached -- fallback
                         System.out.println("Cache miss, execute httpconnection for display summary");
-                        connection.connect();
+                        //can we preload this url?
+                        connection.disconnect();
+                        connection = (HttpURLConnection) url.openConnection();
+                        JSONObject user = new JSONObject();
+                        user.put('user', userToken);
+
+//                        String urlParameters  = String.format("user=%s",userToken);
+//                        byte[] postData       = urlParameters.getBytes( Charset.forName("UTF-8"));
+//                        int    postDataLength = postData.length;
+
+                        // allow for httpresponse caching here
+                        connection.setUseCaches(true);
+                        connection.setDoOutput(true);
+                        connection.setDoInput(true);
+                        connection.setReadTimeout( 10000 /*milliseconds*/ );
+                        connection.setConnectTimeout(15000 /* milliseconds */);
+                        connection.setRequestMethod("POST");
+//                        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+                        connection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+                        connection.setRequestProperty("charset", "utf-8");
+//                        connection.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
+
+
                         // output stream expects to work with bytes
-                        byte[] outputBytes = "{'user': userToken}".getBytes("UTF-8");
+//                        String urlParameters  = String.format("user=%s",userToken);
                         OutputStream os = connection.getOutputStream();
-                        os.write(outputBytes);
-                        os.flush();
-                        
-                        if (connection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
-                        }
+                        OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+//                        BufferedWriter writer = new BufferedWriter(
+//                                new OutputStreamWriter(os, "UTF-8"));
+                        writer.write(user.toString());
+                        writer.flush();
+                        writer.close();
+                        os.close();
+
+                        connection.connect();
+
+//                        if (connection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+//                            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
+//                        }
+
                         System.out.println("Connection response status "+connection.getResponseCode());
                         
                         inputStream = connection.getInputStream();
                     }
                     
-                    
+
                     
                     BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
                     StringBuilder builder = new StringBuilder();
@@ -108,11 +151,12 @@ public class DisplayResultSummaryActivity extends Activity {
                     connection.disconnect();
                     return rawHTML;
                 } catch (MalformedURLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                     return "<html><body>"+e.getLocalizedMessage()+"</body></html>";
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    return "<html><body>"+e.getLocalizedMessage()+"</body></html>";
+                } catch (JSONException e){
                     e.printStackTrace();
                     return "<html><body>"+e.getLocalizedMessage()+"</body></html>";
                 }
