@@ -342,6 +342,10 @@ public class ConfirmSectionListActivity extends Activity {
 			}
 			statsHelper.storeMeasurement(getString(R.string.button_confirm_all_skipped), String.valueOf(skippedCount), confirmTs);
 		}
+        Intent intent = new Intent(ConfirmSectionListActivity.this,
+                ConfirmSectionListActivity.class);
+
+        startActivity(intent);
 	}
 
 

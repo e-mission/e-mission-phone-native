@@ -1,48 +1,23 @@
 package edu.berkeley.eecs.e_mission;
 
-import java.text.ParseException;
-
-
-
-
-
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-
-//import android.R;
-import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.ScrollView;
-import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
-
-
-
-
-import android.annotation.SuppressLint;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,6 +29,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+//import android.R;
 
 
 @SuppressLint("NewApi")
