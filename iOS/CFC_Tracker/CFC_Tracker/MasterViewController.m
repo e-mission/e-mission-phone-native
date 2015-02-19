@@ -74,6 +74,10 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
                                                       object:nil
                                                        queue:[NSOperationQueue mainQueue]
                                                   usingBlock:^(NSNotification *note) {
+                                                      // Load results as soon as possible, which is when authentication
+                                                      // is completed, instead of waiting for the user to query it.
+                                                      // This way, it feels like data has been loaded more quickly to the user
+                                                      // while, in reality, the data load simply started earlier.
                                                       [self loadResults];
                                                   }];
     
