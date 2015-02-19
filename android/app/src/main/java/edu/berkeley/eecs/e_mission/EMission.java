@@ -1,7 +1,9 @@
 package edu.berkeley.eecs.e_mission;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.net.http.HttpResponseCache;
+import android.os.Build;
 import android.util.Log;
 
 import java.io.File;
@@ -20,6 +22,7 @@ public class EMission extends Application {
         Log.i("main", "Application initiated");
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,17 +33,22 @@ public class EMission extends Application {
 
         // create a cache at application start up
         try {
-            File httpCacheDir = new File(this.getCacheDir(), "http");
             long httpCacheSize = 10 * 1024 * 1024; // 10 MiB
-            HttpResponseCache.install(httpCacheDir, httpCacheSize);
-        }
-        catch(IOException e){
-            Log.i("HTTPCACHE", "HTTP response cache installation failed:" + e);
+            File httpCacheDir = new File(getExternalCacheDir(), "http");
+            Class.forName("android.net.http.HttpResponseCache")
+                    .getMethod("install", File.class, long.class)
+                    .invoke(null, httpCacheDir, httpCacheSize);
+
+            Log.i("_INFO", "HttpResponseCache enabled");
+
+        } catch (Exception httpResponseCacheNotAvailable) {
+            Log.d("_INFO", "HTTP response cache is unavailable.");
         }
     }
 
 
     // method to flush cache contents to the filesystem
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void flushCache() {
         HttpResponseCache cache = HttpResponseCache.getInstalled();
         if (cache != null) {

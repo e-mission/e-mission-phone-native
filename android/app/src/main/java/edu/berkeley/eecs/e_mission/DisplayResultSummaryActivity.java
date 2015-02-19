@@ -66,79 +66,54 @@ public class DisplayResultSummaryActivity extends Activity {
                     String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
                     System.out.println("http post result_url before httpPost " + result_url);
                     // TODO: Restructure this later to combine with the data sync class
-
+                    HttpResponseCache cache = HttpResponseCache.getInstalled();
                     URL url = new URL(result_url);
-                    //can we preload this url?
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     // allow for httpresponse caching here
                     connection.setUseCaches(true);
+                    connection.setDoOutput(false);
+                    connection.setDoInput(true);
                     connection.setReadTimeout( 10000 /*milliseconds*/ );
                     connection.setConnectTimeout(15000 /* milliseconds */);
-                    connection.setRequestMethod("POST");
+                    connection.setRequestMethod("GET");
                     connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-                    connection.setDoOutput(true);
-                    // allow for httpresponse caching here
-                    connection.setUseCaches(true);
-                    
+
                     // force a cache response
                     connection.addRequestProperty("Cache-Control", "only-if-cached");
-                    
+
                     InputStream inputStream;
                     
                     try {
                         // cached inputstream
+                        //TODO Determine why this always throws FileNotFoundException
                         inputStream = connection.getInputStream();
                     }
                     catch (FileNotFoundException e) {
-                        // Resource not cached -- fallback
-                        System.out.println("Cache miss, execute httpconnection for display summary");
-                        //can we preload this url?
+                        // Resource not cached -- fallback NOT TRUE
+//                        System.out.println("Cache miss, execute httpconnection for display summary");
                         connection.disconnect();
                         connection = (HttpURLConnection) url.openConnection();
-                        JSONObject user = new JSONObject();
-                        user.put("user", userToken);
-
-//                        String urlParameters  = String.format("user=%s",userToken);
-//                        byte[] postData       = urlParameters.getBytes( Charset.forName("UTF-8"));
-//                        int    postDataLength = postData.length;
-
-                        // allow for httpresponse caching here
                         connection.setUseCaches(true);
-                        connection.setDoOutput(true);
+                        connection.setDoOutput(false);
                         connection.setDoInput(true);
                         connection.setReadTimeout( 10000 /*milliseconds*/ );
                         connection.setConnectTimeout(15000 /* milliseconds */);
-                        connection.setRequestMethod("POST");
+                        connection.setRequestMethod("GET");
+                        connection.setRequestProperty("User", "" + userToken);
+
+                        int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+                        connection.addRequestProperty("Cache-Control", "max-stale=" + maxStale);
                         connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-//                        connection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
-                        connection.setRequestProperty("charset", "utf-8");
-//                        connection.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
-
-
-                        // output stream expects to work with bytes
-//                        String urlParameters  = String.format("user=%s",userToken);
-                        OutputStream os = connection.getOutputStream();
-                        OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-//                        BufferedWriter writer = new BufferedWriter(
-//                                new OutputStreamWriter(os, "UTF-8"));
-                        writer.write(user.toString());
-                        writer.flush();
-                        writer.close();
-                        os.close();
 
                         connection.connect();
-
+                        
+                        inputStream = connection.getInputStream();
+                        System.out.println("Connection response status "+connection.getResponseCode());
+                        //TODO Fix this check to test for failure (non-2xx) response.
 //                        if (connection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
 //                            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
 //                        }
-
-                        System.out.println("Connection response status "+connection.getResponseCode());
-                        
-                        inputStream = connection.getInputStream();
                     }
-                    
-
-                    
                     BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
                     StringBuilder builder = new StringBuilder();
                     String currLine = null;
@@ -146,7 +121,6 @@ public class DisplayResultSummaryActivity extends Activity {
                         builder.append(currLine+"\n");
                     }
                     String rawHTML = builder.toString();
-                    // System.out.println("Raw HTML = "+rawHTML);
                     in.close();
                     connection.disconnect();
                     return rawHTML;
@@ -155,10 +129,7 @@ public class DisplayResultSummaryActivity extends Activity {
                     return "<html><body>"+e.getLocalizedMessage()+"</body></html>";
                 } catch (IOException e) {
                     e.printStackTrace();
-                    return "<html><body>"+e.getLocalizedMessage()+"</body></html>";
-                } catch (JSONException e){
-                    e.printStackTrace();
-                    return "<html><body>"+e.getLocalizedMessage()+"</body></html>";
+                    return "<html><body>" + e.getLocalizedMessage() + "</body></html>";
                 }
             }
             
