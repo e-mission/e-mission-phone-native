@@ -339,10 +339,18 @@ public class ConfirmSectionListActivity extends Activity {
 			} else {
 				Log.d(TAG, "status is FALSE!, will not confirm");
 				skippedCount++;
+
 			}
+
 			statsHelper.storeMeasurement(getString(R.string.button_confirm_all_skipped), String.valueOf(skippedCount), confirmTs);
-		}
+
+        }
+
+        Intent intent = new Intent(ConfirmSectionListActivity.this, ConfirmSectionListActivity.class);
+        startActivity(intent);
 	}
+
+
 
 
 	public class CustomAdapter extends BaseAdapter{
