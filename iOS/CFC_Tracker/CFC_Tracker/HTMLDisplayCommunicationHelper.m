@@ -54,7 +54,6 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json"
    forHTTPHeaderField:@"Content-Type"];
-    request.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
     
     NSString *userToken = [AuthCompletionHandler sharedInstance].getIdToken;
     // At this point, we assume that all the authentication is done correctly
