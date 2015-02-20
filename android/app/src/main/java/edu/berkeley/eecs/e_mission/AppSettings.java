@@ -38,8 +38,7 @@ public class AppSettings {
 	
 	public static String getResultUrl(Context ctxt) {
 		SharedPreferences prefs = ctxt.getSharedPreferences("profileSettings",ctxt.MODE_PRIVATE);
-		String result_url = prefs.getString("result_url",
-				ConnectionSettings.getConnectURL(ctxt)+"/compare"); //should it be the default result url rather than null?
+		String result_url = ConnectionSettings.getConnectURL(ctxt)+"/compare";
 		return result_url;
 	}
 	
