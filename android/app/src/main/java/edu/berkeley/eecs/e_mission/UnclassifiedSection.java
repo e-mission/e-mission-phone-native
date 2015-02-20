@@ -40,9 +40,9 @@ public class UnclassifiedSection {
             }
 			String maxString = "UNKNOWN";
 			double maxConf = 0.0;
-			Iterator<String> it = predMap.keys();
+			Iterator it = predMap.keys();
 			while(it.hasNext()) {
-				String currKey = it.next();
+				String currKey = (String) it.next();
 				double currProb = predMap.getDouble(currKey);
 				if (currProb > maxConf) {
 					maxConf = currProb;
