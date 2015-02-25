@@ -48,7 +48,6 @@ public class EMission extends Application {
 
 
     // method to flush cache contents to the filesystem
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void flushCache() {
         HttpResponseCache cache = HttpResponseCache.getInstalled();
         if (cache != null) {

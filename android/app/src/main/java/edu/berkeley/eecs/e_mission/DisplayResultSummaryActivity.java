@@ -64,57 +64,31 @@ public class DisplayResultSummaryActivity extends Activity {
             protected String doInBackground(Void... params) {
                 try {
                     String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
-                    System.out.println("http post result_url before httpPost " + result_url);
                     // TODO: Restructure this later to combine with the data sync class
-                    HttpResponseCache cache = HttpResponseCache.getInstalled();
                     URL url = new URL(result_url);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    // allow for httpresponse caching here
+
                     connection.setUseCaches(true);
                     connection.setDoOutput(false);
                     connection.setDoInput(true);
                     connection.setReadTimeout( 10000 /*milliseconds*/ );
                     connection.setConnectTimeout(15000 /* milliseconds */);
                     connection.setRequestMethod("GET");
+                    connection.setRequestProperty("User", "" + userToken);
+
+                    int maxStale = 60 * 60 * 6; // tolerate 6-hours stale
+                    connection.addRequestProperty("Cache-Control", "max-stale=" + maxStale);
                     connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
 
-                    // force a cache response
-                    connection.addRequestProperty("Cache-Control", "only-if-cached");
+                    connection.connect();
 
-                    InputStream inputStream;
-                    
-                    try {
-                        // cached inputstream
-                        //TODO Determine why this always throws FileNotFoundException
-                        inputStream = connection.getInputStream();
+                    InputStream inputStream = connection.getInputStream();
+                    int code = connection.getResponseCode();
+                    System.out.println("Connection response status "+connection.getResponseCode());
+                    if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                        throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
                     }
-                    catch (FileNotFoundException e) {
-                        // Resource not cached -- fallback NOT TRUE
-//                        System.out.println("Cache miss, execute httpconnection for display summary");
-                        connection.disconnect();
-                        connection = (HttpURLConnection) url.openConnection();
-                        connection.setUseCaches(true);
-                        connection.setDoOutput(false);
-                        connection.setDoInput(true);
-                        connection.setReadTimeout( 10000 /*milliseconds*/ );
-                        connection.setConnectTimeout(15000 /* milliseconds */);
-                        connection.setRequestMethod("GET");
-                        connection.setRequestProperty("User", "" + userToken);
-
-                        int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
-                        connection.addRequestProperty("Cache-Control", "max-stale=" + maxStale);
-                        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-
-                        connection.connect();
-                        
-                        inputStream = connection.getInputStream();
-                        System.out.println("Connection response status "+connection.getResponseCode());
-                        //TODO Fix this check to test for failure (non-2xx) response.
-//                        if (connection.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-//                            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
-//                        }
-                    }
-                    BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+                    BufferedReader  in = new BufferedReader(new InputStreamReader(inputStream));
                     StringBuilder builder = new StringBuilder();
                     String currLine = null;
                     while ((currLine = in.readLine()) != null) {
@@ -153,13 +127,11 @@ public class DisplayResultSummaryActivity extends Activity {
         };
         task.execute((Void)null);
     }
-    /*
-     protected void onStop() {
-     // requires a minsdkversion 14 (current is 11 in androidmanifest.xml
-     
-     HttpResponseCache cache = HttpResponseCache.getInstalled();
-     if (cache != null) {
-     cache.flush();
-     }
-     } */
+
+    public void onDestroy() {
+        super.onDestroy();
+
+        EMission app = (EMission) getApplication();
+        app.flushCache();
+    }
 }
