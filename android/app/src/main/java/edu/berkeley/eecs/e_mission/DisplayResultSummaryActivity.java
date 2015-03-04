@@ -74,7 +74,7 @@ public class DisplayResultSummaryActivity extends Activity {
                     connection.setReadTimeout( 10000 /*milliseconds*/ );
                     connection.setConnectTimeout(15000 /* milliseconds */);
                     connection.setRequestMethod("GET");
-                    connection.setRequestProperty("User", "" + userToken);
+                    connection.setRequestProperty("user", "" + userToken);
 
                     int maxStale = 60 * 60 * 6; // tolerate 6-hours stale
                     connection.addRequestProperty("Cache-Control", "max-stale=" + maxStale);
