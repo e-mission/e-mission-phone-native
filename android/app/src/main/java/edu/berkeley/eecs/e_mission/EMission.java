@@ -39,11 +39,11 @@ public class EMission extends Application {
                     .getMethod("install", File.class, long.class)
                     .invoke(null, httpCacheDir, httpCacheSize);
 
-            Log.i("_INFO", "HttpResponseCache enabled");
+            Log.i("Emission", "HttpResponseCache enabled");
 
         } catch (Exception httpResponseCacheNotAvailable) {
-            Log.d("_INFO", "HTTP response cache is unavailable.");
         }
+            Log.d("Emission", "HTTP response cache is unavailable.");
     }
 
 
