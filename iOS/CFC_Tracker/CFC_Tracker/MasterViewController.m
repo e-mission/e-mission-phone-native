@@ -18,6 +18,8 @@
 #import "Constants.h"
 #import "ActionSheetStringPicker.h"
 #import "ManualTripController.h"
+#import "NJKWebViewProgressView.h"
+#import "NJKWebViewProgress.h"
 
 // BEGIN: Headers needed for authentication
 #import "SignInViewController.h"
@@ -26,7 +28,7 @@
 #import "AuthCompletionHandler.h"
 // END: Headers needed for authentication
 
-@interface MasterViewController () {
+@interface MasterViewController () <UIWebViewDelegate, NJKWebViewProgressDelegate>  {
     NSMutableArray *_sectionList;
     TripSectionDatabase* _tripSectionDb;
     ClientStatsDatabase* _statsDb;
@@ -35,6 +37,10 @@
 @property(strong, nonatomic) UIViewController *resultSummaryViewController;
 @property(strong, nonatomic) ManualTripController *manualTripController;
 @property BOOL hasShownResults;
+
+@property (nonatomic, strong) NJKWebViewProgress *webViewProgressProxy;
+@property (nonatomic, strong) NJKWebViewProgressView *webViewProgressView;
+
 @end
 
 @implementation MasterViewController
@@ -64,7 +70,17 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
                                              selector:@selector(backgroundFetchGotNewData:)
                                                  name:BackgroundRefreshNewData
                                                object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserverForName:EMSAuthFinishedNotification
+                                                      object:nil
+                                                       queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      // Load results as soon as possible, which is when authentication
+                                                      // is completed, instead of waiting for the user to query it.
+                                                      // This way, it feels like data has been loaded more quickly to the user
+                                                      // while, in reality, the data load simply started earlier.
+                                                      [self loadResults];
+                                                  }];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self initializeAuthResultBarButtons];
@@ -251,28 +267,47 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 
 - (void)showResults:(id)sender
 {
-    long startTime = [ClientStatsDatabase getCurrentTimeMillis];
     if ([self.navigationController.viewControllers containsObject:self.resultSummaryViewController]) {
         // the result summary is already visible, don't need to push it again
         NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
     } else {
         [self.navigationController pushViewController:self.resultSummaryViewController animated:YES];
     }
+}
+
+- (void)loadResults {
+    long startTime = [ClientStatsDatabase getCurrentTimeMillis];
     // NSLog(@"subviews are %@", self.resultSummaryViewController.view.subviews);
     // NSLog(@"view with tag 0 is %@", [self.resultSummaryViewController.view viewWithTag:0]);
     // UIWebView *webView = (UIWebView*)[self.resultSummaryViewController.view viewWithTag:0];
     UIWebView *webView = (UIWebView*)self.resultSummaryViewController.view.subviews[0];
+    
+    self.webViewProgressProxy = [[NJKWebViewProgress alloc] init];
+    webView.delegate = self.webViewProgressProxy;
+    self.webViewProgressProxy.webViewProxyDelegate = self;
+    self.webViewProgressProxy.progressDelegate = self;
+    CGFloat progressBarHeight = 2.f;
+    CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
+    CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height - progressBarHeight, navigationBarBounds.size.width, progressBarHeight);
+    self.webViewProgressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+    self.webViewProgressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self.navigationController.navigationBar addSubview:self.webViewProgressView];
+    
     // [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/compare"]]];
     [HTMLDisplayCommunicationHelper displayResultSummary:webView
                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    // This is currently used only for generating stats, need to figure out how to display errors
+                                           // This is currently used only for generating stats, need to figure out how to display errors
                                            long endTime = [ClientStatsDatabase getCurrentTimeMillis];
                                            NSString* endTimeStr = [ClientStatsDatabase getCurrentTimeMillisString];
                                            [_statsDb storeMeasurement:@"result_display_duration" value:[@(endTime - startTime) stringValue] ts:endTimeStr];
                                            if(error != NULL) {
                                                [_statsDb storeMeasurement:@"result_display_failed" value:NULL ts:endTimeStr];
                                            }
-    }];
+                                       }];
+}
+
+- (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress {
+    [self.webViewProgressView setProgress:progress animated:NO];
 }
 
 - (void)showManualTripScreen:(id)sender

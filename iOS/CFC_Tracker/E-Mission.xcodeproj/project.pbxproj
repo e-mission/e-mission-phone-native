@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072D1B971A8C3D860067B0A2 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D1B941A8C3D860067B0A2 /* NJKWebViewProgress.m */; };
+		072D1B981A8C3D860067B0A2 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D1B961A8C3D860067B0A2 /* NJKWebViewProgressView.m */; };
 		AC44E5E019914B4D00E7C397 /* ConsentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC44E5DF19914B4D00E7C397 /* ConsentViewController.m */; };
 		AC523189194E4C8200507B71 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC523188194E4C8200507B71 /* MainStoryboard_iPhone.storyboard */; };
 		AC88B78419E773C000C85C2C /* custom_settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC88B78319E773C000C85C2C /* custom_settings.plist */; };
@@ -114,6 +116,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		072D1B931A8C3D860067B0A2 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		072D1B941A8C3D860067B0A2 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		072D1B951A8C3D860067B0A2 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		072D1B961A8C3D860067B0A2 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		AC44E5DE19914B4D00E7C397 /* ConsentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsentViewController.h; sourceTree = "<group>"; };
 		AC44E5DF19914B4D00E7C397 /* ConsentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsentViewController.m; sourceTree = "<group>"; };
 		AC523188194E4C8200507B71 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -284,6 +290,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		072D1B991A8C3D8D0067B0A2 /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				072D1B931A8C3D860067B0A2 /* NJKWebViewProgress.h */,
+				072D1B941A8C3D860067B0A2 /* NJKWebViewProgress.m */,
+				072D1B951A8C3D860067B0A2 /* NJKWebViewProgressView.h */,
+				072D1B961A8C3D860067B0A2 /* NJKWebViewProgressView.m */,
+			);
+			name = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
 		ACBA856D19A977FC00C09509 /* ActionSheetPickers */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +479,7 @@
 				D0FB8E6D1A0395BE0087797F /* ManualTripController.h */,
 				D0FB8E6E1A0395BE0087797F /* ManualTripController.m */,
 				D0FB8E6F1A0395BE0087797F /* ManualTripController.xib */,
+				072D1B991A8C3D8D0067B0A2 /* NJKWebViewProgress */,
 			);
 			path = CFC_Tracker;
 			sourceTree = "<group>";
@@ -699,10 +717,12 @@
 				D0059FD418E1EEA100E9ED2C /* TripSectionDatabase.m in Sources */,
 				D0710E5118E0B632000D26F7 /* CommunicationHelper.m in Sources */,
 				D09EA85318FB6D1400949DA5 /* HTMLDisplayCommunicationHelper.m in Sources */,
+				072D1B981A8C3D860067B0A2 /* NJKWebViewProgressView.m in Sources */,
 				ACBA858319A977FC00C09509 /* ActionSheetLocalePicker.m in Sources */,
 				D0F2FA5418DF5AEA000FF723 /* main.m in Sources */,
 				ACA05CFC1991536C00F56EB3 /* SetUpViewController.m in Sources */,
 				D0F2FA5818DF5AEB000FF723 /* AppDelegate.m in Sources */,
+				072D1B971A8C3D860067B0A2 /* NJKWebViewProgress.m in Sources */,
 				D0F2FA6718DF5AEB000FF723 /* MasterViewController.m in Sources */,
 				D00B239318E5FA4900525184 /* AuthInspectorViewController.m in Sources */,
 				ACBA858519A977FC00C09509 /* DistancePickerView.m in Sources */,

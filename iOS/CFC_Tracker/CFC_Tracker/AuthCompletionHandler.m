@@ -81,7 +81,7 @@ static AuthCompletionHandler *sharedInstance;
         GTMOAuth2Authentication* tempAuth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
                                                                               clientID:self.clientId
                                                                           clientSecret:self.clientSecret];
-        if(tempAuth.canAuthorize) {
+        if (tempAuth.canAuthorize) {
             self.currAuth = tempAuth;
         } else {
             NSLog(@"Authentication %@ stored in keychain is no longer valid", tempAuth);
