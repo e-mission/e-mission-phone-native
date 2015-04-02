@@ -5,7 +5,11 @@ package edu.berkeley.eecs.e_mission.data_sync;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -17,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.berkeley.eecs.e_mission.AppSettings;
 import edu.berkeley.eecs.e_mission.BatteryUtils;
 import edu.berkeley.eecs.e_mission.ConnectionSettings;
 import edu.berkeley.eecs.e_mission.ModeClassificationHelper;
@@ -39,6 +44,7 @@ import android.content.SyncResult;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 /**
  * @author shankari
@@ -79,7 +85,8 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 	@Override
 	public void onPerformSync(Account account, Bundle extras, String authority,
 			ContentProviderClient provider, SyncResult syncResult) {
-		long msTime = System.currentTimeMillis();
+        Log.i("SYNC", "PERFORMING SYNC");
+        long msTime = System.currentTimeMillis();
 		String syncTs = String.valueOf(msTime);
 		statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_launched), null, syncTs);
 		
@@ -172,6 +179,14 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+        try {
+            updateResultsSummary(userToken);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	/*
@@ -248,7 +263,49 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 		JSONObject parentObj = new JSONObject(rawJSON);
 		return parentObj.getJSONArray("sections");
 	}
-	
+
+
+    /*
+     * Talks to server to update HTTPResponseCache entry for Results Summary View
+     */
+    public void updateResultsSummary(String userToken) throws MalformedURLException, IOException{
+        Log.d("SYNC", "Updating results summary");
+        final String result_url = AppSettings.getResultUrl(cachedContext);
+        URL url = new URL(result_url);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setUseCaches(true);
+        connection.setDoOutput(false);
+        connection.setDoInput(true);
+        connection.setReadTimeout(10000 /*milliseconds*/);
+        connection.setConnectTimeout(15000 /* milliseconds */);
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("user", "" + userToken);
+
+        /* Force the invalidation of the results summary cache entry */
+        connection.addRequestProperty("Cache-Control", "max-age=0");
+
+        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+        connection.connect();
+
+        InputStream inputStream = connection.getInputStream();
+        int code = connection.getResponseCode();
+        Log.d("SYNC", "Update Connection response status "+connection.getResponseCode());
+        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
+        }
+        BufferedReader  in = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder builder = new StringBuilder();
+        String currLine = null;
+        while ((currLine = in.readLine()) != null) {
+            builder.append(currLine+"\n");
+        }
+        String rawHTML = builder.toString();
+        in.close();
+        connection.disconnect();
+    }
+
+
 	/*
 	 * Pushes the classifications to the host.
 	 */

@@ -19,7 +19,7 @@ public class EMission extends Application {
     public EMission() {
         // this method fires only once per application start.
 
-        Log.i("main", "Application initiated");
+        Log.i("MAIN", "Application initiated");
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -29,7 +29,7 @@ public class EMission extends Application {
         // this method fires once as well as constructor
         // but also application has context here
 
-        Log.i("main", "Application onCreate fired");
+        Log.i("MAIN", "Application onCreate fired");
 
         // create a cache at application start up
         try {

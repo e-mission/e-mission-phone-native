@@ -64,7 +64,6 @@ public class DisplayResultSummaryActivity extends Activity {
             protected String doInBackground(Void... params) {
                 try {
                     String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
-                    // TODO: Restructure this later to combine with the data sync class
                     URL url = new URL(result_url);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -84,7 +83,7 @@ public class DisplayResultSummaryActivity extends Activity {
 
                     InputStream inputStream = connection.getInputStream();
                     int code = connection.getResponseCode();
-                    System.out.println("Connection response status "+connection.getResponseCode());
+                    Log.d("DISPLAY", "Update Connection response status "+connection.getResponseCode());
                     if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                         throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
                     }
