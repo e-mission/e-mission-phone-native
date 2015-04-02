@@ -294,14 +294,6 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
         if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
             throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
         }
-        BufferedReader  in = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder builder = new StringBuilder();
-        String currLine = null;
-        while ((currLine = in.readLine()) != null) {
-            builder.append(currLine+"\n");
-        }
-        String rawHTML = builder.toString();
-        in.close();
         connection.disconnect();
     }
 
