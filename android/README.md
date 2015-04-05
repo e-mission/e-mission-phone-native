@@ -14,7 +14,7 @@ If you are part of the e-mission team, and are using our keys from the
 e-mission-keys repository, then you should also copy over my keystore, which is
 checked in the same location.
 
-You also need to replace connect.xml\_sample (from `app/src/main/res/values`)
+You also need to replace connect.xml.sample (from `app/src/main/res/values`)
 with a connect.xml that has the server to connect to, and the correct 
 
 * This project is intended to be built with gradle, rather than ant.
