@@ -7,6 +7,12 @@
     - drag and drop the GoogleOpenSource.framework bundle from it into the
       Project Navigator, copying if necessary (see the next list entry for more
         details and screenshots)
+        - Note that the source code has a .xib file for the google
+          authentication checked in. This file is not available in the
+          framework headers, but is available in the framework source. We check
+          it in so that others don't have to download the full source, but then
+          it is more sucseptible to bitrotting and incompatible server side
+          changes.
     - do NOT copy the other bundles and frameworks since we do not use them
 - Instructions on installing the frameworks and the bundle
   http://stackoverflow.com/questions/19202218/receiving-a-check-dependencies-warning-skipping-file-error-in-xcode
