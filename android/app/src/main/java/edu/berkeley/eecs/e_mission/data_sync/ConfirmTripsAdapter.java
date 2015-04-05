@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import edu.berkeley.eecs.e_mission.AppSettings;
 import edu.berkeley.eecs.e_mission.BatteryUtils;
+import edu.berkeley.eecs.e_mission.CommunicationHelper;
 import edu.berkeley.eecs.e_mission.ConnectionSettings;
 import edu.berkeley.eecs.e_mission.ModeClassificationHelper;
 import edu.berkeley.eecs.e_mission.ClientStatsHelper;
@@ -43,8 +44,10 @@ import android.content.Intent;
 import android.content.SyncResult;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.webkit.WebView;
 
 /**
  * @author shankari
@@ -270,31 +273,32 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
      */
     public void updateResultsSummary(String userToken) throws MalformedURLException, IOException{
         Log.d("SYNC", "Updating results summary");
-        final String result_url = AppSettings.getResultUrl(cachedContext);
-        URL url = new URL(result_url);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        String resultHTML = CommunicationHelper.readResults(cachedContext, "max-age=0");
 
-        connection.setUseCaches(true);
-        connection.setDoOutput(false);
-        connection.setDoInput(true);
-        connection.setReadTimeout(10000 /*milliseconds*/);
-        connection.setConnectTimeout(15000 /* milliseconds */);
-        connection.setRequestMethod("GET");
-        connection.setRequestProperty("user", "" + userToken);
+        /*
+         * This is not a complete solution because this only pulls changes to the main HTML file -
+         * the other files are not reloaded until the HTML is displayed. Attempts to use the
+         * webview from this background fetch (see below) fail with the exception
+         * "java.lang.IllegalStateException: Calling View methods on another thread than the UI thread."
+         *
+         * Another option is to try to launch the DisplayResultSummary Activity from here, but
+         * I don't think that will work either because you can't launch activities from the background threads.
+         * I think that we are going to have to go back to a HTML parsing solution.
+         *
+         * That is not currently critical, though, and we may want to come up with a generic solution once
+         * we decide what to do about webviews for the UI, so let's just push this change for now.
+         */
 
-        /* Force the invalidation of the results summary cache entry */
-        connection.addRequestProperty("Cache-Control", "max-age=0");
-
-        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-        connection.connect();
-
-        InputStream inputStream = connection.getInputStream();
-        int code = connection.getResponseCode();
-        Log.d("SYNC", "Update Connection response status "+connection.getResponseCode());
-        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
-        }
-        connection.disconnect();
+        // We have to display the result in a webview to ensure that all the files are actually retrieved
+        /*
+        System.out.println("my looper = "+ Looper.myLooper());
+        Looper.prepare();
+        System.out.println("my looper = "+ Looper.myLooper());
+        WebView ignoredView = new WebView(cachedContext);
+        ignoredView.getSettings().setJavaScriptEnabled(true);
+        ignoredView.loadDataWithBaseURL(ConnectionSettings.getConnectURL(cachedContext), resultHTML,
+                null, null, null);
+        */
     }
 
 
