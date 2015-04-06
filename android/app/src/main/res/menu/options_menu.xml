@@ -10,4 +10,9 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="@string/menu_item_result_summary"/>
+    <item
+        android:id="@+id/action_launch_cordova"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/menu_item_launch_cordova"/>
 </menu>

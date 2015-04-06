@@ -38,5 +38,6 @@
     <string name="menu_item_result_summary">Results</string>
     
     <string name="map_key">AIzaSyDXdbMQvQHqUcXHsJt11NeKGsPZEsgJrXA</string>
+    <string name="menu_item_launch_cordova">Cordova</string>
 
 </resources>

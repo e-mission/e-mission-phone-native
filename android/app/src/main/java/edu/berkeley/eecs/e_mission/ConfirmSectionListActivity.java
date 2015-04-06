@@ -270,6 +270,9 @@ public class ConfirmSectionListActivity extends Activity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
+        case R.id.action_launch_cordova:
+            launchCordovaActivity();
+            return true;
 		}
 		return false;
 	}
@@ -287,6 +290,13 @@ public class ConfirmSectionListActivity extends Activity {
 		resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(resultIntent);
 	}
+
+    public void launchCordovaActivity() {
+        Intent cordovaIntent = new Intent(this,
+                com.ionicframework.referencesidebarapp565061.CordovaApp.class);
+        cordovaIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(cordovaIntent);
+    }
 
 	public void toast(CharSequence prompt) {
 		Context context = getApplicationContext();

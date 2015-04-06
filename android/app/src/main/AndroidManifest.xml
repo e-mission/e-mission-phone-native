@@ -56,17 +56,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.ionicframework.referencesidebarapp565061.CordovaApp"
+            android:label="Cordova List View">
+        </activity>
         
 <!--         <activity 
             android:name="edu.berkeley.eecs.e_mission.SignupActivity" 
             android:label="Sign In With Google">
         </activity> -->
         
-        <activity 
-            android:name="edu.berkeley.eecs.e_mission.InstallMovesActivity" 
-            android:label="Install Moves">
-        </activity>
-
         <receiver
             android:name="edu.berkeley.eecs.e_mission.BootReceiver"
             android:enabled="true" >

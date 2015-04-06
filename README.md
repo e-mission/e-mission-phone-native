@@ -10,6 +10,10 @@ javascript. The onboarding screen, the trip list and the trip detail view are
 all written using native code, and the result screen is javascript from the
 server displayed in a WebView.
 
+We are switching to more cordova-based WebViews to use as much crossplatform
+code as possible. The instructions on importing cordova-based webviews for use
+this project are in the CordovaInstall.md file.
+
 All calls from the phone app are HTTP POST, and the user parameter is a JWT
 token generated after the user signed in via google.
 
