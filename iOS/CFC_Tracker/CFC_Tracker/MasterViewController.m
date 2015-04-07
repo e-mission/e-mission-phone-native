@@ -18,6 +18,7 @@
 #import "Constants.h"
 #import "ActionSheetStringPicker.h"
 #import "ManualTripController.h"
+#import "EmbeddedCordovaViewController.h"
 #import "NJKWebViewProgressView.h"
 #import "NJKWebViewProgress.h"
 
@@ -36,6 +37,7 @@
 @property(strong, nonatomic) SignInViewController *signInViewController;
 @property(strong, nonatomic) UIViewController *resultSummaryViewController;
 @property(strong, nonatomic) ManualTripController *manualTripController;
+@property(strong, nonatomic) EmbeddedCordovaViewController *cordovaViewController;
 @property BOOL hasShownResults;
 
 @property (nonatomic, strong) NJKWebViewProgress *webViewProgressProxy;
@@ -93,6 +95,7 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
     self.manualTripController = [[ManualTripController alloc] initWithNibName:nil bundle:nil];
+    self.cordovaViewController = [[EmbeddedCordovaViewController alloc] init];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:kMainStoryboardName bundle:nil];
     
@@ -141,10 +144,12 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 {
     UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Auth" style:UIBarButtonItemStyleBordered target: self action:@selector(showSignInView:)];
     UIBarButtonItem *resultButton = [[UIBarButtonItem alloc] initWithTitle:@"Result" style:UIBarButtonItemStyleBordered target: self action:@selector(showResults:)];
+    UIBarButtonItem *cordovaButton = [[UIBarButtonItem alloc] initWithTitle:@"Cordova" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordova:)];
+
 /*    UIBarButtonItem *stupidAppReviewButton = [[UIBarButtonItem alloc] initWithTitle:@"SAP" style:UIBarButtonItemStyleBordered target: self action:@selector(showManualTripScreen:)];
     self.navigationItem.leftBarButtonItems = @[authButton, resultButton, stupidAppReviewButton];
  */
-    self.navigationItem.leftBarButtonItems = @[authButton, resultButton];
+    self.navigationItem.leftBarButtonItems = @[authButton, resultButton, cordovaButton];
 }
 
 - (void)viewDidAppear:(BOOL) animated
@@ -272,6 +277,16 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
         NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
     } else {
         [self.navigationController pushViewController:self.resultSummaryViewController animated:YES];
+    }
+}
+
+- (void)showCordova:(id)sender
+{
+    if ([self.navigationController.viewControllers containsObject:self.cordovaViewController]) {
+        // the result summary is already visible, don't need to push it again
+        NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self.navigationController pushViewController:self.cordovaViewController animated:YES];
     }
 }
 
