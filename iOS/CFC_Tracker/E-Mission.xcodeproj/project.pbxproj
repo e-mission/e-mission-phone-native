@@ -101,6 +101,7 @@
 		D059F8BB18F5DC8700AB044B /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D059F8BA18F5DC8700AB044B /* Constants.m */; };
 		D06910C518E6948900CCD32D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06910C418E6948900CCD32D /* MapKit.framework */; };
 		D06A5AF31AD3A42C004D47FB /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D06A5AF21AD3A3F7004D47FB /* libCordova.a */; };
+		D06A5AF91AD3C39A004D47FB /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D06A5AF81AD3C39A004D47FB /* CDVStatusBar.m */; };
 		D06C19E519CC16270057D578 /* ClientStats.db in Resources */ = {isa = PBXBuildFile; fileRef = D06C19E419CC16270057D578 /* ClientStats.db */; };
 		D0710E4C18E03249000D26F7 /* TrackLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0710E4B18E03249000D26F7 /* TrackLocation.m */; };
 		D0710E5118E0B632000D26F7 /* CommunicationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D0710E5018E0B632000D26F7 /* CommunicationHelper.m */; };
@@ -292,6 +293,8 @@
 		D059F8BA18F5DC8700AB044B /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		D06910C418E6948900CCD32D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D06A5AED1AD3A3F7004D47FB /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		D06A5AF71AD3C39A004D47FB /* CDVStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVStatusBar.h; sourceTree = "<group>"; };
+		D06A5AF81AD3C39A004D47FB /* CDVStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVStatusBar.m; sourceTree = "<group>"; };
 		D06C19E419CC16270057D578 /* ClientStats.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ClientStats.db; sourceTree = "<group>"; };
 		D0710E4A18E03249000D26F7 /* TrackLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackLocation.h; sourceTree = "<group>"; };
 		D0710E4B18E03249000D26F7 /* TrackLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackLocation.m; sourceTree = "<group>"; };
@@ -460,6 +463,7 @@
 		D03F472B1AD34BC4002B2A20 /* Cordova */ = {
 			isa = PBXGroup;
 			children = (
+				D06A5AF61AD3C39A004D47FB /* org.apache.cordova.statusbar */,
 				D03F472C1AD34BC4002B2A20 /* AppDelegate.h.cordova */,
 				D03F472D1AD34BC4002B2A20 /* AppDelegate.m.cordova */,
 				D03F472E1AD34BC4002B2A20 /* com.brodysoft.sqlitePlugin */,
@@ -561,6 +565,15 @@
 				D06A5AF21AD3A3F7004D47FB /* libCordova.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D06A5AF61AD3C39A004D47FB /* org.apache.cordova.statusbar */ = {
+			isa = PBXGroup;
+			children = (
+				D06A5AF71AD3C39A004D47FB /* CDVStatusBar.h */,
+				D06A5AF81AD3C39A004D47FB /* CDVStatusBar.m */,
+			);
+			path = org.apache.cordova.statusbar;
 			sourceTree = "<group>";
 		};
 		D0CF985019CCA2710063714B /* E-Mission Tests */ = {
@@ -974,6 +987,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACBE2E94193FA7C00086424E /* PopupTableViewController.m in Sources */,
+				D06A5AF91AD3C39A004D47FB /* CDVStatusBar.m in Sources */,
 				ACA05CFF1991587200F56EB3 /* MasterNavController.m in Sources */,
 				D03F475E1AD34BC4002B2A20 /* SQLitePlugin.m in Sources */,
 				ACE8EBD919E8D3CD00E57250 /* CustomSettings.m in Sources */,
