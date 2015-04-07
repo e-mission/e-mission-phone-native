@@ -58,14 +58,19 @@
         </activity>
 
         <activity
-            android:name="com.ionicframework.referencesidebarapp565061.CordovaApp"
-            android:label="Cordova List View">
+            android:name="edu.berkeley.eecs.e_mission.cordova.TabActivity"
+            android:label="Cordova Tab Activity">
         </activity>
-        
-<!--         <activity 
-            android:name="edu.berkeley.eecs.e_mission.SignupActivity" 
-            android:label="Sign In With Google">
-        </activity> -->
+
+        <activity
+            android:name="edu.berkeley.eecs.e_mission.cordova.SidebarActivity"
+            android:label="Cordova Sidebar Activity">
+        </activity>
+
+        <!--         <activity
+                    android:name="edu.berkeley.eecs.e_mission.SignupActivity"
+                    android:label="Sign In With Google">
+                </activity> -->
         
         <receiver
             android:name="edu.berkeley.eecs.e_mission.BootReceiver"

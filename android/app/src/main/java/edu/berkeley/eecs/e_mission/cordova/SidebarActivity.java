@@ -17,12 +17,13 @@
        under the License.
  */
 
-package com.ionicframework.referencesidebarapp565061;
+package edu.berkeley.eecs.e_mission.cordova;
 
 import android.os.Bundle;
-import org.apache.cordova.*;
 
-public class CordovaApp extends CordovaActivity
+import org.apache.cordova.CordovaActivity;
+
+public class SidebarActivity extends CordovaActivity
 {
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -30,6 +31,6 @@ public class CordovaApp extends CordovaActivity
         super.onCreate(savedInstanceState);
         super.init();
         // Set by <content src="index.html" /> in config.xml
-        loadUrl(launchUrl);
+        loadUrl("file:///android_asset/www/sidebar.html");
     }
 }

@@ -37,7 +37,8 @@
 @property(strong, nonatomic) SignInViewController *signInViewController;
 @property(strong, nonatomic) UIViewController *resultSummaryViewController;
 @property(strong, nonatomic) ManualTripController *manualTripController;
-@property(strong, nonatomic) EmbeddedCordovaViewController *cordovaViewController;
+@property(strong, nonatomic) EmbeddedCordovaViewController *cordovaTabViewController;
+@property(strong, nonatomic) EmbeddedCordovaViewController *cordovaBarViewController;
 @property BOOL hasShownResults;
 
 @property (nonatomic, strong) NJKWebViewProgress *webViewProgressProxy;
@@ -95,7 +96,10 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
     self.manualTripController = [[ManualTripController alloc] initWithNibName:nil bundle:nil];
-    self.cordovaViewController = [[EmbeddedCordovaViewController alloc] init];
+    self.cordovaTabViewController = [[EmbeddedCordovaViewController alloc] init];
+    self.cordovaTabViewController.startPage = @"tabs.html";
+    self.cordovaBarViewController = [[EmbeddedCordovaViewController alloc] init];
+    self.cordovaBarViewController.startPage = @"sidebar.html";
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:kMainStoryboardName bundle:nil];
     
@@ -144,12 +148,14 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 {
     UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Auth" style:UIBarButtonItemStyleBordered target: self action:@selector(showSignInView:)];
     UIBarButtonItem *resultButton = [[UIBarButtonItem alloc] initWithTitle:@"Result" style:UIBarButtonItemStyleBordered target: self action:@selector(showResults:)];
-    UIBarButtonItem *cordovaButton = [[UIBarButtonItem alloc] initWithTitle:@"Cordova" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordova:)];
+    UIBarButtonItem *cordovaTabButton = [[UIBarButtonItem alloc] initWithTitle:@"Tabs(C)" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordovaTabs:)];
+    UIBarButtonItem *cordovaBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sidebar(C)" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordovaSidebar:)];
+
 
 /*    UIBarButtonItem *stupidAppReviewButton = [[UIBarButtonItem alloc] initWithTitle:@"SAP" style:UIBarButtonItemStyleBordered target: self action:@selector(showManualTripScreen:)];
     self.navigationItem.leftBarButtonItems = @[authButton, resultButton, stupidAppReviewButton];
  */
-    self.navigationItem.leftBarButtonItems = @[authButton, resultButton, cordovaButton];
+    self.navigationItem.leftBarButtonItems = @[authButton, resultButton, cordovaTabButton, cordovaBarButton];
 }
 
 - (void)viewDidAppear:(BOOL) animated
@@ -280,13 +286,23 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     }
 }
 
-- (void)showCordova:(id)sender
+- (void)showCordovaTabs:(id)sender
 {
-    if ([self.navigationController.viewControllers containsObject:self.cordovaViewController]) {
+    if ([self.navigationController.viewControllers containsObject:self.cordovaTabViewController]) {
         // the result summary is already visible, don't need to push it again
         NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
     } else {
-        [self.navigationController pushViewController:self.cordovaViewController animated:YES];
+        [self.navigationController pushViewController:self.cordovaTabViewController animated:YES];
+    }
+}
+
+- (void)showCordovaSidebar:(id)sender
+{
+    if ([self.navigationController.viewControllers containsObject:self.cordovaBarViewController]) {
+        // the result summary is already visible, don't need to push it again
+        NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self.navigationController pushViewController:self.cordovaBarViewController animated:YES];
     }
 }
 

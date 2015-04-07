@@ -62,7 +62,6 @@
 		D00B248A18E60C7F00525184 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00B248818E60C7F00525184 /* SignInViewController.xib */; };
 		D035F1811A03735700656CBC /* OngoingTripsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D035F1801A03735700656CBC /* OngoingTripsDatabase.m */; };
 		D03F460F1AD34AE4002B2A20 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D03F460E1AD34AE4002B2A20 /* MobileCoreServices.framework */; };
-		D03F46121AD34B39002B2A20 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D03F460D1AD34245002B2A20 /* libCordova.a */; };
 		D03F475C1AD34BC4002B2A20 /* AppDelegate.h.cordova in Resources */ = {isa = PBXBuildFile; fileRef = D03F472C1AD34BC4002B2A20 /* AppDelegate.h.cordova */; };
 		D03F475D1AD34BC4002B2A20 /* AppDelegate.m.cordova in Resources */ = {isa = PBXBuildFile; fileRef = D03F472D1AD34BC4002B2A20 /* AppDelegate.m.cordova */; };
 		D03F475E1AD34BC4002B2A20 /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F47301AD34BC4002B2A20 /* SQLitePlugin.m */; };
@@ -101,6 +100,7 @@
 		D03F477F1AD34BC4002B2A20 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D03F475B1AD34BC4002B2A20 /* Default~iphone.png */; };
 		D059F8BB18F5DC8700AB044B /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D059F8BA18F5DC8700AB044B /* Constants.m */; };
 		D06910C518E6948900CCD32D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06910C418E6948900CCD32D /* MapKit.framework */; };
+		D06A5AF31AD3A42C004D47FB /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D06A5AF21AD3A3F7004D47FB /* libCordova.a */; };
 		D06C19E519CC16270057D578 /* ClientStats.db in Resources */ = {isa = PBXBuildFile; fileRef = D06C19E419CC16270057D578 /* ClientStats.db */; };
 		D0710E4C18E03249000D26F7 /* TrackLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0710E4B18E03249000D26F7 /* TrackLocation.m */; };
 		D0710E5118E0B632000D26F7 /* CommunicationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D0710E5018E0B632000D26F7 /* CommunicationHelper.m */; };
@@ -144,16 +144,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D03F460C1AD34245002B2A20 /* PBXContainerItemProxy */ = {
+		D06A5AF11AD3A3F7004D47FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D03F46081AD34245002B2A20 /* CordovaLib.xcodeproj */;
+			containerPortal = D06A5AED1AD3A3F7004D47FB /* CordovaLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 68A32D7114102E1C006B237C;
 			remoteInfo = CordovaLib;
 		};
-		D03F46101AD34AF6002B2A20 /* PBXContainerItemProxy */ = {
+		D06A5AF41AD3A449004D47FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D03F46081AD34245002B2A20 /* CordovaLib.xcodeproj */;
+			containerPortal = D06A5AED1AD3A3F7004D47FB /* CordovaLib.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
@@ -245,7 +245,6 @@
 		D00B248818E60C7F00525184 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		D035F17F1A03735700656CBC /* OngoingTripsDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingTripsDatabase.h; sourceTree = "<group>"; };
 		D035F1801A03735700656CBC /* OngoingTripsDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingTripsDatabase.m; sourceTree = "<group>"; };
-		D03F46081AD34245002B2A20 /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = "../../../e-mission-phone-cordova/referenceSidebarApp/platforms/ios/CordovaLib/CordovaLib.xcodeproj"; sourceTree = "<group>"; };
 		D03F460E1AD34AE4002B2A20 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D03F472C1AD34BC4002B2A20 /* AppDelegate.h.cordova */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppDelegate.h.cordova; sourceTree = "<group>"; };
 		D03F472D1AD34BC4002B2A20 /* AppDelegate.m.cordova */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppDelegate.m.cordova; sourceTree = "<group>"; };
@@ -292,6 +291,7 @@
 		D059F8B918F5DC8700AB044B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D059F8BA18F5DC8700AB044B /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		D06910C418E6948900CCD32D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D06A5AED1AD3A3F7004D47FB /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		D06C19E419CC16270057D578 /* ClientStats.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ClientStats.db; sourceTree = "<group>"; };
 		D0710E4A18E03249000D26F7 /* TrackLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackLocation.h; sourceTree = "<group>"; };
 		D0710E4B18E03249000D26F7 /* TrackLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackLocation.m; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D03F46121AD34B39002B2A20 /* libCordova.a in Frameworks */,
+				D06A5AF31AD3A42C004D47FB /* libCordova.a in Frameworks */,
 				D03F460F1AD34AE4002B2A20 /* MobileCoreServices.framework in Frameworks */,
 				ACB6A670194E037A00885534 /* SystemConfiguration.framework in Frameworks */,
 				ACBE2E91193F96000086424E /* QuartzCore.framework in Frameworks */,
@@ -455,14 +455,6 @@
 				ACBA856119A9367600C09509 /* walking-invert.jpg */,
 			);
 			path = "table images";
-			sourceTree = "<group>";
-		};
-		D03F46091AD34245002B2A20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D03F460D1AD34245002B2A20 /* libCordova.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D03F472B1AD34BC4002B2A20 /* Cordova */ = {
@@ -563,6 +555,14 @@
 			path = splash;
 			sourceTree = "<group>";
 		};
+		D06A5AEE1AD3A3F7004D47FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D06A5AF21AD3A3F7004D47FB /* libCordova.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D0CF985019CCA2710063714B /* E-Mission Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,8 +588,8 @@
 		D0F2FA3B18DF5AEA000FF723 = {
 			isa = PBXGroup;
 			children = (
+				D06A5AED1AD3A3F7004D47FB /* CordovaLib.xcodeproj */,
 				D03F472B1AD34BC4002B2A20 /* Cordova */,
-				D03F46081AD34245002B2A20 /* CordovaLib.xcodeproj */,
 				D0DE741D18EA6E1C0039066B /* Icons.xcassets */,
 				D0F2FA4D18DF5AEA000FF723 /* CFC_Tracker */,
 				D0CF985019CCA2710063714B /* E-Mission Tests */,
@@ -752,7 +752,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D03F46111AD34AF6002B2A20 /* PBXTargetDependency */,
+				D06A5AF51AD3A449004D47FB /* PBXTargetDependency */,
 			);
 			name = "E-Mission";
 			productName = CFC_Tracker;
@@ -832,8 +832,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = D03F46091AD34245002B2A20 /* Products */;
-					ProjectRef = D03F46081AD34245002B2A20 /* CordovaLib.xcodeproj */;
+					ProductGroup = D06A5AEE1AD3A3F7004D47FB /* Products */;
+					ProjectRef = D06A5AED1AD3A3F7004D47FB /* CordovaLib.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -845,11 +845,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		D03F460D1AD34245002B2A20 /* libCordova.a */ = {
+		D06A5AF21AD3A3F7004D47FB /* libCordova.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCordova.a;
-			remoteRef = D03F460C1AD34245002B2A20 /* PBXContainerItemProxy */;
+			remoteRef = D06A5AF11AD3A3F7004D47FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1020,10 +1020,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D03F46111AD34AF6002B2A20 /* PBXTargetDependency */ = {
+		D06A5AF51AD3A449004D47FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CordovaLib;
-			targetProxy = D03F46101AD34AF6002B2A20 /* PBXContainerItemProxy */;
+			targetProxy = D06A5AF41AD3A449004D47FB /* PBXContainerItemProxy */;
 		};
 		D0CF985A19CCA2710063714B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

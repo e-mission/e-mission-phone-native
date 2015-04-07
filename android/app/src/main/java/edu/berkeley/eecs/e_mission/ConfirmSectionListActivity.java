@@ -10,6 +10,8 @@ import org.json.JSONException;
 
 import android.view.View;
 import edu.berkeley.eecs.e_mission.auth.UserProfile;
+import edu.berkeley.eecs.e_mission.cordova.SidebarActivity;
+import edu.berkeley.eecs.e_mission.cordova.TabActivity;
 //import android.R;
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -270,8 +272,11 @@ public class ConfirmSectionListActivity extends Activity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
-        case R.id.action_launch_cordova:
-            launchCordovaActivity();
+        case R.id.action_launch_cordova_tabs:
+            launchCordovaTabsActivity();
+            return true;
+        case R.id.action_launch_cordova_sidebar:
+            launchCordovaSidebarActivity();
             return true;
 		}
 		return false;
@@ -291,14 +296,21 @@ public class ConfirmSectionListActivity extends Activity {
 		startActivity(resultIntent);
 	}
 
-    public void launchCordovaActivity() {
+    public void launchCordovaTabsActivity() {
         Intent cordovaIntent = new Intent(this,
-                com.ionicframework.referencesidebarapp565061.CordovaApp.class);
+                TabActivity.class);
         cordovaIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(cordovaIntent);
     }
 
-	public void toast(CharSequence prompt) {
+    public void launchCordovaSidebarActivity() {
+        Intent cordovaIntent = new Intent(this,
+                SidebarActivity.class);
+        cordovaIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(cordovaIntent);
+    }
+
+    public void toast(CharSequence prompt) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, prompt, duration);
