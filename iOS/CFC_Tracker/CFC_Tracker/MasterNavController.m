@@ -8,6 +8,7 @@
 
 #import "MasterNavController.h"
 #import "ConnectionSettings.h"
+#import "EmbeddedCordovaViewController.h"
 // Used to determine whether we are running in the simulator
 #import <TargetConditionals.h>
 
@@ -118,8 +119,10 @@
         tempController.hideDownloadMovesButtonController = YES;
         [self pushViewController:controller animated:YES];
     } else {
-        controller = [board instantiateViewControllerWithIdentifier:@"MasterViewController"];
-        [self setViewControllers:[[NSArray alloc] initWithObjects:controller, nil] animated:YES]; // for coming out of onboarding process
+        // controller = [board instantiateViewControllerWithIdentifier:@"MasterViewController"];
+        EmbeddedCordovaViewController *cordovaController = [[EmbeddedCordovaViewController alloc] init];
+        cordovaController.startPage = @"listview.html";
+        [self setViewControllers:[[NSArray alloc] initWithObjects:cordovaController, nil] animated:YES]; // for coming out of onboarding process
     }
 }
 

@@ -2,3 +2,4 @@
 **/gen/*
 **/ant-build/**
 **/CordovaLib/build/**
+**.DS_Store**
