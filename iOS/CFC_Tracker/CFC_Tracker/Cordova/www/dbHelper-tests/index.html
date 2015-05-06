@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>e-mission phone app javascript testing</title>
+<link rel="stylesheet" href="qunit-1.18.0.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="qunit-1.18.0.js"></script>
+<script type="text/javascript" src="../cordova.js"></script>
+<script type="text/javascript" src="../listview-js/dbHelper.js"></script>
+<script type="text/javascript" src="dbHelper.tests.js"></script>
+<script type="text/javascript">
+(function () {
+  'use strict';
+
+  var DEFAULT_SIZE = 5000000; // max to avoid popup in safari/ios
+
+  document.addEventListener("deviceready", doAllTests, false);
+
+  function doAllTests() {
+    dbHelperTests.doAllTests();
+
+    /*
+    QUnit.config.testTimeout = 25000; // 25 sec.
+
+    QUnit.test ("hello test", function(assert) {
+        assert.ok(1 == "1", "Passed!");
+    });
+
+    QUnit.test ("testPragmaExample", function(assert) {
+        console.log(dbHelper);
+        dbHelper.pragmaExample();
+        assert.ok(1 == "1", "Passed!");
+    });
+    */
+  }
+})();
+</script>
+</body>
+</html>

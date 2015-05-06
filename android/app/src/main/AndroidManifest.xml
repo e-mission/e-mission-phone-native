@@ -56,17 +56,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-<!--         <activity 
-            android:name="edu.berkeley.eecs.e_mission.SignupActivity" 
-            android:label="Sign In With Google">
-        </activity> -->
-        
-        <activity 
-            android:name="edu.berkeley.eecs.e_mission.InstallMovesActivity" 
-            android:label="Install Moves">
+
+        <activity
+            android:name="edu.berkeley.eecs.e_mission.cordova.TabActivity"
+            android:label="Cordova Tab Activity">
         </activity>
 
+        <activity
+            android:name="edu.berkeley.eecs.e_mission.cordova.SidebarActivity"
+            android:label="Cordova Sidebar Activity">
+        </activity>
+
+        <!--         <activity
+                    android:name="edu.berkeley.eecs.e_mission.SignupActivity"
+                    android:label="Sign In With Google">
+                </activity> -->
+        
         <receiver
             android:name="edu.berkeley.eecs.e_mission.BootReceiver"
             android:enabled="true" >

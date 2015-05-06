@@ -1,0 +1,168 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400);
+.no-margin {
+  margin:0px !important;
+  padding:0px !important;
+  }
+
+  ul.img-list {
+    list-style-type: none;
+ }
+
+ul.img-list li {
+    display: inline-block;
+    position: relative;
+}
+
+.item {
+  border:0px !important;
+
+}
+
+.main {
+    padding-top:50px;
+    padding-bottom:50px !important;
+}
+
+.location-holder {
+       position:relative;
+    width:80px;
+    height:80px;
+    text-align:center;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+ border: 2px solid whitesmoke;
+ color:white;
+ background:rgb(101, 213, 143);
+ padding:5px;
+}
+
+ .row {
+padding:0px;
+ }
+ .col {
+   padding:0px !important;
+ }
+ .display-name {
+   text-align:left;
+   margin-top:35px;
+ }
+
+.location-holder:hover {
+    background-color: #4b4b4b;
+    cursor: pointer;
+}
+
+.location-holder p
+{
+    font-family:'Lato';
+    margin-top:15px;
+    font: 12px;
+    color:white;
+    vertical-align:middle;
+    height:50px;
+    position: inherit;
+}
+.verticalLine {
+    border-left: thin solid whitesmoke;
+    height:70px;
+    margin-top:5px;
+}
+
+.verticalLineMap {
+  width:100px;
+  height:70px;
+}
+
+map {
+  display: block;
+  position:absolute;
+  width: 100%;
+  height: 40%;
+  bottom:0;
+  opacity: 5%;
+}
+.scroll {
+  height: 100%;
+}
+
+.date {
+  font-family:'Lato';
+  margin-top:40px;
+  font-size:20px;
+  font-style:bold;
+  text-align:center;
+}
+
+
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+  font-family:'Lato';
+
+}
+.small {
+  font-size:7px;
+}
+.bg-color{
+  background:#71bc98!important;
+  color:whitesmoke !important;
+}
+.slider {
+  height: 60%;
+}
+.slider-slide {
+  padding-top: 80px;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+#logo {
+  margin: 30px 0px;
+}
+
+#list {
+  width: 170px;
+  margin: 30px auto;
+  font-size: 20px;
+}
+#list ol {
+  margin-top: 30px;
+}
+#list ol li {
+  text-align: left;
+  list-style: decimal;
+  margin: 10px 0px;
+}
+
+.mode {
+  font-size:30px;
+  padding-top:30px;
+}
+
+.item-select select {
+  padding: 24px 35px 16px 0px;
+
+}
+.item-select::after {
+  color:white;
+}
+
+.display-mode {
+  text-align:left;
+}
+
+.confidence-certain {
+  color:#ffffff;
+}
+
+.confidence-medium {
+  color:#fcc280;
+}
+
+.confidence-low {
+  color:#e9584e;
+
+}
