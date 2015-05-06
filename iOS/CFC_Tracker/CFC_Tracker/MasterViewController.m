@@ -39,6 +39,7 @@
 @property(strong, nonatomic) ManualTripController *manualTripController;
 @property(strong, nonatomic) EmbeddedCordovaViewController *cordovaTabViewController;
 @property(strong, nonatomic) EmbeddedCordovaViewController *cordovaBarViewController;
+@property(strong, nonatomic) EmbeddedCordovaViewController *cordovaDiaryViewController;
 @property BOOL hasShownResults;
 
 @property (nonatomic, strong) NJKWebViewProgress *webViewProgressProxy;
@@ -96,6 +97,8 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
     self.manualTripController = [[ManualTripController alloc] initWithNibName:nil bundle:nil];
+    self.cordovaDiaryViewController = [[EmbeddedCordovaViewController alloc] init];
+    self.cordovaDiaryViewController.startPage = @"listview.html";
     self.cordovaTabViewController = [[EmbeddedCordovaViewController alloc] init];
     self.cordovaTabViewController.startPage = @"tabs.html";
     self.cordovaBarViewController = [[EmbeddedCordovaViewController alloc] init];
@@ -148,6 +151,7 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 {
     UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Auth" style:UIBarButtonItemStyleBordered target: self action:@selector(showSignInView:)];
     UIBarButtonItem *resultButton = [[UIBarButtonItem alloc] initWithTitle:@"Result" style:UIBarButtonItemStyleBordered target: self action:@selector(showResults:)];
+    UIBarButtonItem *cordovaDiaryButton = [[UIBarButtonItem alloc] initWithTitle:@"Diary(C)" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordovaDiary:)];
     UIBarButtonItem *cordovaTabButton = [[UIBarButtonItem alloc] initWithTitle:@"Tabs(C)" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordovaTabs:)];
     UIBarButtonItem *cordovaBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sidebar(C)" style:UIBarButtonItemStyleBordered target: self action:@selector(showCordovaSidebar:)];
 
@@ -155,7 +159,8 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 /*    UIBarButtonItem *stupidAppReviewButton = [[UIBarButtonItem alloc] initWithTitle:@"SAP" style:UIBarButtonItemStyleBordered target: self action:@selector(showManualTripScreen:)];
     self.navigationItem.leftBarButtonItems = @[authButton, resultButton, stupidAppReviewButton];
  */
-    self.navigationItem.leftBarButtonItems = @[authButton, resultButton, cordovaTabButton, cordovaBarButton];
+    self.navigationItem.leftBarButtonItems = @[authButton, resultButton, cordovaDiaryButton,
+                                               cordovaTabButton, cordovaBarButton];
 }
 
 - (void)viewDidAppear:(BOOL) animated
@@ -283,6 +288,16 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
         NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
     } else {
         [self.navigationController pushViewController:self.resultSummaryViewController animated:YES];
+    }
+}
+
+- (void)showCordovaDiary:(id)sender
+{
+    if ([self.navigationController.viewControllers containsObject:self.cordovaDiaryViewController]) {
+        // the result summary is already visible, don't need to push it again
+        NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self.navigationController pushViewController:self.cordovaDiaryViewController animated:YES];
     }
 }
 

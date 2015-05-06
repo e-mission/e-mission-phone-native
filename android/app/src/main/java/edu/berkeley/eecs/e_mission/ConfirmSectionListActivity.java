@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.cordova.CordovaActivity;
 import org.json.JSONException;
 
 import android.view.View;
@@ -45,7 +46,7 @@ import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
-public class ConfirmSectionListActivity extends Activity {
+public class ConfirmSectionListActivity extends CordovaActivity {
 	private ListView lv;
 	private boolean hasShownResults = false;
 
@@ -73,8 +74,10 @@ public class ConfirmSectionListActivity extends Activity {
     private static final long SYNC_INTERVAL = 2 * 60 * 60; // Changed to 10 secs to debug syncing issues on some android versions
     // END: variables to set up the automatic syncing
 
-	protected void onCreate(Bundle savedInstanceBundle) {
+	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
+        loadUrl("file:///android_asset/www/sidebar.html");
+        /*
 		setContentView(R.layout.activity_confirm_section_list_1);
 		lv = (ListView) findViewById(R.id.listView);
 		confirmAll = (Button) findViewById(R.id.confirmAll);
@@ -83,6 +86,7 @@ public class ConfirmSectionListActivity extends Activity {
 
 		onlyUnsure = intent.getBooleanExtra("onlyUnsure", onlyUnsure);
 		Log.d(TAG, "onlyUnsure = " + onlyUnsure);
+		*/
 		
 		// TODO: Determine whether this is the right place to create this.  This
 		// will work for now because we launch the activity on reboot, but we need
@@ -163,7 +167,8 @@ public class ConfirmSectionListActivity extends Activity {
 	// Re-read the list every time we are re-launched
 	protected void onResume() {
 		super.onResume();
-		
+
+        /*
 		String resumeTs = String.valueOf(System.currentTimeMillis());
 		
 		statsHelper.storeMeasurement(getString(R.string.battery_level),
@@ -183,6 +188,8 @@ public class ConfirmSectionListActivity extends Activity {
 		if (onlyUnsure == true) {
 			showLowConfidence(ucs);
 		}
+
+
 		if (ucs.size() > 0) {
 			confirmAll.setEnabled(true);
 		} else {
@@ -214,6 +221,7 @@ public class ConfirmSectionListActivity extends Activity {
 			hasShownResults = true;
 			launchResultSummary();
 		}
+		*/
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -272,12 +280,14 @@ public class ConfirmSectionListActivity extends Activity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
+        /*
         case R.id.action_launch_cordova_tabs:
             launchCordovaTabsActivity();
             return true;
         case R.id.action_launch_cordova_sidebar:
             launchCordovaSidebarActivity();
             return true;
+        */
 		}
 		return false;
 	}

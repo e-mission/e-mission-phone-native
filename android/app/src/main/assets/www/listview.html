@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true"></script>
+  <!-- your app's js -->
+  <script type="text/javascript" src="listview-js/dbHelper.js"></script>
+  <script src="listview-js/app.js"></script>
+  <script src="listview-js/controllers.js"></script>
+  <script src="listview-js/directives.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('deviceready', function onDeviceReady() {
+      angular.bootstrap(document.getElementsByTagName('body')[0], ['starter']);
+    }, false);
+  </script>
+</head>
+
+<body ng-app="starter" ng-controller="TripsCtrl" animation="slide-left-right-ios7">
+  <ion-view>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true" class="bg-color">
+      <ion-slide ng-repeat="trip in data.slides">
+        <ion-content>
+
+          <ion-list>
+            <div class="row main bg-color">
+
+              <div class="col date">
+                {{trip.date_key}}
+              </div>
+            </div>
+
+            <ion-item ng-repeat="x in trip.trip_val" class="no-margin">
+              <div class='row bg-color'>
+                <div class="col col-33 col-offset-33">
+                  <ul class="img-list">
+                    <li>
+
+                      <div class="location-holder" ng-click="setupMap(x)">
+                        <p>{{getTime(x.startTime.date)}} </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col display-name">
+                  lim
+                  <br>
+                </div>
+              </div>
+              <div class="row bg-color" ng-if="notSingleOrLast($index, trip.trip_val)">
+                <div class="col col-33 col-offset-33">
+                  <ul class="img-list">
+                    <li>
+                      <div class="verticalLine"></div>
+                    </li>
+                  </ul>
+
+
+                </div>
+                <div class="col display-mode">
+                  <i class="icon mode {{getDisplayMode(x)}} {{getConfidenceColor(x)}}" ng-if="x.confidence>=.9"></i>
+
+                  <label class="item-input item-select" ng-if= "x.confidence <.9">
+                    <div class="input-label bg-color">
+                      <i class="icon mode {{getDisplayMode(x)}} {{getConfidenceColor(x)}}"></i>
+                    </div>
+                    <select class="small bg-color display-mode" ng-model="modeChange" ng-options="mode.mode as mode.show for mode in modes"
+                     ng-init="modeChange=x.autoMode" ng-change="modeUpdate(modes[modeChanged-1])">
+
+                    </select>
+                  </label>
+                </div>
+              </div>
+              </div>
+            </ion-item>
+
+          </ion-list>
+        </ion-content>
+      </ion-slide>
+    </ion-slide-box>
+    <map on-create="mapCreated(map)"></map>
+
+    <ion-tabs class="tabs-default tabs-icon-top">
+
+      <ion-tab title="Trips" icon="ion-merge">
+      </ion-tab>
+      <ion-tab title="Recommendation" icon="ion-location">
+      </ion-tab>
+      <ion-tab title="About" icon="ion-compose">
+      </ion-tab>
+    </ion-tabs>
+  </ion-view>
+</body>
+
+</html>
