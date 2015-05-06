@@ -9,11 +9,15 @@
 #import "MasterNavController.h"
 #import "ConnectionSettings.h"
 #import "EmbeddedCordovaViewController.h"
+#import "SignInViewController.h"
 // Used to determine whether we are running in the simulator
 #import <TargetConditionals.h>
 
-@interface MasterNavController ()
+static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 
+@interface MasterNavController ()
+@property(strong, nonatomic) SignInViewController *signInViewController;
+@property(strong, nonatomic) UIViewController *resultSummaryViewController;
 @end
 
 @implementation MasterNavController
@@ -122,9 +126,36 @@
         // controller = [board instantiateViewControllerWithIdentifier:@"MasterViewController"];
         EmbeddedCordovaViewController *cordovaController = [[EmbeddedCordovaViewController alloc] init];
         cordovaController.startPage = @"listview.html";
+        self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
+        self.resultSummaryViewController = [board instantiateViewControllerWithIdentifier:kResultSummaryStoryboardID];
+        UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Auth" style:UIBarButtonItemStyleBordered target: self action:@selector(showSignInView:)];
+        UIBarButtonItem *resultButton = [[UIBarButtonItem alloc] initWithTitle:@"Result" style:UIBarButtonItemStyleBordered target: self action:@selector(showResults:)];
+        cordovaController.navigationItem.leftBarButtonItems = @[authButton, resultButton];
         [self setViewControllers:[[NSArray alloc] initWithObjects:cordovaController, nil] animated:YES]; // for coming out of onboarding process
+        NSLog(@"parent controller is %@", cordovaController.parentViewController);
     }
 }
+
+- (void)showSignInView:(id)sender
+{
+    if ([self.navigationController.viewControllers containsObject:self.signInViewController]) {
+        // the sign in view is already visible, don't need to push it again
+        NSLog(@"sign in view is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self pushViewController:self.signInViewController animated:YES];
+    }
+}
+
+- (void)showResults:(id)sender
+{
+    if ([self.navigationController.viewControllers containsObject:self.resultSummaryViewController]) {
+        // the result summary is already visible, don't need to push it again
+        NSLog(@"resultSummaryView is already in the navigation chain, skipping the push to the controller...");
+    } else {
+        [self pushViewController:self.resultSummaryViewController animated:YES];
+    }
+}
+
 
 /*
 #pragma mark - Navigation
