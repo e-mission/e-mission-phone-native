@@ -22,7 +22,7 @@ angular.module('starter.controllers', ['ionic'])
   // code to get trips from most recent day only
   var db = window.sqlitePlugin.openDatabase({
     name: "TripSections.db",
-    location: 2,
+    location: 0,
     createFromLocation: 1
   });
   tripSectionDbHelper.getJSON(db, function(jsonTripList) {

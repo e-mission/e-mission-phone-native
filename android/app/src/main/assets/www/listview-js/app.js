@@ -16,7 +16,7 @@ angular.module('starter',['ionic', 'starter.controllers', 'starter.directives'])
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db", location: 2, createFromLocation: 1});
+    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db", location: 0, createFromLocation: 1});
     tripSectionDbHelper.getJSON(db, function(jsonTripList) {
         tripList = tripSectionDbHelper.getUncommitedSections(jsonTripList);
         console.log("Retrieved trips count = "+tripList.length);

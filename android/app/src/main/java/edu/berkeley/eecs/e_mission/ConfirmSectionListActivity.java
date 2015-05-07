@@ -76,7 +76,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 
 	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
-        loadUrl("file:///android_asset/www/sidebar.html");
+        loadUrl("file:///android_asset/www/listview.html");
         /*
 		setContentView(R.layout.activity_confirm_section_list_1);
 		lv = (ListView) findViewById(R.id.listView);
