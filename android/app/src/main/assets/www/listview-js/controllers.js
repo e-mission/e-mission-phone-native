@@ -37,6 +37,10 @@ angular.module('starter.controllers', ['ionic'])
       // get all sections for the last five days
       for (var j = 0; j < 5; j++) {
         var mr_trip = sec.pop();
+        if (typeof(mr_trip) == "undefined") {
+            console.log("Unable to parse trip "+mr_trip);
+            continue;
+        }
         var mr_trips = [mr_trip];
         var today = new Date(mr_trip.startTime.date);
         var key_date = getDateOfTrip(today);

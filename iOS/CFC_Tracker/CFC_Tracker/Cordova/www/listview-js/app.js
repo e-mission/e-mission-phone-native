@@ -6,6 +6,11 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter',['ionic', 'starter.controllers', 'starter.directives'])
 
+.config(function($ionicConfigProvider) {
+  // note that you can also chain configs
+  $ionicConfigProvider.tabs.position('bottom');
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -16,7 +21,7 @@ angular.module('starter',['ionic', 'starter.controllers', 'starter.directives'])
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db", location: 2, createFromLocation: 1});
+    var db = window.sqlitePlugin.openDatabase({name: "TripSections.db", location: 0, createFromLocation: 1});
     tripSectionDbHelper.getJSON(db, function(jsonTripList) {
         tripList = tripSectionDbHelper.getUncommitedSections(jsonTripList);
         console.log("Retrieved trips count = "+tripList.length);

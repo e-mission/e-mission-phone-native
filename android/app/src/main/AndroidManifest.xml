@@ -62,6 +62,15 @@
             android:label="Cordova Tab Activity">
         </activity>
 
+        <activity 
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" 
+            android:launchMode="singleTop" 
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:windowSoftInputMode="adjustResize"
+            android:name="edu.berkeley.eecs.e_mission.cordova.DiaryActivity"
+            android:label="Diary">
+        </activity>
+
         <activity
             android:name="edu.berkeley.eecs.e_mission.cordova.SidebarActivity"
             android:label="Cordova Sidebar Activity">

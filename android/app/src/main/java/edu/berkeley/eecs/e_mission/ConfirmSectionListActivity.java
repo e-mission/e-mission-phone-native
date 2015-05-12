@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import android.view.View;
 import edu.berkeley.eecs.e_mission.auth.UserProfile;
+import edu.berkeley.eecs.e_mission.cordova.DiaryActivity;
 import edu.berkeley.eecs.e_mission.cordova.SidebarActivity;
 import edu.berkeley.eecs.e_mission.cordova.TabActivity;
 //import android.R;
@@ -46,7 +47,7 @@ import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
-public class ConfirmSectionListActivity extends CordovaActivity {
+public class ConfirmSectionListActivity extends Activity {
 	private ListView lv;
 	private boolean hasShownResults = false;
 
@@ -76,8 +77,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 
 	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
-        loadUrl("file:///android_asset/www/listview.html");
-        /*
+        // loadUrl("file:///android_asset/www/listview.html");
 		setContentView(R.layout.activity_confirm_section_list_1);
 		lv = (ListView) findViewById(R.id.listView);
 		confirmAll = (Button) findViewById(R.id.confirmAll);
@@ -86,7 +86,6 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 
 		onlyUnsure = intent.getBooleanExtra("onlyUnsure", onlyUnsure);
 		Log.d(TAG, "onlyUnsure = " + onlyUnsure);
-		*/
 		
 		// TODO: Determine whether this is the right place to create this.  This
 		// will work for now because we launch the activity on reboot, but we need
@@ -168,7 +167,6 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 	protected void onResume() {
 		super.onResume();
 
-        /*
 		String resumeTs = String.valueOf(System.currentTimeMillis());
 		
 		statsHelper.storeMeasurement(getString(R.string.battery_level),
@@ -221,7 +219,6 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 			hasShownResults = true;
 			launchResultSummary();
 		}
-		*/
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -280,14 +277,15 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
-        /*
         case R.id.action_launch_cordova_tabs:
             launchCordovaTabsActivity();
             return true;
-        case R.id.action_launch_cordova_sidebar:
-            launchCordovaSidebarActivity();
-            return true;
-        */
+
+
+
+        // case R.id.action_launch_cordova_sidebar:
+        //     launchCordovaSidebarActivity();
+        //     return true;
 		}
 		return false;
 	}
@@ -308,7 +306,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 
     public void launchCordovaTabsActivity() {
         Intent cordovaIntent = new Intent(this,
-                TabActivity.class);
+                DiaryActivity.class);
         cordovaIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(cordovaIntent);
     }

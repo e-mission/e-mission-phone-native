@@ -66,8 +66,8 @@ var tripSectionDbHelper = {
           trip.loadFromJSON(jsonTripList[j]);
           tripList.push(trip);
       } catch (e) {
-          console.log("error while parsing trip string"+jsonTripList[j]);
-          alert("error while parsing trip string "+jsonTripList[j]);
+          console.log("error "+e+" while parsing trip string"+jsonTripList[j]);
+          alert("error "+e+" while parsing trip string "+jsonTripList[j]);
       }
     }
     return tripList;
@@ -86,7 +86,17 @@ function tripSection() {
   this.userMode = "";
 
   this.loadFromJSON = function(jsonObject) {
-    jsonObject = JSON.parse(atob(jsonObject.sectionJsonBlob));
+    // Stupid base64 encoding/decoding on android chokes if it doesn't have this
+    // iOS seems to work fine
+    // Answer is from
+    // http://stackoverflow.com/questions/14695988/dom-exception-5-invalid-character-error-on-valid-base64-image-string-in-javascri
+    // Need to see if this breaks iOS, and if not, should be merged into the crossplatform javascript
+    replacedBlob = jsonObject.sectionJsonBlob.replace(/\s/g, '');
+    try {
+        jsonObject = JSON.parse(atob(replacedBlob));
+    } catch (e) {
+        jsonObject = JSON.parse(replacedBlob);
+    }
     this.tripId = jsonObject.trip_id;
     this.sectionId = jsonObject.section_id;
     this.startTime.loadFromDateString(jsonObject.section_start_time);

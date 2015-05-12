@@ -6,6 +6,11 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter',['ionic', 'starter.controllers', 'starter.directives'])
 
+.config(function($ionicConfigProvider) {
+  // note that you can also chain configs
+  $ionicConfigProvider.tabs.position('bottom');
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

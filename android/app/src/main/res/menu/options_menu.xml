@@ -10,19 +10,23 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="@string/menu_item_result_summary"/>
+    <!--
     <item
         android:id="@+id/action_cordova"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="Cordova">
+    </item>
+    -->
     <item
         android:id="@+id/action_launch_cordova_tabs"
         android:orderInCategory="100"
-        android:title="Tabs"/>
+        android:showAsAction="always"
+        android:title="Diary"/>
+    <!--
     <item
         android:id="@+id/action_launch_cordova_sidebar"
         android:orderInCategory="100"
         android:title="Sidebar"/>
-
-    </item>
+    -->
 </menu>

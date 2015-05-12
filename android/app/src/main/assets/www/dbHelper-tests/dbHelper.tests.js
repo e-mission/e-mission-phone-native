@@ -115,7 +115,8 @@ var dbHelperTests = {
                 for (k=0; k < tempTripList.rows.length; k++) {
                   jsonTripList.push(tempTripList.rows.item(k));
                 }
-                assert.equal(jsonTripList.length, 27);
+                // The android data has 7 entries and the iOS data has 27 entries
+                assert.ok(jsonTripList.length == 27 || jsonTripList.length == 7);
                 done();
               }, function(e) {
                 console.log("ERROR: " + e.message);
@@ -134,7 +135,8 @@ var dbHelperTests = {
             var db = window.sqlitePlugin.openDatabase({name: "TripSections.db", location: 2, createFromLocation: 1});
             tripSectionDbHelper.getJSON(db, function(jsonTripList) {
                 tripList = tripSectionDbHelper.getUncommitedSections(jsonTripList);
-                assert.equal(tripList.length, 27);
+                // The android data has 7 entries and the iOS data has 27 entries
+                assert.ok(tripList.length == 27 || tripList.length == 7);
                 realDbQueryDone();
             });
             
