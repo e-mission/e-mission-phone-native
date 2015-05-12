@@ -55,10 +55,6 @@ public class DiaryActivity extends CordovaActivity
             case R.id.action_result_summary:
                 Toast.makeText(this, "Clicked on result", Toast.LENGTH_LONG);
                 return true;
-            case R.id.action_launch_cordova_tabs:
-                Toast.makeText(this, "Clicked on diary", Toast.LENGTH_LONG);
-                return true;
-
 
 
             // case R.id.action_launch_cordova_sidebar:

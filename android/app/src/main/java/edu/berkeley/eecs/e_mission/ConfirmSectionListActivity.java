@@ -47,7 +47,7 @@ import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
-public class ConfirmSectionListActivity extends Activity {
+public class ConfirmSectionListActivity extends CordovaActivity {
 	private ListView lv;
 	private boolean hasShownResults = false;
 
@@ -77,7 +77,8 @@ public class ConfirmSectionListActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
-        // loadUrl("file:///android_asset/www/listview.html");
+        loadUrl("file:///android_asset/www/listview.html");
+        /*
 		setContentView(R.layout.activity_confirm_section_list_1);
 		lv = (ListView) findViewById(R.id.listView);
 		confirmAll = (Button) findViewById(R.id.confirmAll);
@@ -86,6 +87,7 @@ public class ConfirmSectionListActivity extends Activity {
 
 		onlyUnsure = intent.getBooleanExtra("onlyUnsure", onlyUnsure);
 		Log.d(TAG, "onlyUnsure = " + onlyUnsure);
+		*/
 		
 		// TODO: Determine whether this is the right place to create this.  This
 		// will work for now because we launch the activity on reboot, but we need
@@ -172,7 +174,8 @@ public class ConfirmSectionListActivity extends Activity {
 		statsHelper.storeMeasurement(getString(R.string.battery_level),
 				String.valueOf(BatteryUtils.getBatteryLevel(this)), resumeTs);
 		statsHelper.storeMeasurement(getString(R.string.confirmlist_resume), null, resumeTs);
-		
+
+        /*
 		// Check to see if we are authenticated
 		// If not, we need to pop-up the MainActivity to allow the user to
 		// re-authenticate
@@ -219,6 +222,7 @@ public class ConfirmSectionListActivity extends Activity {
 			hasShownResults = true;
 			launchResultSummary();
 		}
+		*/
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -277,12 +281,9 @@ public class ConfirmSectionListActivity extends Activity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
-        case R.id.action_launch_cordova_tabs:
-            launchCordovaTabsActivity();
-            return true;
-
-
-
+        // case R.id.action_launch_cordova_tabs:
+        //     launchCordovaTabsActivity();
+        //     return true;
         // case R.id.action_launch_cordova_sidebar:
         //     launchCordovaSidebarActivity();
         //     return true;
