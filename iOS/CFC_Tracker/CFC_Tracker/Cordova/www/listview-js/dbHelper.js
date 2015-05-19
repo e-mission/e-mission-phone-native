@@ -49,7 +49,7 @@ var tripSectionDbHelper = {
     db.transaction(function(tx) {
       tx.executeSql("select " + KEY_SECTION_BLOB + " from " + TABLE_CURR_TRIPS + " where " + KEY_USER_CLASSIFICATION + " is null", [], function(tx, tempTripList) {
         var jsonTripList = [];
-        for (k=0; k < tempTripList.rows.length; k++) {
+        for (k = 0; k < tempTripList.rows.length; k++) {
           jsonTripList.push(tempTripList.rows.item(k));
         }
         callBack(jsonTripList);
@@ -60,14 +60,14 @@ var tripSectionDbHelper = {
   },
   getUncommitedSections: function(jsonTripList) {
     var tripList = [];
-    for (j=0; j < jsonTripList.length; j++) {
+    for (j = 0; j < jsonTripList.length; j++) {
       try {
-          var trip = new tripSection();
-          trip.loadFromJSON(jsonTripList[j]);
-          tripList.push(trip);
+        var trip = new tripSection();
+        trip.loadFromJSON(jsonTripList[j]);
+        tripList.push(trip);
       } catch (e) {
-          console.log("error "+e+" while parsing trip string"+jsonTripList[j]);
-          alert("error "+e+" while parsing trip string "+jsonTripList[j]);
+        console.log("error "+e+" while parsing trip string"+jsonTripList[j]);
+        alert("error "+e+" while parsing trip string "+jsonTripList[j]);
       }
     }
     return tripList;
@@ -115,7 +115,7 @@ function tripSection() {
     this.confidence = highestConfidence;
     this.autoMode = predictedMode;
 
-    for (i=0; i < jsonObject.track_points.length; i++) {
+    for (i = 0; i < jsonObject.track_points.length; i++) {
       var tempTrackLoc = new trackLocation();
       tempTrackLoc.loadFromJSON(jsonObject.track_points[i]);
       this.trackPoints.push(tempTrackLoc);
