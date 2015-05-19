@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import android.view.View;
 import edu.berkeley.eecs.e_mission.auth.UserProfile;
+import edu.berkeley.eecs.e_mission.cordova.DiaryActivity;
 import edu.berkeley.eecs.e_mission.cordova.SidebarActivity;
 import edu.berkeley.eecs.e_mission.cordova.TabActivity;
 //import android.R;
@@ -76,7 +77,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 
 	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
-        loadUrl("file:///android_asset/www/sidebar.html");
+        loadUrl("file:///android_asset/www/listview.html");
         /*
 		setContentView(R.layout.activity_confirm_section_list_1);
 		lv = (ListView) findViewById(R.id.listView);
@@ -168,13 +169,13 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 	protected void onResume() {
 		super.onResume();
 
-        /*
 		String resumeTs = String.valueOf(System.currentTimeMillis());
 		
 		statsHelper.storeMeasurement(getString(R.string.battery_level),
 				String.valueOf(BatteryUtils.getBatteryLevel(this)), resumeTs);
 		statsHelper.storeMeasurement(getString(R.string.confirmlist_resume), null, resumeTs);
-		
+
+        /*
 		// Check to see if we are authenticated
 		// If not, we need to pop-up the MainActivity to allow the user to
 		// re-authenticate
@@ -280,14 +281,12 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
-        /*
-        case R.id.action_launch_cordova_tabs:
-            launchCordovaTabsActivity();
-            return true;
-        case R.id.action_launch_cordova_sidebar:
-            launchCordovaSidebarActivity();
-            return true;
-        */
+        // case R.id.action_launch_cordova_tabs:
+        //     launchCordovaTabsActivity();
+        //     return true;
+        // case R.id.action_launch_cordova_sidebar:
+        //     launchCordovaSidebarActivity();
+        //     return true;
 		}
 		return false;
 	}
@@ -308,7 +307,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 
     public void launchCordovaTabsActivity() {
         Intent cordovaIntent = new Intent(this,
-                TabActivity.class);
+                DiaryActivity.class);
         cordovaIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(cordovaIntent);
     }

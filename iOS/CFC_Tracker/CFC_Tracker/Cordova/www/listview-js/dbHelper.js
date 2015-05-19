@@ -49,7 +49,7 @@ var tripSectionDbHelper = {
     db.transaction(function(tx) {
       tx.executeSql("select " + KEY_SECTION_BLOB + " from " + TABLE_CURR_TRIPS + " where " + KEY_USER_CLASSIFICATION + " is null", [], function(tx, tempTripList) {
         var jsonTripList = [];
-        for (k=0; k < tempTripList.rows.length; k++) {
+        for (k = 0; k < tempTripList.rows.length; k++) {
           jsonTripList.push(tempTripList.rows.item(k));
         }
         callBack(jsonTripList);
@@ -60,14 +60,14 @@ var tripSectionDbHelper = {
   },
   getUncommitedSections: function(jsonTripList) {
     var tripList = [];
-    for (j=0; j < jsonTripList.length; j++) {
+    for (j = 0; j < jsonTripList.length; j++) {
       try {
-          var trip = new tripSection();
-          trip.loadFromJSON(jsonTripList[j]);
-          tripList.push(trip);
+        var trip = new tripSection();
+        trip.loadFromJSON(jsonTripList[j]);
+        tripList.push(trip);
       } catch (e) {
-          console.log("error while parsing trip string"+jsonTripList[j]);
-          alert("error while parsing trip string "+jsonTripList[j]);
+        console.log("error "+e+" while parsing trip string"+jsonTripList[j]);
+        alert("error "+e+" while parsing trip string "+jsonTripList[j]);
       }
     }
     return tripList;
@@ -86,7 +86,17 @@ function tripSection() {
   this.userMode = "";
 
   this.loadFromJSON = function(jsonObject) {
-    jsonObject = JSON.parse(atob(jsonObject.sectionJsonBlob));
+    // Stupid base64 encoding/decoding on android chokes if it doesn't have this
+    // iOS seems to work fine
+    // Answer is from
+    // http://stackoverflow.com/questions/14695988/dom-exception-5-invalid-character-error-on-valid-base64-image-string-in-javascri
+    // Need to see if this breaks iOS, and if not, should be merged into the crossplatform javascript
+    replacedBlob = jsonObject.sectionJsonBlob.replace(/\s/g, '');
+    try {
+        jsonObject = JSON.parse(atob(replacedBlob));
+    } catch (e) {
+        jsonObject = JSON.parse(replacedBlob);
+    }
     this.tripId = jsonObject.trip_id;
     this.sectionId = jsonObject.section_id;
     this.startTime.loadFromDateString(jsonObject.section_start_time);
@@ -105,7 +115,7 @@ function tripSection() {
     this.confidence = highestConfidence;
     this.autoMode = predictedMode;
 
-    for (i=0; i < jsonObject.track_points.length; i++) {
+    for (i = 0; i < jsonObject.track_points.length; i++) {
       var tempTrackLoc = new trackLocation();
       tempTrackLoc.loadFromJSON(jsonObject.track_points[i]);
       this.trackPoints.push(tempTrackLoc);

@@ -10,9 +10,11 @@
 #import "ConnectionSettings.h"
 #import "EmbeddedCordovaViewController.h"
 #import "SignInViewController.h"
+#import "HTMLDisplayCommunicationHelper.h"
 // Used to determine whether we are running in the simulator
 #import <TargetConditionals.h>
 
+static NSString * const kMainStoryboardName = @"MainStoryboard_iPhone";
 static NSString * const kResultSummaryStoryboardID = @"resultSummary";
 
 @interface MasterNavController ()
@@ -126,8 +128,12 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
         // controller = [board instantiateViewControllerWithIdentifier:@"MasterViewController"];
         EmbeddedCordovaViewController *cordovaController = [[EmbeddedCordovaViewController alloc] init];
         cordovaController.startPage = @"listview.html";
+        // Simultaneously, authenticate so that we can load the result page properly
+        BOOL silentAuthResult = [[AuthCompletionHandler sharedInstance] trySilentAuthentication];
         self.signInViewController = [[SignInViewController alloc] initWithNibName:nil bundle:nil];
-        self.resultSummaryViewController = [board instantiateViewControllerWithIdentifier:kResultSummaryStoryboardID];
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:kMainStoryboardName bundle:nil];
+        self.resultSummaryViewController = [sb instantiateViewControllerWithIdentifier:kResultSummaryStoryboardID];
         UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Auth" style:UIBarButtonItemStyleBordered target: self action:@selector(showSignInView:)];
         UIBarButtonItem *resultButton = [[UIBarButtonItem alloc] initWithTitle:@"Result" style:UIBarButtonItemStyleBordered target: self action:@selector(showResults:)];
         cordovaController.navigationItem.leftBarButtonItems = @[authButton, resultButton];
@@ -154,6 +160,13 @@ static NSString * const kResultSummaryStoryboardID = @"resultSummary";
     } else {
         [self pushViewController:self.resultSummaryViewController animated:YES];
     }
+    UIWebView *webView = (UIWebView*)self.resultSummaryViewController.view.subviews[0];
+    
+    [HTMLDisplayCommunicationHelper displayResultSummary:webView
+                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                           NSLog(@"Finished loading data with error %@", error);
+                                       }];
+                        
 }
 
 

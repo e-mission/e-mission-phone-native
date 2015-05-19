@@ -20,8 +20,14 @@
 package edu.berkeley.eecs.e_mission.cordova;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.apache.cordova.CordovaActivity;
+
+import edu.berkeley.eecs.e_mission.R;
 
 public class DiaryActivity extends CordovaActivity
 {
@@ -33,4 +39,29 @@ public class DiaryActivity extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         loadUrl("file:///android_asset/www/listview.html");
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Clicked on settings", Toast.LENGTH_LONG);
+                return true;
+            case R.id.action_result_summary:
+                Toast.makeText(this, "Clicked on result", Toast.LENGTH_LONG);
+                return true;
+
+
+            // case R.id.action_launch_cordova_sidebar:
+            //     launchCordovaSidebarActivity();
+            //     return true;
+        }
+        return false;
+    }
+
 }

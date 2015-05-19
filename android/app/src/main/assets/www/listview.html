@@ -30,7 +30,7 @@
   </script>
 </head>
 
-<body ng-app="starter" ng-controller="TripsCtrl" animation="slide-left-right-ios7">
+<body ng-controller="TripsCtrl" animation="slide-left-right-ios7">
   <ion-view>
     <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="true" class="bg-color">
       <ion-slide ng-repeat="trip in data.slides">
@@ -57,7 +57,7 @@
                   </ul>
                 </div>
                 <div class="col display-name">
-                  lim
+                  {{x.displayName}}
                   <br>
                 </div>
               </div>
@@ -74,12 +74,11 @@
                 <div class="col display-mode">
                   <i class="icon mode {{getDisplayMode(x)}} {{getConfidenceColor(x)}}" ng-if="x.confidence>=.9"></i>
 
-                  <label class="item-input item-select" ng-if= "x.confidence <.9">
+                  <label class="item-input item-select" ng-if="x.confidence <.9">
                     <div class="input-label bg-color">
                       <i class="icon mode {{getDisplayMode(x)}} {{getConfidenceColor(x)}}"></i>
                     </div>
-                    <select class="small bg-color display-mode" ng-model="modeChange" ng-options="mode.mode as mode.show for mode in modes"
-                     ng-init="modeChange=x.autoMode" ng-change="modeUpdate(modes[modeChanged-1])">
+                    <select class="small bg-color display-mode" ng-model="modeChange" ng-options="mode.mode as mode.show for mode in modes" ng-init="modeChange=x.autoMode" ng-change="modeUpdate(x, modeChange)">
 
                     </select>
                   </label>

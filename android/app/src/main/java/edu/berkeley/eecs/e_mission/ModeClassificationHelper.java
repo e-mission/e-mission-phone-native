@@ -16,7 +16,7 @@ public class ModeClassificationHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
  
     // Database Name
-    private static final String DATABASE_NAME = "movesConnect";
+    private static final String DATABASE_NAME = "TripSections.db";
  
     // Table names
     private static final String TABLE_CURR_TRIPS = "currTrips";

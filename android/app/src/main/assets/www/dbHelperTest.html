@@ -24,14 +24,25 @@
         </ion-header-bar>
         <ion-content>
             <h2>Run dbHelper tests</h2>
-            <div>Note that these tests will fail there is an existing
-                TripSection.db that does not contain currTrips in the app's database
-                directory. Such a database can be created if any other code tries
-                to open the database without the right parameters. If tests are
-                failing, that is the first place to look. It is best to run the
-                tests after having wiped the database to be on the safe side. </div>
-            <hr>
-            <a href="dbHelper-tests/index.html">Run tests</a>
+<div>Two things to note:
+<ul>
+<li> These tests require a TripSections.db file in "www" directory. Since it
+looks like there are subtle differences between android and ios, there are
+actually two files checked in, one for android and one for iOS. Each of these
+needs to be copied in turn, and the tests run against <b>both</b> platforms. 
+</li>
+<li>
+Note that these tests will fail there is an existing
+TripSection.db that does not contain currTrips in the app's database
+directory. Such a database can be created if any other code tries
+to open the database without the right parameters. If tests are
+failing, that is the first place to look. It is best to run the
+tests after having wiped the database to be on the safe side. 
+</li>
+</ul>
+<hr>
+<a href="dbHelper-tests/index.html">Run tests</a>
+</div>
         </ion-content>
       </ion-pane>
     </body>
