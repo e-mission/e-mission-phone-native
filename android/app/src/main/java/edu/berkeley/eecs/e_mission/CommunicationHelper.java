@@ -1,12 +1,22 @@
 package edu.berkeley.eecs.e_mission;
 
 import android.content.Context;
+import android.net.http.AndroidHttpClient;
 import android.util.Log;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,7 +28,7 @@ public class CommunicationHelper {
     public static final String TAG = "CommunicationHelper";
 
     public static String readResults(Context ctxt, String cacheControlProperty)
-                throws MalformedURLException, IOException {
+            throws MalformedURLException, IOException {
         final String result_url = AppSettings.getResultUrl(ctxt);
         final String userName = UserProfile.getInstance(ctxt).getUserEmail();
         final String userToken = GoogleAccountManagerAuth.getServerToken(ctxt, userName);
@@ -49,11 +59,145 @@ public class CommunicationHelper {
         final StringBuilder builder = new StringBuilder();
         String currLine = null;
         while ((currLine = in.readLine()) != null) {
-            builder.append(currLine+"\n");
+            builder.append(currLine + "\n");
         }
         final String rawHTML = builder.toString();
         in.close();
         connection.disconnect();
         return rawHTML;
     }
+
+    public static JSONArray getUnclassifiedSections(Context ctxt, String userToken)
+            throws MalformedURLException, JSONException, IOException {
+        String commuteTrackerHost = ConnectionSettings.getConnectURL(ctxt);
+        HttpPost msg = new HttpPost(commuteTrackerHost + "/tripManager/getUnclassifiedSections");
+        System.out.println("Posting data to " + msg.getURI());
+        msg.setHeader("Content-Type", "application/json");
+
+        JSONObject toPush = new JSONObject();
+
+        toPush.put("user", userToken);
+        msg.setEntity(new StringEntity(toPush.toString()));
+
+        AndroidHttpClient connection = AndroidHttpClient.newInstance(ctxt.getString(R.string.app_name));
+        HttpResponse response = connection.execute(msg);
+        System.out.println("Got response " + response + " with status " + response.getStatusLine());
+        BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        // We assume that the data is all in a single line
+        // TODO: Verify this assumption
+        String rawJSON = in.readLine();
+        // System.out.println("Raw JSON = "+rawJSON);
+        in.close();
+        connection.close();
+        JSONObject parentObj = new JSONObject(rawJSON);
+        return parentObj.getJSONArray("sections");
+    }
+
+    /*
+     * Pushes the classifications to the host.
+     */
+    public static void pushClassifications(Context cachedContext, String userToken,
+                                           JSONArray userClassification)
+            throws IOException, JSONException {
+        String commuteTrackerHost = ConnectionSettings.getConnectURL(cachedContext);
+        pushJSON(cachedContext, commuteTrackerHost + "/tripManager/setSectionClassification",
+                userToken, "updates", userClassification);
+    }
+
+    /*
+     * Pushes the classifications to the host.
+     */
+    public static void pushStats(Context cachedContext, String userToken,
+                                 JSONObject appStats) throws IOException, JSONException {
+        String commuteTrackerHost = ConnectionSettings.getConnectURL(cachedContext);
+        pushJSON(cachedContext, commuteTrackerHost + "/stats/set", userToken, "stats", appStats);
+    }
+
+    public static void saveEulaVer(Context ctxt, String eulaVer) throws IOException, JSONException {
+        String commuteTrackerHost = ConnectionSettings.getConnectURL(ctxt);
+        final String userName = UserProfile.getInstance(ctxt).getUserEmail();
+        final String userToken = GoogleAccountManagerAuth.getServerToken(ctxt, userName);
+        pushJSON(ctxt, commuteTrackerHost + "/profile/consent", userToken, "version", eulaVer);
+    }
+
+    public static void saveMovesAuth(Context ctxt, JSONObject movesAuth)
+        throws IOException, JSONException {
+        String commuteTrackerHost = ConnectionSettings.getConnectURL(ctxt);
+        final String userName = UserProfile.getInstance(ctxt).getUserEmail();
+        final String userToken = GoogleAccountManagerAuth.getServerToken(ctxt, userName);
+        pushJSON(ctxt, commuteTrackerHost + "/movesCallbackNew", userToken, "movesAuth", movesAuth);
+    }
+
+    public static void pushJSON(Context ctxt, String fullURL, String userToken,
+                                String objectLabel, Object jsonObjectOrArray)
+            throws IOException, JSONException {
+        HttpPost msg = new HttpPost(fullURL);
+        System.out.println("Posting data to " + msg.getURI());
+        msg.setHeader("Content-Type", "application/json");
+        JSONObject toPush = new JSONObject();
+
+        toPush.put("user", userToken);
+        toPush.put(objectLabel, jsonObjectOrArray);
+        msg.setEntity(new StringEntity(toPush.toString()));
+        AndroidHttpClient connection = AndroidHttpClient.newInstance(ctxt.getString(R.string.app_name));
+        HttpResponse response = connection.execute(msg);
+        System.out.println("Got response " + response + " with status " + response.getStatusLine());
+        connection.close();
+        // TODO: Decide whether we want to return the server response here as a string instead of returning void
+    }
+
+    public static String getUserSettings(Context ctxt) throws
+            JSONException, IOException {
+        final String userName = UserProfile.getInstance(ctxt).getUserEmail();
+        final String userToken = GoogleAccountManagerAuth.getServerToken(ctxt, userName);
+        return getUserPersonalData(ctxt, ConnectionSettings.getConnectURL(ctxt)+
+                "/profile/settings", userToken);
+    }
+
+    public static String registerUser(Context ctxt) throws JSONException, IOException {
+        final String userName = UserProfile.getInstance(ctxt).getUserEmail();
+        final String userToken = GoogleAccountManagerAuth.getServerToken(ctxt, userName);
+        return getUserPersonalData(ctxt, ConnectionSettings.getConnectURL(ctxt)+
+                "/profile/create", userToken);
+    }
+
+    public static String getUserPersonalData(Context ctxt, String fullURL, String userToken) throws
+            JSONException, IOException {
+        String result = null;
+        HttpPost msg = new HttpPost(fullURL);
+        msg.setHeader("Content-Type", "application/json");
+
+        //String result;
+        JSONObject toPush = new JSONObject();
+        toPush.put("user", userToken);
+        msg.setEntity(new StringEntity(toPush.toString()));
+
+        System.out.println("Posting data to "+msg.getURI());
+
+        //create connection
+        AndroidHttpClient connection = AndroidHttpClient.newInstance(R.class.toString());
+        HttpResponse response = connection.execute(msg);
+        StatusLine statusLine = response.getStatusLine();
+        System.out.println("Got response "+response+" with status "+statusLine);
+        int statusCode = statusLine.getStatusCode();
+
+        if(statusCode == 200){
+            BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            StringBuilder builder = new StringBuilder();
+            String currLine = null;
+            while ((currLine = in.readLine()) != null) {
+                builder.append(currLine+"\n");
+            }
+            result = builder.toString();
+            System.out.println("Result Summary JSON = "+result);
+            in.close();
+        } else {
+            Log.e(R.class.toString(),"Failed to get JSON object");
+        }
+        connection.close();
+        return result;
+    }
+
 }
+
+

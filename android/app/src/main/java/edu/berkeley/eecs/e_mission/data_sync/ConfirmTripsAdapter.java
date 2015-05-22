@@ -3,37 +3,6 @@
  */
 package edu.berkeley.eecs.e_mission.data_sync;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import edu.berkeley.eecs.e_mission.AppSettings;
-import edu.berkeley.eecs.e_mission.BatteryUtils;
-import edu.berkeley.eecs.e_mission.CommunicationHelper;
-import edu.berkeley.eecs.e_mission.ConnectionSettings;
-import edu.berkeley.eecs.e_mission.ModeClassificationHelper;
-import edu.berkeley.eecs.e_mission.ClientStatsHelper;
-import edu.berkeley.eecs.e_mission.OnboardingActivity;
-import edu.berkeley.eecs.e_mission.R;
-import edu.berkeley.eecs.e_mission.UnclassifiedSection;
-import edu.berkeley.eecs.e_mission.UserClassification;
-import edu.berkeley.eecs.e_mission.auth.GoogleAccountManagerAuth;
-import edu.berkeley.eecs.e_mission.auth.UserProfile;
-
 import android.accounts.Account;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -42,20 +11,36 @@ import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
-import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.webkit.WebView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import edu.berkeley.eecs.e_mission.BatteryUtils;
+import edu.berkeley.eecs.e_mission.ClientStatsHelper;
+import edu.berkeley.eecs.e_mission.CommunicationHelper;
+import edu.berkeley.eecs.e_mission.ModeClassificationHelper;
+import edu.berkeley.eecs.e_mission.OnboardingActivity;
+import edu.berkeley.eecs.e_mission.R;
+import edu.berkeley.eecs.e_mission.UnclassifiedSection;
+import edu.berkeley.eecs.e_mission.UserClassification;
+import edu.berkeley.eecs.e_mission.auth.GoogleAccountManagerAuth;
+import edu.berkeley.eecs.e_mission.auth.UserProfile;
 
 /**
  * @author shankari
  *
  */
 public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
-	private String projectName;
-	
 	private String userName;
 
 	Properties uuidMap;
@@ -77,8 +62,6 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 		cachedContext = context;
 		dbHelper = new ModeClassificationHelper(context);
 		statsHelper = new ClientStatsHelper(context);
-		// We read the project name here because that's where we have access to a context
-		projectName = context.getString(R.string.app_name);
 		// Our ContentProvider is a dummy so there is nothing else to do here
 	}
 	
@@ -130,8 +113,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 					String.valueOf(classifiedSections.length()), syncTs);
 			// System.out.println("classifiedSections = "+classifiedSections);
 			if (classifiedSections.length() > 0) {
-				pushClassifications(ConnectionSettings.getConnectURL(cachedContext),
-									userToken, classifiedSections);
+				CommunicationHelper.pushClassifications(cachedContext, userToken, classifiedSections);
 			} else {
 				System.out.println("No user classified sections, skipping push to server");
 			}
@@ -151,8 +133,8 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 			
 			dbHelper.clear();
 			
-			JSONArray unclassifiedSections = getUnclassifiedSections(
-					ConnectionSettings.getConnectURL(cachedContext), userToken);
+			JSONArray unclassifiedSections = CommunicationHelper.getUnclassifiedSections(
+					cachedContext, userToken);
 			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_pull_list_size),
 					String.valueOf(unclassifiedSections.length()), syncTs);
 			// save the unclassified sections to the database
@@ -170,7 +152,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 			// by skipping the metadata in that case.
 			JSONObject freshStats = statsHelper.getMeasurements();
 			if (freshStats.length() > 0) {
-				pushStats(ConnectionSettings.getConnectURL(cachedContext), userToken, freshStats);
+				CommunicationHelper.pushStats(cachedContext, userToken, freshStats);
 				statsHelper.clear();
 			}
 			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_duration),
@@ -239,35 +221,6 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 		return resultList;
 	}
 
-	/*
-	 * Talks to the server and gets the list of unclassified sections
-	 */
-	public JSONArray getUnclassifiedSections(String commuteTrackerHost, String userToken)
-			throws IOException, JSONException {
-		HttpPost msg = new HttpPost(commuteTrackerHost+"/tripManager/getUnclassifiedSections");
-		System.out.println("Posting data to "+msg.getURI());
-		msg.setHeader("Content-Type", "application/json");
-		
-		JSONObject toPush = new JSONObject();
-
-		toPush.put("user", userToken);
-		msg.setEntity(new StringEntity(toPush.toString()));
-		
-		AndroidHttpClient connection = AndroidHttpClient.newInstance(projectName);
-		HttpResponse response = connection.execute(msg);
-		System.out.println("Got response "+response+" with status "+response.getStatusLine());
-		BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-		// We assume that the data is all in a single line
-		// TODO: Verify this assumption
-		String rawJSON = in.readLine();
-		// System.out.println("Raw JSON = "+rawJSON);
-		in.close();
-		connection.close();
-		JSONObject parentObj = new JSONObject(rawJSON);
-		return parentObj.getJSONArray("sections");
-	}
-
-
     /*
      * Talks to server to update HTTPResponseCache entry for Results Summary View
      */
@@ -303,39 +256,6 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 
 
 	/*
-	 * Pushes the classifications to the host.
-	 */
-	public void pushClassifications(String commuteTrackerHost, String userToken, JSONArray userClassification) throws IOException, JSONException {
-		pushJSON(commuteTrackerHost+"/tripManager/setSectionClassification", userToken,
-				"updates", userClassification);
-	}
-	
-	/*
-	 * Pushes the classifications to the host.
-	 */
-	public void pushStats(String commuteTrackerHost, String userToken,
-						  JSONObject appStats) throws IOException, JSONException {
-		pushJSON(commuteTrackerHost+"/stats/set", userToken, "stats", appStats);
-	}
-	
-	public void pushJSON(String fullURL, String userToken,
-						 String objectLabel, Object jsonObjectOrArray) throws IOException, JSONException {
-		HttpPost msg = new HttpPost(fullURL);
-		System.out.println("Posting data to "+msg.getURI());
-		msg.setHeader("Content-Type", "application/json");
-		JSONObject toPush = new JSONObject();
-
-		toPush.put("user", userToken);
-		toPush.put(objectLabel, jsonObjectOrArray);
-		msg.setEntity(new StringEntity(toPush.toString()));
-		AndroidHttpClient connection = AndroidHttpClient.newInstance(projectName);
-		HttpResponse response = connection.execute(msg);
-		System.out.println("Got response "+response+" with status "+response.getStatusLine());
-		connection.close();		
-	}
-
-	
-	/* 
 	 * Generates a notification for the user.
 	 */
 	

@@ -1,25 +1,15 @@
 package edu.berkeley.eecs.e_mission;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
-import android.util.Log;
-import edu.berkeley.eecs.e_mission.auth.GoogleAccountManagerAuth;
-import edu.berkeley.eecs.e_mission.auth.UserProfile;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /*
  * Single class that returns all the connection level settings that need to be customized
@@ -44,61 +34,12 @@ public class AppSettings {
 	
 	public static void setProfileSettings(Context ctxt){
     	//gets the user's email
-    	final String userName = UserProfile.getInstance(ctxt).getUserEmail();
     	final Context thisContext = ctxt;
 		AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
 			@Override
 			protected String doInBackground(Void... params) {
-		    	
-		    	String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
-				// TODO: Restructure this later to combine with the data sync class
-				HttpPost msg = new HttpPost(ConnectionSettings.getConnectURL(thisContext)+
-											"/profile/settings");
-				msg.setHeader("Content-Type", "application/json");
-				String result = null;
 		    	try {
-		    		//String result;
-		    		JSONObject toPush = new JSONObject();
-					toPush.put("user", userToken);
-
-					msg.setEntity(new StringEntity(toPush.toString()));
-			    	
-			    	System.out.println("Posting data to "+msg.getURI());
-			    	
-			    	//create connection
-			    	AndroidHttpClient connection = AndroidHttpClient.newInstance(R.class.toString());
-				    HttpResponse response = connection.execute(msg);
-				    StatusLine statusLine = response.getStatusLine();
-				    System.out.println("Got response "+response+" with status "+statusLine);
-				    int statusCode = statusLine.getStatusCode();
-				    
-				    //String json = EntityUtils.toString(response.getEntity());
-				    
-		    		if(statusCode == 200){
-		    			BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-					    StringBuilder builder = new StringBuilder();
-					    String currLine = null;   
-					    while ((currLine = in.readLine()) != null) {
-					    	builder.append(currLine+"\n");
-					    }
-					    result = builder.toString();
-					    System.out.println("Result Summary JSON = "+result);
-					    in.close();
-					    
-					    /** How it is done in ConfirmTripsAdapter */
-					    /*String rawJSON = in.readLine();
-						// System.out.println("Raw JSON = "+rawJSON);
-						in.close();
-						connection.close();
-						JSONObject parentObj = new JSONObject(rawJSON);
-						return parentObj.getJSONArray("sections");*/
-		    			
-		    		} else {
-		    			Log.e(R.class.toString(),"Failed to get JSON object");
-		    		}
-				    connection.close();
-				    return result;
-		    	
+                    return CommunicationHelper.getUserSettings(thisContext);
 		    	} catch (JSONException e) {
 					e.printStackTrace();
 		    	} catch (UnsupportedEncodingException e){

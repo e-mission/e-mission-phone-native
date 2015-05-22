@@ -22,7 +22,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -287,39 +286,14 @@ public class OnboardingActivity extends Activity implements OnActionListener {
 	/** Sets the accepted Eula Version in the server. */
 	public void saveEulaVerToServer() {
     	//gets the user's email
-    	final String userName = UserProfile.getInstance(this).getUserEmail();
     	final String eulaVer = getEulaVersion();
     	final Context thisContext = this;
 		AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
 			@Override
 			protected String doInBackground(Void... params) {
-				String REDIRECT_URI = getString(R.string.connect_url) + "/profile/consent";
-		    	HttpPost msg = new HttpPost(REDIRECT_URI);
-		    	msg.setHeader("Content-Type", "application/json");
-		    	String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
-		    
 		    	try {
-		    		
-		    		JSONObject toPush = new JSONObject();
-					toPush.put("user", userToken);
-					toPush.put("version", eulaVer);
-
-		    	
-		    	//set the value of the httppost object called msg to the JSON object called toPush
-		    	//toPush has all the values taken from the uri
-				msg.setEntity(new StringEntity(toPush.toString()));
-		    	
-		    	System.out.println("Posting data to "+msg.getURI());
-		    	
-		    	//create connection
-		    	AndroidHttpClient connection = AndroidHttpClient.newInstance(R.class.toString());
-		    	
-		    	//execute httpresponse
-		    	HttpResponse response;
-				response = connection.execute(msg);
-		    	System.out.println("Got response "+response+" with status "+response.getStatusLine());
-		    	connection.close();
-		    	
+                    CommunicationHelper.saveEulaVer(thisContext, eulaVer);
+                    return "success";
 		    	} catch (JSONException e) {
 					e.printStackTrace();
 		    	} catch (UnsupportedEncodingException e){
@@ -387,7 +361,7 @@ public class OnboardingActivity extends Activity implements OnActionListener {
      * Handle the result from Moves authorization flow. The result is delivered as an uri documented
      * on the developer docs (see link below).
      *
-     * @see https://dev.moves-app.com/docs/api
+     * More details at: https://dev.moves-app.com/docs/api
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -519,7 +493,7 @@ public class OnboardingActivity extends Activity implements OnActionListener {
      * The result of this user interaction is delivered to 
      * {@link #onActivityResult(int, int, android.content.Intent) }
      *
-     * @see https://dev.moves-app.com/docs/api
+     * More details at: https://dev.moves-app.com/docs/api
      */
     private void doRequestAuthInApp() {
     	String userName = UserProfile.getInstance(this).getUserEmail();
@@ -545,26 +519,15 @@ public class OnboardingActivity extends Activity implements OnActionListener {
 			@Override
 			protected String doInBackground(Void... params) {
 		        try {
-		        	String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
 		        	String code = resultUri.getQueryParameter("code");
 		        	String state = resultUri.getQueryParameter("state");
-		        	System.out.println("userToken = "+userToken+" code = "+code+" state = "+state);
-		        			    		
-		        	HttpPost msg = new HttpPost(REDIRECT_URI);
-		        	msg.setHeader("Content-Type", "application/json");
-		        	
-		        	JSONObject toPush = new JSONObject();
-		        	toPush.put("user", userToken);
-		        	toPush.put("code", code);
-		        	toPush.put("state", state);
-		        	msg.setEntity(new StringEntity(toPush.toString()));
-		        	
-		        	System.out.println("Posting data to "+msg.getURI());
-		        	AndroidHttpClient connection = AndroidHttpClient.newInstance(R.class.toString());
-		        	HttpResponse response = connection.execute(msg);
-		        	System.out.println("Got response "+response+" with status "+response.getStatusLine());
-		        	connection.close();
-		        	return response.getStatusLine().toString();
+		        	System.out.println("code = "+code+" state = "+state);
+
+		        	JSONObject movesAuth = new JSONObject();
+		        	movesAuth.put("code", code);
+		        	movesAuth.put("state", state);
+                    CommunicationHelper.saveMovesAuth(thisContext, movesAuth);
+                    return "success";
 		        } catch (IOException e) {
 		        	// TODO Auto-generated catch block
 		        	e.printStackTrace();
