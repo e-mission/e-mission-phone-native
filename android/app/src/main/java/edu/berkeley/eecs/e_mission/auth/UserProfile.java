@@ -1,23 +1,19 @@
 package edu.berkeley.eecs.e_mission.auth;
 
+import android.content.Context;
+import android.os.AsyncTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.net.http.AndroidHttpClient;
-import android.os.AsyncTask;
-import edu.berkeley.eecs.e_mission.ConnectionSettings;
+import edu.berkeley.eecs.e_mission.CommunicationHelper;
 
 /*
  * Singleton class that is used to store profile information about the user.
@@ -160,37 +156,13 @@ public class UserProfile {
 	public void registerUser(RegisterUserResult callbackObj) {
 //		final long startMs = System.currentTimeMillis();
 		final Context thisContext = savedCtxt;
-		final String userName = getUserEmail();
 		final RegisterUserResult thisCallback = callbackObj;
 		
 		AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
 			@Override
 			protected String doInBackground(Void... params) {				
 				try {
-					String userToken = GoogleAccountManagerAuth.getServerToken(thisContext, userName);
-					// TODO: Restructure this later to combine with the data sync class
-					HttpPost msg = new HttpPost(ConnectionSettings.getConnectURL(thisContext)+
-							"/profile/create");
-					msg.setHeader("Content-Type", "application/json");
-					
-					JSONObject toPush = new JSONObject();
-					toPush.put("user", userToken);
-					msg.setEntity(new StringEntity(toPush.toString()));
-					
-				    AndroidHttpClient connection = AndroidHttpClient.newInstance("E-Mission");
-				    HttpResponse response = connection.execute(msg);
-				    System.out.println("Got response "+response+" with status "+response.getStatusLine());
-				    BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-				    StringBuilder builder = new StringBuilder();
-				    String currLine = null;   
-				    while ((currLine = in.readLine()) != null) {
-				    	builder.append(currLine+"\n");
-				    }
-				    String rawHTML = builder.toString();
-				    // System.out.println("Raw HTML = "+rawHTML);
-				    in.close();
-				    connection.close();
-				    return rawHTML;
+				    return CommunicationHelper.registerUser(thisContext);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -207,12 +179,8 @@ public class UserProfile {
 				if (taskResult != null) {
 					thisCallback.registerComplete(taskResult);
 				} else {
-				}
-				/*
-				long endMs = System.currentTimeMillis();
-				statsHelper.storeMeasurement(thisContext.getString(R.string.result_display_duration),
-						String.valueOf(endMs - startMs), String.valueOf(endMs));
-						*/
+                    System.out.println("No callback registered, ignoring register response");
+                }
 			}
 
 		};
