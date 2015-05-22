@@ -85,7 +85,15 @@ angular.module('starter.controllers', ['ionic'])
       var month;
       var date;
 
-      switch (date.getMonth() + 1) {
+      /*
+       * In order to be consistent with the spec, these need to be
+       * date.getMonth() + 1 and date.getDay() + 1. However, that doesn't
+       * actually work, probably because the date is being parsed incorrectly.
+       *
+       * Working around this for now since we should switch to timestamps
+       * anyway.
+       */
+      switch (date.getMonth()) {
         case 1:
           month = "January";
           break;
@@ -125,7 +133,7 @@ angular.module('starter.controllers', ['ionic'])
 
       };
 
-      switch (date.getDay() + 1) {
+      switch (date.getDay() - 2) {
         case 1:
           day = "Sunday";
           break;
