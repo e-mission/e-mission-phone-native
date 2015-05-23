@@ -68,27 +68,10 @@ public class CommunicationHelper {
     }
 
     public static JSONArray getUnclassifiedSections(Context ctxt, String userToken)
-            throws MalformedURLException, JSONException, IOException {
+            throws JSONException, IOException {
         String commuteTrackerHost = ConnectionSettings.getConnectURL(ctxt);
-        HttpPost msg = new HttpPost(commuteTrackerHost + "/tripManager/getUnclassifiedSections");
-        System.out.println("Posting data to " + msg.getURI());
-        msg.setHeader("Content-Type", "application/json");
-
-        JSONObject toPush = new JSONObject();
-
-        toPush.put("user", userToken);
-        msg.setEntity(new StringEntity(toPush.toString()));
-
-        AndroidHttpClient connection = AndroidHttpClient.newInstance(ctxt.getString(R.string.app_name));
-        HttpResponse response = connection.execute(msg);
-        System.out.println("Got response " + response + " with status " + response.getStatusLine());
-        BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-        // We assume that the data is all in a single line
-        // TODO: Verify this assumption
-        String rawJSON = in.readLine();
-        // System.out.println("Raw JSON = "+rawJSON);
-        in.close();
-        connection.close();
+        String fullURL = commuteTrackerHost + "/tripManager/getUnclassifiedSections";
+        String rawJSON = getUserPersonalData(ctxt, fullURL, userToken);
         JSONObject parentObj = new JSONObject(rawJSON);
         return parentObj.getJSONArray("sections");
     }
@@ -163,7 +146,7 @@ public class CommunicationHelper {
 
     public static String getUserPersonalData(Context ctxt, String fullURL, String userToken) throws
             JSONException, IOException {
-        String result = null;
+        String result = "";
         HttpPost msg = new HttpPost(fullURL);
         msg.setHeader("Content-Type", "application/json");
 
