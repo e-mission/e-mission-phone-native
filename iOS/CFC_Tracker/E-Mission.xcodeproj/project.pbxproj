@@ -50,6 +50,8 @@
 		ACFD74891968DDE900ADDAAA /* Moves_small.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFD74881968DDE900ADDAAA /* Moves_small.png */; };
 		D0059FD418E1EEA100E9ED2C /* TripSectionDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0059FD318E1EEA100E9ED2C /* TripSectionDatabase.m */; };
 		D008E4F11A04138E00228241 /* OngoingTripsManual.db in Resources */ = {isa = PBXBuildFile; fileRef = D008E4F01A04138E00228241 /* OngoingTripsManual.db */; };
+		D00938321B15A6CF004EECCD /* SkipAuthEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D00938301B15A6CF004EECCD /* SkipAuthEmailViewController.m */; };
+		D00938331B15A6CF004EECCD /* SkipAuthEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00938311B15A6CF004EECCD /* SkipAuthEmailViewController.xib */; };
 		D00B237518E5578400525184 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00B237418E5578400525184 /* AddressBook.framework */; };
 		D00B237718E5579B00525184 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00B237618E5579B00525184 /* AssetsLibrary.framework */; };
 		D00B237918E557A900525184 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00B237818E557A900525184 /* CoreLocation.framework */; };
@@ -231,6 +233,9 @@
 		D0059FD218E1EEA100E9ED2C /* TripSectionDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripSectionDatabase.h; sourceTree = "<group>"; };
 		D0059FD318E1EEA100E9ED2C /* TripSectionDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripSectionDatabase.m; sourceTree = "<group>"; };
 		D008E4F01A04138E00228241 /* OngoingTripsManual.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = OngoingTripsManual.db; sourceTree = "<group>"; };
+		D009382F1B15A6CF004EECCD /* SkipAuthEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkipAuthEmailViewController.h; sourceTree = "<group>"; };
+		D00938301B15A6CF004EECCD /* SkipAuthEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkipAuthEmailViewController.m; sourceTree = "<group>"; };
+		D00938311B15A6CF004EECCD /* SkipAuthEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkipAuthEmailViewController.xib; sourceTree = "<group>"; };
 		D00B237418E5578400525184 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		D00B237618E5579B00525184 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D00B237818E557A900525184 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -460,6 +465,24 @@
 			path = "table images";
 			sourceTree = "<group>";
 		};
+		D009382E1B15A5D5004EECCD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D009382F1B15A6CF004EECCD /* SkipAuthEmailViewController.h */,
+				D00938301B15A6CF004EECCD /* SkipAuthEmailViewController.m */,
+				D00938311B15A6CF004EECCD /* SkipAuthEmailViewController.xib */,
+				D0AF8933192D73D800E650F6 /* GTMOAuth2ViewTouch.xib */,
+				D0E096C418EDAEAA00AFC763 /* AuthCompletionHandler.h */,
+				D0E096C518EDAEAA00AFC763 /* AuthCompletionHandler.m */,
+				D00B248618E60C7F00525184 /* SignInViewController.h */,
+				D00B248718E60C7F00525184 /* SignInViewController.m */,
+				D00B248818E60C7F00525184 /* SignInViewController.xib */,
+				D00B239118E5FA4900525184 /* AuthInspectorViewController.h */,
+				D00B239218E5FA4900525184 /* AuthInspectorViewController.m */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
 		D03F472B1AD34BC4002B2A20 /* Cordova */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,11 +676,7 @@
 				D0C467FE19AC59730010A7DF /* EMissionSummary.html */,
 				D0C467FF19AC59730010A7DF /* InfoViewController.m */,
 				D0C4680019AC59730010A7DF /* InfoViewController.h */,
-				D00B248618E60C7F00525184 /* SignInViewController.h */,
-				D00B248718E60C7F00525184 /* SignInViewController.m */,
-				D00B248818E60C7F00525184 /* SignInViewController.xib */,
-				D00B239118E5FA4900525184 /* AuthInspectorViewController.h */,
-				D00B239218E5FA4900525184 /* AuthInspectorViewController.m */,
+				D009382E1B15A5D5004EECCD /* Auth */,
 				D0F2FA5618DF5AEB000FF723 /* AppDelegate.h */,
 				D0F2FA5718DF5AEB000FF723 /* AppDelegate.m */,
 				AC523188194E4C8200507B71 /* MainStoryboard_iPhone.storyboard */,
@@ -683,9 +702,6 @@
 				D0710E5018E0B632000D26F7 /* CommunicationHelper.m */,
 				D0059FD218E1EEA100E9ED2C /* TripSectionDatabase.h */,
 				D0059FD318E1EEA100E9ED2C /* TripSectionDatabase.m */,
-				D0E096C418EDAEAA00AFC763 /* AuthCompletionHandler.h */,
-				D0E096C518EDAEAA00AFC763 /* AuthCompletionHandler.m */,
-				D0AF8933192D73D800E650F6 /* GTMOAuth2ViewTouch.xib */,
 				D059F8B918F5DC8700AB044B /* Constants.h */,
 				D059F8BA18F5DC8700AB044B /* Constants.m */,
 				D09EA85118FB6D1400949DA5 /* HTMLDisplayCommunicationHelper.h */,
@@ -949,6 +965,7 @@
 				ACFD74831968CC9100ADDAAA /* EMission_large.png in Resources */,
 				D03F476F1AD34BC4002B2A20 /* icon-small.png in Resources */,
 				D03F47681AD34BC4002B2A20 /* icon-60.png in Resources */,
+				D00938331B15A6CF004EECCD /* SkipAuthEmailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,6 +1010,7 @@
 				ACE8EBD919E8D3CD00E57250 /* CustomSettings.m in Sources */,
 				D0FB8E701A0395BE0087797F /* ManualTripController.m in Sources */,
 				ACBA858019A977FC00C09509 /* ActionSheetCustomPicker.m in Sources */,
+				D00938321B15A6CF004EECCD /* SkipAuthEmailViewController.m in Sources */,
 				D08F56F119A9A27300468D77 /* ConnectionSettings.m in Sources */,
 				D00B248918E60C7F00525184 /* SignInViewController.m in Sources */,
 				D0E096C618EDAEAA00AFC763 /* AuthCompletionHandler.m in Sources */,
