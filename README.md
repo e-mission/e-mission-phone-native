@@ -41,7 +41,7 @@ A high level overview of the development flow is:
 1. Clone the e-mission-phone-cordova-plugins repo
 1. Add a new screen to the list there (see the README of that repo)
 1. Test using ionic emulate until it works
-1. Run the https://github.com/e-mission/e-mission-phone/blob/master/update\_cordova\_sources.sh files to copy the code for the new screens into this repo
+1. Run the https://github.com/e-mission/e-mission-phone/blob/master/update_cordova_sources.sh files to copy the code for the new screens into this repo
 1. If needed, add a new menu item that will launch `CordovaActivity` for the new view (on Android: `ConfirmSectionListActivity.onOptionsItemSelected`, on iOS: MasterNavController:updateViewOnState, the last entry)
 1. Test and send pull request on BOTH repos
 
