@@ -41,3 +41,22 @@ And then copy over the sample files from these locations and replace the values 
 
 Note that platform specific instructions are also available at in README files
 in the individual directories (MovesConnect for android and iOS for iOS).
+
+Trouble Shooting:
+
+If you are getting a compile error in which R can not be resolved
+it may be because you have an updated version of the android SDK. 
+
+To check if this is the case: 
+
+1. Open up tools/Android/SDKManager. 
+
+2. Check the version number of "SDK Platform"
+
+3. Open build.gradle in project:app
+
+4. Adjust the "compile SDK version" and "target SDK version to be the version number you found in step 2"
+
+5. Clean project
+
+6. Sync project with gradle file 
