@@ -14,7 +14,9 @@ We are switching to more cordova-based WebViews to use as much crossplatform
 code as possible. However, rather than switch to a full cordova solution, we
 are using the Cordova WebViews [embedded in an existing app]
 (https://cordova.apache.org/docs/en/4.0.0/guide\_hybrid\_webviews\_index.md.html).
+
 This is for two reasons:
+
 1. Cordova currently has only experimental support for gradle, and does not support the most recent version. This means that we cannot use the gradle-based Android Studio. Our earlier investigation has shown the the most recent google play API works [best for background tracking](http://www.shankari.org/2015/02/unit-testing-for-location-tracking-on.html). Embedding WebViews allows us to continue building with the most recent tools, while retaining crossplatform UI elements.
 1. It allows us to update the UI dynamically without requiring an update to the app stores. This provides flexibility in customizing the UI to a users' preferences, while also supporting user studies.
 1. It allows us to use native components as needed for performance, although we have not had to do this so far. It also allows us to retain our existing native components and move from working -> working.
@@ -35,6 +37,7 @@ different repo for ease of use.
 https://github.com/e-mission/e-mission-phone-cordova-plugins
 
 A high level overview of the development flow is:
+
 1. Clone the e-mission-phone-cordova-plugins repo
 1. Add a new screen to the list there (see the README of that repo)
 1. Test using ionic emulate until it works
