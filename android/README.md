@@ -1,4 +1,30 @@
-MovesConnect uses google API keys for the following uses:
+## Quickstart
+* This project is intended to be built with gradle, rather than ant.
+* In case an IDE is used, the project is intended to be used with the IntelliJ-based Android Studio, not one that is based on eclipse.
+  * This development environment can be downloaded from:
+    http://developer.android.com/sdk/index.html
+
+Then, this project can be imported using File -> Import Project and then selecting the build.gradle from from the cloned directory. Gradle already handles dependencies and test case imports, so setup is significantly easier.
+
+A video showing the import process is available here:
+https://drive.google.com/open?id=0B04dolz7Xr1sYVlwYTRXcjczejQ&authuser=0
+
+The onboarding flow is implemented as a state machine, as described at:
+https://docs.google.com/a/berkeley.edu/document/d/1OYeo5ccUcTD-9tyMr4PysoS6R9e3rNDl1SCPXnF30b0/edit?usp=sharing
+
+## Configuration with keys
+### Development
+In order to ease development, we use the unencrypted email address while
+logging in to a HTTP server. This allows us to start developing without any
+keys or mucking with keystores. The only edit that might be needed is to put
+the correct host name into `connect.xml` (in `app/src/main/res/values`).
+
+While working with real location data, though, we need to obtain the
+appropropriate keys as described below. That will allow us to replace the email
+address with a signed, encrypted JWT.
+
+### Production
+The android project uses google API keys for the following uses:
 - login with google+
 - displaying maps
 
@@ -14,18 +40,8 @@ If you are part of the e-mission team, and are using our keys from the
 e-mission-keys repository, then you should also copy over my keystore, which is
 checked in the same location.
 
-You also need to replace connect.xml.sample (from `app/src/main/res/values`)
-with a connect.xml that has the server to connect to, and the correct 
-
-* This project is intended to be built with gradle, rather than ant.
-* In case an IDE is used, the project is intended to be used with the IntelliJ-based Android Studio, not one that is based on eclipse.
-  * This development environment can be downloaded from:
-    http://developer.android.com/sdk/index.html
-
-Then, this project can be imported using File -> Import Project and then selecting the build.gradle from from the cloned directory. Gradle already handles dependencies and test case imports, so setup is significantly easier.
-
-The onboarding flow is implemented as a state machine, as described at:
-https://docs.google.com/a/berkeley.edu/document/d/1OYeo5ccUcTD-9tyMr4PysoS6R9e3rNDl1SCPXnF30b0/edit?usp=sharing
+You also need to replace the placeholders in connect.xml (from
+`app/src/main/res/values`) with the correct keys.
 
 ### Troubleshooting ###
 - The Google Authentication sometimes fails. In particular, clicking on "Auth
