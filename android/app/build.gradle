@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 22
     buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "edu.berkeley.eecs.e_mission"
         minSdkVersion 11
-        targetSdkVersion 18
+        targetSdkVersion 22
 
         testApplicationId "edu.berkeley.eecs.e_missionst"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
@@ -26,7 +26,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:22.2.0'
     compile 'com.google.android.gms:play-services:+'
     compile project(':CordovaLib')
-}
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.2'
+    }
