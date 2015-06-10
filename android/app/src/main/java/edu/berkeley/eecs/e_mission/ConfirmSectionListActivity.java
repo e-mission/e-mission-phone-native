@@ -291,6 +291,12 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 		return false;
 	}
 
+/*	public void launchScoreListActivity() {
+		Intent scoreIntent = new Intent(this, edu.berkeley.eecs.e_mission.doDataBase.class);
+		scoreIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(scoreIntent);
+	}*/
+
 	public void launchSettingsActivity() {
 		Intent settingsIntent = new Intent(this,
 				edu.berkeley.eecs.e_mission.SettingsActivity.class);
