@@ -9,5 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_weight="1"
-        android:text="Insert your car&apos;s MPG" />
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:hint="Insert your car&apos;s MPG" />
 </LinearLayout>

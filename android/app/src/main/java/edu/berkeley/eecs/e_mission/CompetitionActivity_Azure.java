@@ -103,9 +103,11 @@ public class CompetitionActivity_Azure extends Activity {
         editTheText = (EditText) findViewById(R.id.editText);
 
         editTheText.setOnKeyListener(new View.OnKeyListener() {
-
+            @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 System.out.println("onKey");
+                System.out.println("key code = " + keyCode);
+                System.out.println("should be = " + KeyEvent.KEYCODE_ENTER);
                 // If the event is a key-down event on the "enter" button
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
