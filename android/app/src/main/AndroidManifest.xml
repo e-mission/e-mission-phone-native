@@ -62,6 +62,11 @@
             android:label="Cordova Tab Activity">
         </activity>
 
+        <activity
+            android:name="edu.berkeley.eecs.e_mission.CompetitionActivity_Azure"
+            android:label="MPG Activity">
+
+        </activity>
         <activity 
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" 
             android:launchMode="singleTop" 
@@ -155,7 +160,7 @@
         <meta-data android:name="EulaVersion" android:value="1.0" />
         
     </application>
-
     <uses-permission android:name="android.permission.INTERNET" />
+
 
 </manifest>

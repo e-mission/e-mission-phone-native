@@ -1,6 +1,23 @@
 package edu.berkeley.eecs.e_mission;
+import android.app.Activity;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.widget.ListView;
+
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
+import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -26,37 +43,58 @@ import java.util.Map;
 
 
 
-public class CompetitionActivity_Azure extends CordovaActivity {
+public class CompetitionActivity_Azure extends Activity {
 
     private MobileServiceClient mClient;
     private MobileServiceSyncTable<ScoreActivity> mToDoTable;
     private Query mPullQuery;
+    private EditText editText;
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
 
 
+        System.out.println("Doing Something");
 
-    public void onCreate() {
-
+        setContentView(R.layout.mpg);
         try {
+            authenticate();
+
+            System.out.println("Passed try statement");
+
             mClient = new MobileServiceClient(
                     "https://e-mission.azure-mobile.net/",
                     "aBNpasaSXoYAhvstmXYvtkEfFYudbt33",
                     this
             );
+
+            System.out.print("mclient");
+
             SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "Item", null, 1);
             MobileServiceSyncHandler handler = new ConflictResolvingSyncHandler();
             MobileServiceSyncContext syncContext = mClient.getSyncContext();
+            System.out.print("opened a bunch of stuff");
 
             mPullQuery = mClient.getTable(ScoreActivity.class).where().field("score").gt(0);
+            System.out.print("mpullQuery");
 
             Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
 
             localStore.defineTable("Score Item", tableDefinition);
             syncContext.initialize(localStore, handler).get();
 
+            System.out.print("Sync contect initialized");
+
             // Get the Mobile Service Table instance to use
             mToDoTable = mClient.getSyncTable(ScoreActivity.class);
+            editText = (EditText) findViewById(R.id.editText);
+
+            System.out.print("edit text");
+
 
             refreshItemsFromTable();
+
 
 
         } catch (MalformedURLException e) {
@@ -64,7 +102,43 @@ public class CompetitionActivity_Azure extends CordovaActivity {
         } catch (Exception e) {
             System.out.println("Exception");
         }
+    }
 
+    private void createTable() {
+
+        // Get the Mobile Service Table instance to use
+        mToDoTable = mClient.getSyncTable(ScoreActivity.class);
+
+        editText = (EditText) findViewById(R.id.editText);
+
+        // Create an adapter to bind the items with the view
+/*        mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
+        ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
+        listViewToDo.setAdapter(mAdapter);*/
+
+        // Load the items from the Mobile Service
+        refreshItemsFromTable();
+    }
+
+    private void authenticate() {
+        // Login using the Google provider.
+
+        ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Google);
+
+        Futures.addCallback(mLogin, new FutureCallback<MobileServiceUser>() {
+            @Override
+            public void onFailure(Throwable exc) {
+                //createAndShowDialog((Exception) exc, "Error");
+            }
+
+            @Override
+            public void onSuccess(MobileServiceUser user) {
+                //createAndShowDialog(String.format(
+                        //"You are now logged in - %1$2s",
+                        //user.getUserId()), "Success");
+                createTable();
+            }
+        });
     }
 
     public void addItem(View view) {
@@ -74,6 +148,7 @@ public class CompetitionActivity_Azure extends CordovaActivity {
 
         // Create a new item
         final ScoreActivity item = new ScoreActivity();
+        //item.mText =
 
         // Insert the new item
         new AsyncTask<Void, Void, Void>() {

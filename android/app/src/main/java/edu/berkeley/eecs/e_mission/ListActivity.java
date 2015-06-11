@@ -1,5 +1,8 @@
 /*
+
 package edu.berkeley.eecs.e_mission;
+
+import android.app.Activity;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -34,22 +37,28 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
+*/
+/*
 This is for couchbase
 
 Commenting it out because the build.gradle is for Azure
+*//*
+
+
 
 */
 /**
  * Created by RZarrabi on 6/8/2015.
  *//*
 
-public class ListActivity extends CordovaActivity{
+
+public class ListActivity extends Activity{
 
     private Manager manager;
     private static Context mContext;
     public static final String SYNC_URL = "http://10.10.67.102:4985";
     Database database;
-
+    final String TAG = "TAG";
 
 
     public void onCreate() {
@@ -110,11 +119,16 @@ public class ListActivity extends CordovaActivity{
 
         pullReplication.start();
         pushReplication.start();
+*/
+/*
 
-        pullReplication.addChangeListener(this);
+        pullReplication.addChangeListener(true);
         pushReplication.addChangeListener(this);
+*//*
+
 
     }
 
 }
+
 */

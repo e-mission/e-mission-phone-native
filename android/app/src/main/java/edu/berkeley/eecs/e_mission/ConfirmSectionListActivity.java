@@ -281,6 +281,9 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 		case R.id.action_result_summary:
 			launchResultSummary();
 			return true;
+		case R.id.action_result_MPG:
+			launchMPGActivity();
+			return true;
         // case R.id.action_launch_cordova_tabs:
         //     launchCordovaTabsActivity();
         //     return true;
@@ -291,11 +294,11 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 		return false;
 	}
 
-/*	public void launchScoreListActivity() {
-		Intent scoreIntent = new Intent(this, edu.berkeley.eecs.e_mission.doDataBase.class);
+	public void launchMPGActivity() {
+		Intent scoreIntent = new Intent(this, edu.berkeley.eecs.e_mission.CompetitionActivity_Azure.class);
 		scoreIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(scoreIntent);
-	}*/
+	}
 
 	public void launchSettingsActivity() {
 		Intent settingsIntent = new Intent(this,

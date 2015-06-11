@@ -32,20 +32,20 @@ android {
     }
 }
 
-/*
 dependencies {
     compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.google.android.gms:play-services:+'
+    compile 'com.google.android.gms:play-services:7.0.0'
     compile project(':CordovaLib')
-    //compile 'com.google.code.gson:gson:2.3'
-    //compile 'com.google.guava:guava:18.0'
-    //compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.2'
-    compile 'com.couchbase.lite:couchbase-lite-android:1.0.4'
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.2'
+    //compile 'com.couchbase.lite:couchbase-lite-android:1.0.4'
     }
-*/
 
+/*
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.+'
     compile 'com.couchbase.lite:couchbase-lite-android:1.0.4'
 }
+*/

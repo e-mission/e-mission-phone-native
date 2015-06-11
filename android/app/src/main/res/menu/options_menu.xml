@@ -10,6 +10,11 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="@string/menu_item_result_summary"/>
+    <item
+        android:id="@+id/action_result_MPG"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="MPG"/>
     <!--
     <item
         android:id="@+id/action_cordova"
