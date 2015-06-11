@@ -59,7 +59,6 @@ public class CompetitionActivity_Azure extends Activity {
 
         setContentView(R.layout.mpg);
         try {
-            authenticate();
 
             System.out.println("Passed try statement");
 
@@ -69,31 +68,9 @@ public class CompetitionActivity_Azure extends Activity {
                     this
             );
 
-            System.out.print("mclient");
-
-            SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "Item", null, 1);
-            MobileServiceSyncHandler handler = new ConflictResolvingSyncHandler();
-            MobileServiceSyncContext syncContext = mClient.getSyncContext();
-            System.out.print("opened a bunch of stuff");
-
-            mPullQuery = mClient.getTable(ScoreActivity.class).where().field("score").gt(0);
-            System.out.print("mpullQuery");
-
-            Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
-
-            localStore.defineTable("Score Item", tableDefinition);
-            syncContext.initialize(localStore, handler).get();
-
-            System.out.print("Sync contect initialized");
-
-            // Get the Mobile Service Table instance to use
-            mToDoTable = mClient.getSyncTable(ScoreActivity.class);
-            editText = (EditText) findViewById(R.id.editText);
-
-            System.out.print("edit text");
+            authenticate();
 
 
-            refreshItemsFromTable();
 
 
 
@@ -107,16 +84,33 @@ public class CompetitionActivity_Azure extends Activity {
     private void createTable() {
 
         // Get the Mobile Service Table instance to use
-        mToDoTable = mClient.getSyncTable(ScoreActivity.class);
 
+        System.out.print("mclient");
+
+        SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "Item", null, 1);
+        MobileServiceSyncHandler handler = new ConflictResolvingSyncHandler();
+        MobileServiceSyncContext syncContext = mClient.getSyncContext();
+        System.out.print("opened a bunch of stuff");
+
+        mPullQuery = mClient.getTable(ScoreActivity.class).where().field("score").gt(0);
+        System.out.print("mpullQuery");
+
+        Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
+        try {
+            localStore.defineTable("Score Item", tableDefinition);
+            syncContext.initialize(localStore, handler).get();
+        } catch (Exception e){
+
+        }
+        System.out.print("Sync contect initialized");
+
+        // Get the Mobile Service Table instance to use
+        mToDoTable = mClient.getSyncTable(ScoreActivity.class);
         editText = (EditText) findViewById(R.id.editText);
 
-        // Create an adapter to bind the items with the view
-/*        mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
-        ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
-        listViewToDo.setAdapter(mAdapter);*/
+        System.out.print("edit text");
 
-        // Load the items from the Mobile Service
+
         refreshItemsFromTable();
     }
 
