@@ -10,19 +10,19 @@ public class ScoreActivity {
      * Item text
      */
     @com.google.gson.annotations.SerializedName("text")
-    public String mText;
+    public String Text;
 
     /**
      * Item Id
      */
     @com.google.gson.annotations.SerializedName("id")
-    public int mId;
+    public String ID;
 
 
 
     @Override
     public String toString(){
-        return mText;
+        return Text;
     }
 
     public ScoreActivity() {

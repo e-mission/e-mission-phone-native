@@ -4,12 +4,20 @@
     android:layout_height="match_parent"
     android:id="@+id/mpg">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="16.92" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_weight="1"
+        android:layout_weight="11.65"
         android:inputType="number"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionSend"
         android:hint="Insert your car&apos;s MPG" />
 </LinearLayout>

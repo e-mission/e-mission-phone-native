@@ -1,11 +1,14 @@
 package edu.berkeley.eecs.e_mission;
 import android.app.Activity;
+import android.content.SyncContext;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -13,6 +16,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -48,6 +52,7 @@ public class CompetitionActivity_Azure extends Activity {
     private MobileServiceSyncTable<ScoreActivity> mToDoTable;
     private Query mPullQuery;
     private EditText editTheText;
+    private ArrayList<ScoreActivity> scores;
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -68,10 +73,18 @@ public class CompetitionActivity_Azure extends Activity {
 
             authenticate();
 
+            System.out.println("ANything happening here?");
+            TextView myText = (TextView)findViewById(R.id.textView);
+            if (scores != null) {
+                myText.setText(scores.get(0).Text);
+            } else {
+                myText.setText("You havn't set a score yet");
+            }
 
         } catch (MalformedURLException e) {
             System.out.println("Failed to connect");
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Exception");
         }
     }
@@ -82,7 +95,7 @@ public class CompetitionActivity_Azure extends Activity {
 
         System.out.println("Create table");
 
-        SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "Item", null, 1);
+        SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "ScoreActivty", null, 1);
         MobileServiceSyncHandler handler = new ConflictResolvingSyncHandler();
         MobileServiceSyncContext syncContext = mClient.getSyncContext();
         System.out.println("opened a bunch of stuff");
@@ -95,6 +108,9 @@ public class CompetitionActivity_Azure extends Activity {
             localStore.defineTable("Score Item", tableDefinition);
             syncContext.initialize(localStore, handler).get();
         } catch (Exception e){
+
+            System.out.println("Error Initializing sync context");
+            e.printStackTrace();
 
         }
         System.out.println("Sync context initialized");
@@ -113,6 +129,22 @@ public class CompetitionActivity_Azure extends Activity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                             // Perform action on key press
                         System.out.println("ENTER");
+                        Editable num = editTheText.getText();
+                        ScoreActivity sc = new ScoreActivity();
+                        sc.Text = num.toString();
+                        //sc.mId = 1;
+                        //addItem(v, num);
+                         mClient.getTable(ScoreActivity.class).insert(sc, new TableOperationCallback<ScoreActivity>() {
+                        public void onCompleted(ScoreActivity entity, Exception exception, ServiceFilterResponse response) {
+                            if (exception == null) {
+                                // Insert succeeded
+                                System.out.println("Succeeded");
+                            } else {
+                                // Insert failed
+                                exception.printStackTrace();
+                            }
+                        }
+                    });
 
                     return true;
                 }
@@ -146,14 +178,14 @@ public class CompetitionActivity_Azure extends Activity {
         });
     }
 
-    public void addItem(View view) {
+    public void addItem(View view, Editable num) {
         if (mClient == null) {
             return;
         }
 
         // Create a new item
         final ScoreActivity item = new ScoreActivity();
-        //item.mText =
+        item.Text = num.toString();
 
         // Insert the new item
         new AsyncTask<Void, Void, Void>() {
@@ -167,6 +199,7 @@ public class CompetitionActivity_Azure extends Activity {
                             public void run() {
                                 //mAdapter.add(entity);
                                 mToDoTable.insert(entity);
+                                //SyncContext.
                             }
                         });
                     }
@@ -188,20 +221,27 @@ public class CompetitionActivity_Azure extends Activity {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
+
                     final MobileServiceList<ScoreActivity> result = mToDoTable.read(mPullQuery).get();
+                    System.out.println("Inside of the try statement");
                     runOnUiThread(new Runnable() {
 
                         @Override
                         public void run() {
                             //mAdapter.clear();
+                            scores = new ArrayList<ScoreActivity>();
 
                             for (ScoreActivity item : result) {
                                 //mAdapter.add(item);
+                                System.out.println("Whats going on in run()?");
+
+                                scores.add(item);
                             }
                         }
                     });
                 } catch (Exception exception) {
                     //createAndShowDialog(exception, "Error");
+                    exception.printStackTrace();
                 }
                 return null;
             }
