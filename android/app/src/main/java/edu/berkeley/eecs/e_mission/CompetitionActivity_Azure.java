@@ -2,6 +2,7 @@ package edu.berkeley.eecs.e_mission;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -41,14 +42,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
-
 public class CompetitionActivity_Azure extends Activity {
 
     private MobileServiceClient mClient;
     private MobileServiceSyncTable<ScoreActivity> mToDoTable;
     private Query mPullQuery;
-    private EditText editText;
+    private EditText editTheText;
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -61,7 +60,6 @@ public class CompetitionActivity_Azure extends Activity {
         try {
 
             System.out.println("Passed try statement");
-
             mClient = new MobileServiceClient(
                     "https://e-mission.azure-mobile.net/",
                     "aBNpasaSXoYAhvstmXYvtkEfFYudbt33",
@@ -69,9 +67,6 @@ public class CompetitionActivity_Azure extends Activity {
             );
 
             authenticate();
-
-
-
 
 
         } catch (MalformedURLException e) {
@@ -85,15 +80,15 @@ public class CompetitionActivity_Azure extends Activity {
 
         // Get the Mobile Service Table instance to use
 
-        System.out.print("mclient");
+        System.out.println("Create table");
 
         SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "Item", null, 1);
         MobileServiceSyncHandler handler = new ConflictResolvingSyncHandler();
         MobileServiceSyncContext syncContext = mClient.getSyncContext();
-        System.out.print("opened a bunch of stuff");
+        System.out.println("opened a bunch of stuff");
 
         mPullQuery = mClient.getTable(ScoreActivity.class).where().field("score").gt(0);
-        System.out.print("mpullQuery");
+        System.out.println("mpullQuery");
 
         Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
         try {
@@ -102,14 +97,27 @@ public class CompetitionActivity_Azure extends Activity {
         } catch (Exception e){
 
         }
-        System.out.print("Sync contect initialized");
-
+        System.out.println("Sync context initialized");
         // Get the Mobile Service Table instance to use
         mToDoTable = mClient.getSyncTable(ScoreActivity.class);
-        editText = (EditText) findViewById(R.id.editText);
+        editTheText = (EditText) findViewById(R.id.editText);
 
-        System.out.print("edit text");
+        editTheText.setOnKeyListener(new View.OnKeyListener() {
 
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                System.out.println("onKey");
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            // Perform action on key press
+                        System.out.println("ENTER");
+
+                    return true;
+                }
+                return false;
+            }
+        });
+        System.out.println(editTheText);
 
         refreshItemsFromTable();
     }
@@ -130,6 +138,7 @@ public class CompetitionActivity_Azure extends Activity {
                 //createAndShowDialog(String.format(
                         //"You are now logged in - %1$2s",
                         //user.getUserId()), "Success");
+                System.out.println("Is this happenening??????");
                 createTable();
             }
         });
