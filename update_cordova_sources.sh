@@ -1,4 +1,3 @@
-
 -DST="$1"
 -cp -r $DST/platforms/android/assets/* android/app/src/main/assets
 -rm android/app/src/main/assets/www/TripSections.db
