@@ -16,7 +16,7 @@
     <string name="connect_url">http://10.0.3.2:8080/</string>
     -->
 <resources>
-    <string name="connect_url">http://10.0.2.2:8082</string>
+    <string name="connect_url">http://10.0.2.2:8080</string>
     <!--
     In order to make it easier for developers to perform end-to-end testing, we skip authentication in development mode,
     both on the server and on the client.
