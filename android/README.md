@@ -77,3 +77,20 @@ You also need to replace the placeholders in connect.xml (from
         Caused by: java.lang.OutOfMemoryError: Failed to allocate a 92160012 byte allocation with 4194304 free bytes and 53MB until OOM
                 at dalvik.system.VMRuntime.newNonMovableArray(Native Method)
 
+  If you are getting a compile error in which R can not be resolved
+  it may be because you have an updated version of the android SDK. 
+
+  To check if this is the case: 
+
+    1. Open up tools/Android/SDKManager. 
+
+    2. Check the version number of "SDK Platform"
+
+    3. Open build.gradle in project:app
+
+    4. Adjust the "compile SDK version" and "target SDK version to be the version number you found in step 2"
+
+    5. Clean project
+
+    6. Sync project with gradle file 
+
