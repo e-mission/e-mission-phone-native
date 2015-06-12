@@ -18,6 +18,7 @@
 #import "AuthCompletionHandler.h"
 #import "Constants.h"
 #import "ConnectionSettings.h"
+#import "Cordova/CDVPlugin.h"
 // #import "MovesAPI.h"
 
 @interface AppDelegate () {
@@ -39,6 +40,31 @@ static NSString * const runMultipleTimes = @"appHasRunMoreThanOnce";
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+// BEGIN: Copy from cordova 
+
+- (id)init
+{
+    /** If you need to do any extra app-specific initialization, you can do it here
+     *  -jm
+     **/
+    NSHTTPCookieStorage* cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+
+    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+
+    int cacheSizeMemory = 8 * 1024 * 1024; // 8MB
+    int cacheSizeDisk = 32 * 1024 * 1024; // 32MB
+    NSURLCache* sharedCache = [[NSURLCache alloc] 
+        initWithMemoryCapacity:cacheSizeMemory
+        diskCapacity:cacheSizeDisk
+        diskPath:@"nsurlcache"];
+    [NSURLCache setSharedURLCache:sharedCache];
+
+    self = [super init];
+    return self;
+}
+
+// END: Copy from cordova
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -53,6 +79,15 @@ static NSString * const runMultipleTimes = @"appHasRunMoreThanOnce";
     // Handle google+ sign on
     [AuthCompletionHandler sharedInstance].clientId = [[ConnectionSettings sharedInstance] getGoogleiOSClientID];
     [AuthCompletionHandler sharedInstance].clientSecret = [[ConnectionSettings sharedInstance] getGoogleiOSClientSecret];
+
+    // BEGIN: Copy from cordova
+    // This DOES NOT WORK. Using it results in a blank screen for the UI
+    /*
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    self.window = [[UIWindow alloc] initWithFrame:screenBounds];
+    self.window.autoresizesSubviews = YES;
+     */
+    // END: Copy from cordova
     
     // Might not be needed MARKER#1
     [CustomSettings sharedInstance];
@@ -99,7 +134,16 @@ static NSString * const runMultipleTimes = @"appHasRunMoreThanOnce";
                 }
             }
         }];
+    } else {
+        // BEGIN: Copy from cordova
+        // all plugins will get the notification, and their handlers will be called
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
+
+        return YES;
+
+        // BEGIN: Copy from cordova
     }
+
     /*
     if ([GPPURLHandler handleURL:url
                sourceApplication:sourceApplication
@@ -266,6 +310,11 @@ static NSString * const runMultipleTimes = @"appHasRunMoreThanOnce";
         localNotif.applicationIconBadgeNumber = count;
         [application presentLocalNotificationNow:localNotif];
     }
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
+{
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 @end
