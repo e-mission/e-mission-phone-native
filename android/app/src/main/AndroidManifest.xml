@@ -63,7 +63,7 @@
         </activity>
 
         <activity
-            android:name="edu.berkeley.eecs.e_mission.CompetitionActivity_Azure"
+            android:name=".data_sync.AzureSync"
             android:label="MPG Activity">
 
         </activity>

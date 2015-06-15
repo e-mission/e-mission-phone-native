@@ -11,6 +11,7 @@ import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -41,8 +42,10 @@ import edu.berkeley.eecs.e_mission.auth.UserProfile;
  * @author shankari
  *
  */
-public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
+public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements SyncingInterface {
 	private String userName;
+
+	private SyncingInterface SyncSystem;
 
 	Properties uuidMap;
 	boolean syncSkip = false;
@@ -51,19 +54,31 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 	ClientStatsHelper statsHelper;
 	// TODO: Figure out a principled way to do this
 	private static int CONFIRM_TRIPS_ID = 99;
+	private String service;
 	
 	public ConfirmTripsAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
-		
+
+		// Get service somehow
+
+		service = "Ours";
+
 		System.out.println("Creating ConfirmTripsAdapter");
 		// Dunno if it is OK to cache the context like this, but there are other
 		// people doing it, so let's do it as well.
 		// See https://nononsense-notes.googlecode.com/git-history/3716b44b527096066856133bfc8dfa09f9244db8/NoNonsenseNotes/src/com/nononsenseapps/notepad/sync/SyncAdapter.java
 		// for an example
-		cachedContext = context;
-		dbHelper = new ModeClassificationHelper(context);
-		statsHelper = new ClientStatsHelper(context);
-		// Our ContentProvider is a dummy so there is nothing else to do here
+		if (service.equals("AzureSync")) {
+			SyncSystem = new AzureSync(context, autoInitialize);
+		} else if (service.equals("Ours")) {
+			SyncSystem = new ShankariSyncService(context, autoInitialize);
+		} else if (service.equals("CouchBase")) {
+            SyncSystem = new CouchBaseSync(context, autoInitialize);
+        } else {
+            Log.d("TAG", "No sync service chosen");
+
+        }
+			// Our ContentProvider is a dummy so there is nothing else to do here
 	}
 	
 	/* (non-Javadoc)
@@ -73,106 +88,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 	public void onPerformSync(Account account, Bundle extras, String authority,
 			ContentProviderClient provider, SyncResult syncResult) {
         Log.i("SYNC", "PERFORMING SYNC");
-        long msTime = System.currentTimeMillis();
-		String syncTs = String.valueOf(msTime);
-		statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_launched), null, syncTs);
-		
-		/*
-		 * Read the battery level when the app is being launched anyway.
-		 */
-		statsHelper.storeMeasurement(cachedContext.getString(R.string.battery_level),
-				String.valueOf(BatteryUtils.getBatteryLevel(cachedContext)), syncTs);
-				
-		if (syncSkip == true) {
-			System.err.println("Something is wrong and we have been asked to skip the sync, exiting immediately");
-			return;
-		}
-
-		if (!OnboardingActivity.getOnboardingComplete(cachedContext)) {
-			generateNotification(CONFIRM_TRIPS_ID, "Finish setting up app", edu.berkeley.eecs.e_mission.OnboardingActivity.class);
-			return;
-		}
-		
-		System.out.println("Can we use the extras bundle to transfer information? "+extras);
-		// Get the list of uncategorized trips from the server
-		// hardcoding the URL and the userID for now since we are still using fake data
-		String userName = UserProfile.getInstance(cachedContext).getUserEmail();
-		System.out.println("real user name = "+userName);
-
-		if (userName == null || userName.trim().length() == 0) {
-			System.out.println("we don't know who we are, so we can't get our data");
-			return;
-		}
-		// First, get a token so that we can make the authorized calls to the server
-		String userToken = GoogleAccountManagerAuth.getServerToken(cachedContext, userName);
-		
-		// TODO: Use ORM to convert this to a Section[]
-		try {
-			// First push and then pull, so that we don't end up re-reading data that the user has just classified	
-			JSONArray classifiedSections = convertListToJSON(dbHelper.getAndDeleteClassifiedSections());
-			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_push_list_size),
-					String.valueOf(classifiedSections.length()), syncTs);
-			// System.out.println("classifiedSections = "+classifiedSections);
-			if (classifiedSections.length() > 0) {
-				CommunicationHelper.pushClassifications(cachedContext, userToken, classifiedSections);
-			} else {
-				System.out.println("No user classified sections, skipping push to server");
-			}
-			
-			/*
-			 * Originally, we just added the classified sections to the database. But this gives rise
-			 * to synchronization errors if the user is accessing the data from multiple devices.
-			 * This is probably not a huge issue initially for most people, but some cases that 
-			 * I can think of are:
-			 * - two people sharing the same account like Tom and me
-			 * - people using a different device for the data collection and a different one
-			 * (google watch) for the classification.
-			 * 
-			 * The database on the server is the source of truth, so we can always just synchronize to it.
-			 * So let's clear our local cached copy before pulling data from the server.
-			 */
-			
-			dbHelper.clear();
-			
-			JSONArray unclassifiedSections = CommunicationHelper.getUnclassifiedSections(
-					cachedContext, userToken);
-			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_pull_list_size),
-					String.valueOf(unclassifiedSections.length()), syncTs);
-			// save the unclassified sections to the database
-			dbHelper.storeNewUnclassifiedTrips(convertJSONToList(unclassifiedSections));
-			// We should be able to figure out which sections are already in the notification bar and filter those out
-			// But let's do something lame and easy for now
-			// TODO: Optimize this later
-			// Also, since we are already using a database, we may want to consider
-			// using a content provider, since that is the recommended solution
-			// TODO: Simplify this later, once we are sure that the list stuff works
-			generateNotifications(unclassifiedSections);
-			
-			// Now, we push the stats and clear it
-			// Note that the database ensures that we have a blank document if there are no stats
-			// by skipping the metadata in that case.
-			JSONObject freshStats = statsHelper.getMeasurements();
-			if (freshStats.length() > 0) {
-				CommunicationHelper.pushStats(cachedContext, userToken, freshStats);
-				statsHelper.clear();
-			}
-			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_duration),
-					String.valueOf(System.currentTimeMillis() - msTime), syncTs);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        try {
-            updateResultsSummary(userToken);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		SyncSystem.onPerformSync(account, extras, authority, provider, syncResult);
 	}
 	
 	/*
@@ -189,7 +105,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 	 * 
 	 * Also, we need to create a new data structure that we can pass around instead of using a pair.
 	 */
-	
+	/*
 	public JSONArray convertListToJSON(List<UserClassification> resultList) {
 		JSONArray retArray = new JSONArray();
 		for (int i = 0; i < resultList.size(); i++) {
@@ -221,13 +137,14 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 		}
 		return resultList;
 	}
-
+*/
     /*
      * Talks to server to update HTTPResponseCache entry for Results Summary View
      */
     public void updateResultsSummary(String userToken) throws MalformedURLException, IOException{
         Log.d("SYNC", "Updating results summary");
-        String resultHTML = CommunicationHelper.readResults(cachedContext, "max-age=0");
+        //String resultHTML = CommunicationHelper.readResults(cachedContext, "max-age=0");
+		SyncSystem.UpdateResultsSummary(userToken);
 
         /*
          * This is not a complete solution because this only pulls changes to the main HTML file -

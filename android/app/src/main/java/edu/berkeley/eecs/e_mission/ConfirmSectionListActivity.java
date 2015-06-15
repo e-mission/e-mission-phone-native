@@ -10,15 +10,14 @@ import org.apache.cordova.CordovaActivity;
 import org.json.JSONException;
 
 import android.view.View;
-import edu.berkeley.eecs.e_mission.auth.UserProfile;
+
 import edu.berkeley.eecs.e_mission.cordova.DiaryActivity;
 import edu.berkeley.eecs.e_mission.cordova.SidebarActivity;
-import edu.berkeley.eecs.e_mission.cordova.TabActivity;
+import edu.berkeley.eecs.e_mission.data_sync.AzureSync;
 //import android.R;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
-import android.app.AlertDialog; 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -295,7 +294,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 	}
 
 	public void launchMPGActivity() {
-		Intent scoreIntent = new Intent(this, edu.berkeley.eecs.e_mission.CompetitionActivity_Azure.class);
+		Intent scoreIntent = new Intent(this, AzureSync.class);
 		scoreIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(scoreIntent);
 	}

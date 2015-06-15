@@ -2,12 +2,6 @@ package edu.berkeley.eecs.e_mission;
 
 import java.text.ParseException;
 
-
-
-
-
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,7 +87,7 @@ public class ConfirmSectionActivity extends Activity implements OnItemSelectedLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_confirm_section);
-		
+
 		dbHelper = new ModeClassificationHelper(this);
 		
 		autoMode = (TextView) findViewById(R.id.autoMode);

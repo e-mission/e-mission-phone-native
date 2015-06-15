@@ -26,7 +26,10 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.webkit.CookieSyncManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.berkeley.eecs.e_mission.auth.GoogleAccountManagerAuth;
@@ -36,7 +39,7 @@ import edu.berkeley.eecs.e_mission.auth.UserProfile;
 /**
  * Demonstrates app-to-app and browser-app-browser integration with Moves API authorize flow.
  */
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends Activity implements AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "SettingsActivity";
 
@@ -51,7 +54,9 @@ public class SettingsActivity extends Activity {
     private static String REDIRECT_URI;
 
     private static final int REQUEST_AUTHORIZE = 1;
-	private static final int REQUEST_CODE_PICK_ACCOUNT = 1000; 
+	private static final int REQUEST_CODE_PICK_ACCOUNT = 1000;
+
+	private ModeClassificationHelper dbHelper;
     
     private TextView userNameField;
     private TextView authStatusField;
@@ -59,6 +64,7 @@ public class SettingsActivity extends Activity {
     private TextView linkToMovesStatusField;
     private TextView tokenView;
     private ClientStatsHelper statsHelper;
+	private String ChosenBackend;
     //private CheckBox lcView;
     //private static boolean onlyUnsure = false;
     // END: variables to set up the authentication with moves
@@ -86,6 +92,7 @@ public class SettingsActivity extends Activity {
         CLIENT_ID = ConnectionSettings.getMovesClientID(this);
         setContentView(R.layout.activity_main);
 
+		dbHelper = new ModeClassificationHelper(this);
         
         userNameField = (TextView) findViewById(R.id.userName);
         authStatusField = (TextView) findViewById(R.id.authStatus);
@@ -94,6 +101,14 @@ public class SettingsActivity extends Activity {
         tokenView = (TextView)findViewById(R.id.tokenView);
         
 		statsHelper = new ClientStatsHelper(this);
+
+		Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(this);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.cloud_storage_choices, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+
 		
         /*
         lcView = (CheckBox)findViewById(R.id.checkBox1);
@@ -213,7 +228,7 @@ public class SettingsActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
     	//First we are processing requestCode
-    	System.out.println("in MainActivity, requestCode = "+requestCode+" resultCode = "+resultCode);
+    	System.out.println("in MainActivity, requestCode = " + requestCode + " resultCode = " + resultCode);
     	if (requestCode == REQUEST_AUTHORIZE) {
     		if (data == null) {
     			Toast.makeText(this, "Moves app not installed. Are you running in the emulator?", Toast.LENGTH_SHORT).show();
@@ -354,7 +369,7 @@ public class SettingsActivity extends Activity {
     public void googleSignIn(View view) {
     	//returns username
     	statsHelper.storeMeasurement(getString(R.string.button_account_changed), null,
-    			String.valueOf(System.currentTimeMillis()));
+				String.valueOf(System.currentTimeMillis()));
     	new GoogleAccountManagerAuth(this, REQUEST_CODE_PICK_ACCOUNT).getUserName();
     }
     
@@ -402,5 +417,25 @@ public class SettingsActivity extends Activity {
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
     }
+
+	public void onItemSelected(AdapterView<?> parent, View view,
+							   int pos, long id) {
+		// An item was selected. You can retrieve the selected item using
+		// parent.getItemAtPosition(pos)
+        Log.d(TAG, "Entered the onItemSelected function");
+        try {
+            String chosenBackend = String.valueOf(parent.getItemAtPosition(pos).toString());
+            Log.d(TAG, "Chosen Backend is " + chosenBackend);
+            ChosenBackend = chosenBackend;
+        } catch (Exception e) {
+            System.out.println("Spinner thing broken");
+            e.printStackTrace();
+        }
+	}
+
+	public void onNothingSelected(AdapterView<?> parent) {
+		// Another interface callback
+        Log.d(TAG, "Nothing selected by user");
+	}
 }
 

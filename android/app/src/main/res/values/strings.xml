@@ -36,6 +36,13 @@
     <string name="noLinkToMovesString">Not linked to moves - no data collection on this device </string>
     <string name="menu_item_settings">Settings</string>
     <string name="menu_item_result_summary">Results</string>
+
+    <string-array name="cloud_storage_choices">
+        <item>Choose a background storage method</item>
+        <item>Azure</item>
+        <item>CouchBase</item>
+        <item>Our Own Collection</item>
+    </string-array>
     
     <string name="map_key">AIzaSyDXdbMQvQHqUcXHsJt11NeKGsPZEsgJrXA</string>
     <string name="menu_item_launch_cordova">Cordova</string>
