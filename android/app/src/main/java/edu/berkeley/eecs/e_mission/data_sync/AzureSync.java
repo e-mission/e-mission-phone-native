@@ -1,3 +1,4 @@
+/*
 package edu.berkeley.eecs.e_mission.data_sync;
 import android.app.Activity;
 import android.app.Service;
@@ -61,6 +62,7 @@ public class AzureSync extends AbstractThreadedSyncAdapter implements SyncingInt
 
 
     public AzureSync (Context context, boolean autoInitialize) {
+        super(context, autoInitialize);
         try {
             mClient = new MobileServiceClient(
                     "https://e-mission.azure-mobile.net/",
@@ -68,7 +70,7 @@ public class AzureSync extends AbstractThreadedSyncAdapter implements SyncingInt
                     context
             );
 
-            authenticate();
+            //authenticate();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -78,10 +80,8 @@ public class AzureSync extends AbstractThreadedSyncAdapter implements SyncingInt
 
 
 
-    public void onCreate(Bundle savedInstanceState) {
-
-
-
+    */
+/*public void onCreate(Bundle savedInstanceState) {
 
 
 
@@ -117,7 +117,8 @@ public class AzureSync extends AbstractThreadedSyncAdapter implements SyncingInt
             e.printStackTrace();
             System.out.println("Exception");
         }
-    }
+    }*//*
+
 
     private void createTable() {
 
@@ -158,15 +159,11 @@ public class AzureSync extends AbstractThreadedSyncAdapter implements SyncingInt
                 // Insert failed
                 exception.printStackTrace();
             }
-                        }
-                    });
+        }
+         });
 
-                }
-            }
-        });
-
-        refreshItemsFromTable();
     }
+
 
     private void authenticate() {
         // Login using the Google provider.
@@ -306,4 +303,4 @@ public class AzureSync extends AbstractThreadedSyncAdapter implements SyncingInt
     }
 
 
-}
+}*/

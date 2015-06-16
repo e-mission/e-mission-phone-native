@@ -160,7 +160,7 @@
         <meta-data android:name="EulaVersion" android:value="1.0" />
         
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+
 
 
 </manifest>

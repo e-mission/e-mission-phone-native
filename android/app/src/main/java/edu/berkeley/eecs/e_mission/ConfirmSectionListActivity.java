@@ -13,7 +13,7 @@ import android.view.View;
 
 import edu.berkeley.eecs.e_mission.cordova.DiaryActivity;
 import edu.berkeley.eecs.e_mission.cordova.SidebarActivity;
-import edu.berkeley.eecs.e_mission.data_sync.AzureSync;
+//import edu.berkeley.eecs.e_mission.data_sync.AzureSync;
 //import android.R;
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -281,7 +281,7 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 			launchResultSummary();
 			return true;
 		case R.id.action_result_MPG:
-			launchMPGActivity();
+			//launchMPGActivity();
 			return true;
         // case R.id.action_launch_cordova_tabs:
         //     launchCordovaTabsActivity();
@@ -293,11 +293,11 @@ public class ConfirmSectionListActivity extends CordovaActivity {
 		return false;
 	}
 
-	public void launchMPGActivity() {
+/*	public void launchMPGActivity() {
 		Intent scoreIntent = new Intent(this, AzureSync.class);
 		scoreIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(scoreIntent);
-	}
+	}*/
 
 	public void launchSettingsActivity() {
 		Intent settingsIntent = new Intent(this,

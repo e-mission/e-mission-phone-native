@@ -29,7 +29,7 @@ import org.apache.cordova.CordovaActivity;
 
 import edu.berkeley.eecs.e_mission.R;
 
-import com.microsoft.windowsazure.mobileservices.*;
+//import com.microsoft.windowsazure.mobileservices.*;
 
 public class DiaryActivity extends CordovaActivity
 {

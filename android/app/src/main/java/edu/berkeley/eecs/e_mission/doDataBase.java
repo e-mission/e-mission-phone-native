@@ -2,7 +2,7 @@ package edu.berkeley.eecs.e_mission;
 
 import org.apache.cordova.CordovaActivity;
 
-import edu.berkeley.eecs.e_mission.data_sync.AzureSync;
+//import edu.berkeley.eecs.e_mission.data_sync.AzureSync;
 
 /**
  * Created by RZarrabi on 6/9/2015.
@@ -18,7 +18,7 @@ public class doDataBase extends CordovaActivity {
     public doDataBase() {
         if (option.equals("azure")){
             this.azure = true;
-            comp = new AzureSync();
+            //comp = new AzureSync();
         } else if (option.equals("couch")) {
             this.couch = true;
         } else if (option.equals("aws")) {

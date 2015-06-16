@@ -1,8 +1,11 @@
+/*
 package edu.berkeley.eecs.e_mission;
 
+*/
 /**
  * Created by RZarrabi on 6/5/2015.
- */
+ *//*
+
 
 
 import java.net.MalformedURLException;
@@ -80,3 +83,4 @@ public class CompetitionActivity extends CordovaActivity {
 
 
 
+*/

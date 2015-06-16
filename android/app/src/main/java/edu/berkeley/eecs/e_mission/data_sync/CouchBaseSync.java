@@ -1,3 +1,4 @@
+/*
 
 package edu.berkeley.eecs.e_mission.data_sync;
 
@@ -37,6 +38,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
+*/
 /*
 This is for couchbase
 
@@ -47,7 +49,8 @@ Commenting it out because the build.gradle is for AzureSync
 
 *
  * Created by RZarrabi on 6/8/2015.
-*/
+*//*
+
 
 
 
@@ -58,6 +61,10 @@ public class CouchBaseSync extends Activity implements SyncingInterface{
     public static final String SYNC_URL = "http://10.10.67.102:4985";
     Database database;
     final String TAG = "TAG";
+
+    public CouchBaseSync (Context context, boolean autoInitialize) {
+        // Do stuff
+    }
 
 
     public void onCreate(Context context, boolean autoInitialize) {
@@ -128,3 +135,4 @@ public class CouchBaseSync extends Activity implements SyncingInterface{
 
 }
 
+*/
