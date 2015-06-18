@@ -144,7 +144,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 					System.out.println("Other exception");
 					e.printStackTrace();
 				}
-				SYNC_URL = new URL("http://10.0.2.2:4985");
+				SYNC_URL = new URL("http://50.17.111.19:4984/db");
 				System.out.println("SYNC_URL set");
 
 
@@ -233,6 +233,15 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 				// save the unclassified sections to the database
 				if (Service.equals("Ours")) {
 					dbHelper.storeNewUnclassifiedTrips(convertJSONToList(unclassifiedSections));
+				} else if (Service.equals("CouchBase")) {
+					Document document = database.createDocument();
+					Map<String, Object> properties = new HashMap<String, Object>();
+					properties.put("unclassifiedSections", convertJSONToList(unclassifiedSections));
+					try {
+						document.putProperties(properties);
+					} catch (CouchbaseLiteException e) {
+						e.printStackTrace();
+					}
 				}
 				// We should be able to figure out which sections are already in the notification bar and filter those out
 				// But let's do something lame and easy for now
@@ -269,7 +278,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 			}
 		//} else if (Service.equals("Azure")) {
 			///
-/*		if (Service.equals("CouchBase")) {
+		if (Service.equals("CouchBase")) {
 			// Couchbase
 			Replication push = database.createPushReplication(SYNC_URL);
 			Replication pull = database.createPullReplication(SYNC_URL);
@@ -277,7 +286,7 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 			pull.setContinuous(true);
 			push.start();
 			pull.start();
-		}*/
+		}
 	}
 
 
