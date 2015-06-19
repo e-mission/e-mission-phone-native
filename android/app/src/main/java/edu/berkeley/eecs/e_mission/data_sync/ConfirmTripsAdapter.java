@@ -15,9 +15,11 @@ import android.content.Intent;
 import android.content.SyncResult;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.ContactsContract;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.webkit.WebView;
 
 
 import com.couchbase.lite.android.AndroidContext;
@@ -41,6 +43,8 @@ import com.microsoft.windowsazure.mobileservices.table.sync.localstore.SQLiteLoc
 import com.microsoft.windowsazure.mobileservices.table.sync.synchandler.MobileServiceSyncHandler;
 */
 
+import junit.framework.Assert;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +61,7 @@ import java.util.Properties;
 import edu.berkeley.eecs.e_mission.BatteryUtils;
 import edu.berkeley.eecs.e_mission.ClientStatsHelper;
 import edu.berkeley.eecs.e_mission.CommunicationHelper;
+import edu.berkeley.eecs.e_mission.ConnectionSettings;
 import edu.berkeley.eecs.e_mission.ModeClassificationHelper;
 import edu.berkeley.eecs.e_mission.OnboardingActivity;
 import edu.berkeley.eecs.e_mission.R;
@@ -70,7 +75,7 @@ import edu.berkeley.eecs.e_mission.auth.UserProfile;
  * @author shankari
  *
  */
-public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
+public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements Replication.ChangeListener {
 	private String userName;
 
 	Properties uuidMap;
@@ -90,12 +95,15 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 	private static URL SYNC_URL;
 	final String TAG = "TAG";
 
+	private boolean iAmDebugging;
+
 	private static final String DATABASE_NAME = "our_db"; // Only lower case characters and numbers
 
 
 	public ConfirmTripsAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
 		Service = "CouchBase";
+		iAmDebugging = true;
 
 		System.out.println("Creating ConfirmTripsAdapter");
 		// Dunno if it is OK to cache the context like this, but there are other
@@ -103,8 +111,10 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 		// See https://nononsense-notes.googlecode.com/git-history/3716b44b527096066856133bfc8dfa09f9244db8/NoNonsenseNotes/src/com/nononsenseapps/notepad/sync/SyncAdapter.java
 		// for an example
 		cachedContext = context;
-		dbHelper = new ModeClassificationHelper(context);
-		statsHelper = new ClientStatsHelper(context);
+		if (Service.equals("Ours")) {
+			dbHelper = new ModeClassificationHelper(context);
+			statsHelper = new ClientStatsHelper(context);
+		}
 		try {
 			if (Service.equals("Axure")) {
 /*					mClient = new MobileServiceClient(
@@ -165,20 +175,32 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 		//if (Service.equals("Ours")) {
 			long msTime = System.currentTimeMillis();
 			String syncTs = String.valueOf(msTime);
-			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_launched), null, syncTs);
 
+		if (Service.equals("Ours")) {
+			statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_launched), null, syncTs);
+		}
 			/*
 			 * Read the battery level when the app is being launched anyway.
 			 */
+		if (Service.equals("Ours")) {
 			statsHelper.storeMeasurement(cachedContext.getString(R.string.battery_level),
 					String.valueOf(BatteryUtils.getBatteryLevel(cachedContext)), syncTs);
-
+		} else if (Service.equals("CouchBase")) {
+			Document document = database.createDocument();
+			Map<String, Object> properties = new HashMap<String, Object>();
+			properties.put(cachedContext.getString(R.string.battery_level),String.valueOf(BatteryUtils.getBatteryLevel(cachedContext)));
+			try {
+				document.putProperties(properties);
+			} catch (CouchbaseLiteException e) {
+				e.printStackTrace();
+			}
+		}
 			if (syncSkip == true) {
 				System.err.println("Something is wrong and we have been asked to skip the sync, exiting immediately");
 				return;
 			}
 
-			if (!OnboardingActivity.getOnboardingComplete(cachedContext)) {
+				if (!OnboardingActivity.getOnboardingComplete(cachedContext)) {
 				generateNotification(CONFIRM_TRIPS_ID, "Finish setting up app", edu.berkeley.eecs.e_mission.OnboardingActivity.class);
 				return;
 			}
@@ -199,14 +221,16 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 			// TODO: Use ORM to convert this to a Section[]
 			try {
 				// First push and then pull, so that we don't end up re-reading data that the user has just classified
+				if (Service.equals("Ours")) {
 				JSONArray classifiedSections = convertListToJSON(dbHelper.getAndDeleteClassifiedSections());
-				statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_push_list_size),
+					statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_push_list_size),
 						String.valueOf(classifiedSections.length()), syncTs);
 				// System.out.println("classifiedSections = "+classifiedSections);
-				if (classifiedSections.length() > 0) {
-					CommunicationHelper.pushClassifications(cachedContext, userToken, classifiedSections);
-				} else {
-					System.out.println("No user classified sections, skipping push to server");
+					if (classifiedSections.length() > 0) {
+						CommunicationHelper.pushClassifications(cachedContext, userToken, classifiedSections);
+					} else {
+						System.out.println("No user classified sections, skipping push to server");
+					}
 				}
 
 				/*
@@ -224,24 +248,26 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 
 				if (Service.equals("Ours")) {
 					dbHelper.clear();
-				}
 
-				JSONArray unclassifiedSections = CommunicationHelper.getUnclassifiedSections(
-						cachedContext, userToken);
-				statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_pull_list_size),
-						String.valueOf(unclassifiedSections.length()), syncTs);
-				// save the unclassified sections to the database
-				if (Service.equals("Ours")) {
+					JSONArray unclassifiedSections;
+					unclassifiedSections = CommunicationHelper.getUnclassifiedSections(
+							cachedContext, userToken);
+					statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_pull_list_size),
+							String.valueOf(unclassifiedSections.length()), syncTs);
+
+					// save the unclassified sections to the database
 					dbHelper.storeNewUnclassifiedTrips(convertJSONToList(unclassifiedSections));
+					generateNotifications(unclassifiedSections);
+
 				} else if (Service.equals("CouchBase")) {
-					Document document = database.createDocument();
+/*					Document document = database.createDocument();
 					Map<String, Object> properties = new HashMap<String, Object>();
 					properties.put("unclassifiedSections", convertJSONToList(unclassifiedSections));
 					try {
 						document.putProperties(properties);
 					} catch (CouchbaseLiteException e) {
 						e.printStackTrace();
-					}
+					}*/
 				}
 				// We should be able to figure out which sections are already in the notification bar and filter those out
 				// But let's do something lame and easy for now
@@ -249,18 +275,19 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 				// Also, since we are already using a database, we may want to consider
 				// using a content provider, since that is the recommended solution
 				// TODO: Simplify this later, once we are sure that the list stuff works
-				generateNotifications(unclassifiedSections);
 
 				// Now, we push the stats and clear it
 				// Note that the database ensures that we have a blank document if there are no stats
 				// by skipping the metadata in that case.
-				JSONObject freshStats = statsHelper.getMeasurements();
-				if (freshStats.length() > 0) {
-					CommunicationHelper.pushStats(cachedContext, userToken, freshStats);
-					statsHelper.clear();
+				if (Service.equals("Ours")) {
+					JSONObject freshStats = statsHelper.getMeasurements();
+					if (freshStats.length() > 0) {
+						CommunicationHelper.pushStats(cachedContext, userToken, freshStats);
+						statsHelper.clear();
+					}
+					statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_duration),
+							String.valueOf(System.currentTimeMillis() - msTime), syncTs);
 				}
-				statsHelper.storeMeasurement(cachedContext.getString(R.string.sync_duration),
-						String.valueOf(System.currentTimeMillis() - msTime), syncTs);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -269,28 +296,118 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
 				e.printStackTrace();
 			}
 
-			try {
-				updateResultsSummary(userToken);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (Service.equals("Ours")) {
+				try {
+					updateResultsSummary(userToken);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		//} else if (Service.equals("Azure")) {
 			///
 		if (Service.equals("CouchBase")) {
 			// Couchbase
-			Replication push = database.createPushReplication(SYNC_URL);
-			Replication pull = database.createPullReplication(SYNC_URL);
-			push.setContinuous(true);
-			pull.setContinuous(true);
-			push.start();
-			pull.start();
+			System.out.println("CB SYNC");
+			doCouchBaseSync();
+            System.out.println("Why is it getting here???");
+			if (iAmDebugging) {
+                List l = database.getAllViews();
+                System.out.println("list size = " + l.size());
+                System.out.println("doc count = " + database.getDocumentCount());
+				Document yoloDoc = database.getExistingDocument("123");
+                //QueryOptions query = new QueryOptions();
+                //database.getAllDocs(query);
+                Document jz = database.getExistingDocument("poop");
+                Document test = database.getExistingDocument("TEST");
+                if (test == null) {
+                    System.out.println("Test failed");
+                } else {
+                    System.out.println("Test passed!");
+                }
+                System.out.println("poop: " + jz);
+                System.out.println("123 = " + yoloDoc);
+                //System.out.println(yoloDoc.getId());
+                Document battery = database.getExistingDocument("thing");
+                if (battery != null) {
+                    System.out.println("should be 70 : " + battery.getProperty("what"));
+                } else {
+                    System.out.println("fucked up");
+                }
+                Query q = database.createAllDocumentsQuery();
+                try {
+                    QueryEnumerator qe = q.run();
+                    while (qe.hasNext()){
+                        QueryRow qr = qe.getRow(0);
+                        System.out.println("get doc " + qr.getDocument().getProperties().toString());
+                        qe.next();
+                    }
+                } catch (CouchbaseLiteException e) {
+                    e.printStackTrace();
+                }
+
+
+                //String name = yoloDoc.getProperty("IS").toString();
+                if (yoloDoc != null) {
+                    Map<String, Object> m = jz.getProperties();
+                    System.out.println(m.get("123"));
+                }
+				//assert name.equals("Josh");
+				//System.out.println("Assert was true, name = " + name);
+			}
 		}
 	}
 
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+
+        Replication replication = event.getSource();
+        Log.d(TAG, "Replication : " + replication + " changed.");
+        if (!replication.isRunning()) {
+            String msg = String.format("Replicator %s not running", replication);
+            Log.d(TAG, msg);
+        }
+        else {
+            int processed = replication.getCompletedChangesCount();
+            int total = replication.getChangesCount();
+            String msg = String.format("Replicator processed %d / %d", processed, total);
+            Log.d(TAG, msg);
+        }
+
+        if (event.getError() != null) {
+            //showError("Sync error", event.getError());
+        }
+
+    }
+
+	private void doCouchBaseSync() {
+        System.out.println("In doCouchBaseSync");
+		Replication push = database.createPushReplication(SYNC_URL);
+        System.out.println("Replication push = database.createPushReplication(SYNC_URL);");
+        Replication pull = database.createPullReplication(SYNC_URL);
+        System.out.println("Replication pull = database.createPullReplication(SYNC_URL);");
+        push.setContinuous(true);
+        System.out.println("push.setContinuous(true);");
+        pull.setContinuous(true);
+        System.out.println("pull.setContinuous(true);");
+		push.start();
+        System.out.println("got past push.start()");
+		pull.start();
+        System.out.println("got past pull.start()");
+
+        pull.addChangeListener(this);
+        push.addChangeListener(this);
+
+	}
+
+
+
 
 /*
+
+
+
 
 		private void createTable() {
 
@@ -470,7 +587,6 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
          */
 
 		// We have to display the result in a webview to ensure that all the files are actually retrieved
-        /*
         System.out.println("my looper = "+ Looper.myLooper());
         Looper.prepare();
         System.out.println("my looper = "+ Looper.myLooper());
@@ -478,7 +594,6 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter {
         ignoredView.getSettings().setJavaScriptEnabled(true);
         ignoredView.loadDataWithBaseURL(ConnectionSettings.getConnectURL(cachedContext), resultHTML,
                 null, null, null);
-        */
 	}
 
 
