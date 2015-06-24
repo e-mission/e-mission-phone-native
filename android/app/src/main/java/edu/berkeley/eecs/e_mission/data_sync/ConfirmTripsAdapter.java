@@ -13,6 +13,7 @@ import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
+import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
@@ -23,7 +24,9 @@ import android.webkit.WebView;
 
 
 import com.couchbase.lite.android.AndroidContext;
-import com.couchbase.lite.replicator.Replication;
+import com.couchbase.lite.auth.*;
+//import com.couchbase.lite.auth.Authenticator;
+import com.couchbase.lite.replicator.*;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -45,17 +48,26 @@ import com.microsoft.windowsazure.mobileservices.table.sync.synchandler.MobileSe
 
 import junit.framework.Assert;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Properties;
 
 import edu.berkeley.eecs.e_mission.BatteryUtils;
@@ -70,6 +82,8 @@ import edu.berkeley.eecs.e_mission.UnclassifiedSection;
 import edu.berkeley.eecs.e_mission.UserClassification;
 import edu.berkeley.eecs.e_mission.auth.GoogleAccountManagerAuth;
 import edu.berkeley.eecs.e_mission.auth.UserProfile;
+
+import static com.couchbase.lite.auth.AuthenticatorFactory.createPersonaAuthenticator;
 
 /**
  * @author shankari
@@ -95,15 +109,21 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements 
 	private static URL SYNC_URL;
 	final String TAG = "TAG";
 
+
 	private boolean iAmDebugging;
 
 	private static final String DATABASE_NAME = "our_db"; // Only lower case characters and numbers
+    private OnSyncUnauthorizedObservable onSyncUnauthorizedObservable;
+    private OnSyncProgressChangeObservable onSyncProgressChangeObservable;
 
 
 	public ConfirmTripsAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
 		Service = "CouchBase";
 		iAmDebugging = true;
+        final String userToken = GoogleAccountManagerAuth.getServerToken(context, userName);
+        onSyncUnauthorizedObservable = new OnSyncUnauthorizedObservable();
+        onSyncProgressChangeObservable = new OnSyncProgressChangeObservable();
 
 		System.out.println("Creating ConfirmTripsAdapter");
 		// Dunno if it is OK to cache the context like this, but there are other
@@ -188,7 +208,10 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements 
 		} else if (Service.equals("CouchBase")) {
 			Document document = database.createDocument();
 			Map<String, Object> properties = new HashMap<String, Object>();
+            String userName = UserProfile.getInstance(cachedContext).getUserEmail();
+            properties.put("user_id", userName);
 			properties.put(cachedContext.getString(R.string.battery_level),String.valueOf(BatteryUtils.getBatteryLevel(cachedContext)));
+			properties.put("time", System.currentTimeMillis());
 			try {
 				document.putProperties(properties);
 			} catch (CouchbaseLiteException e) {
@@ -319,40 +342,25 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements 
 				Document yoloDoc = database.getExistingDocument("123");
                 //QueryOptions query = new QueryOptions();
                 //database.getAllDocs(query);
-                Document jz = database.getExistingDocument("poop");
                 Document test = database.getExistingDocument("TEST");
                 if (test == null) {
                     System.out.println("Test failed");
                 } else {
                     System.out.println("Test passed!");
                 }
-                System.out.println("poop: " + jz);
                 System.out.println("123 = " + yoloDoc);
                 //System.out.println(yoloDoc.getId());
-                Document battery = database.getExistingDocument("thing");
+                Document battery = database.getExistingDocument("0151173a-596d-41c2-a3df-b4a0a5b5521e");
                 if (battery != null) {
-                    System.out.println("should be 70 : " + battery.getProperty("what"));
+                    System.out.println("should be 70 : " + battery.getProperty("battery_level"));
                 } else {
-                    System.out.println("fucked up");
+                    System.out.println("wrong");
                 }
                 Query q = database.createAllDocumentsQuery();
-                try {
-                    QueryEnumerator qe = q.run();
-                    while (qe.hasNext()){
-                        QueryRow qr = qe.getRow(0);
-                        System.out.println("get doc " + qr.getDocument().getProperties().toString());
-                        qe.next();
-                    }
-                } catch (CouchbaseLiteException e) {
-                    e.printStackTrace();
-                }
+
 
 
                 //String name = yoloDoc.getProperty("IS").toString();
-                if (yoloDoc != null) {
-                    Map<String, Object> m = jz.getProperties();
-                    System.out.println(m.get("123"));
-                }
 				//assert name.equals("Josh");
 				//System.out.println("Assert was true, name = " + name);
 			}
@@ -377,31 +385,191 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements 
 
         if (event.getError() != null) {
             //showError("Sync error", event.getError());
+            System.out.println("Error at line 388");
         }
 
     }
 
-	private void doCouchBaseSync() {
-        System.out.println("In doCouchBaseSync");
-		Replication push = database.createPushReplication(SYNC_URL);
-        System.out.println("Replication push = database.createPushReplication(SYNC_URL);");
-        Replication pull = database.createPullReplication(SYNC_URL);
-        System.out.println("Replication pull = database.createPullReplication(SYNC_URL);");
-        push.setContinuous(true);
-        System.out.println("push.setContinuous(true);");
-        pull.setContinuous(true);
-        System.out.println("pull.setContinuous(true);");
-		push.start();
-        System.out.println("got past push.start()");
-		pull.start();
-        System.out.println("got past pull.start()");
 
-        pull.addChangeListener(this);
+    public void pushSetUp() {
+        Replication push = database.createPushReplication(SYNC_URL);
+        push.setContinuous(true);
+        push.start();
+        String userName = UserProfile.getInstance(cachedContext).getUserEmail();
+        String password = "password"; // Horrible security flaw but I just want to get
+        push.setAuthenticator(new BasicAuthenticator(userName, password));
         push.addChangeListener(this);
+    }
+
+    public void pullSetUp() {
+        Replication pull = database.createPullReplication(SYNC_URL);
+        pull.setContinuous(true);
+        pull.start();
+        String userName = UserProfile.getInstance(cachedContext).getUserEmail();
+        String password = "password"; // Horrible security flaw but I just want to get
+        pull.setAuthenticator(new BasicAuthenticator(userName, password));
+        pull.addChangeListener(this);
+    }
+
+
+	private void doCouchBaseSync() {
+
+        pushSetUp();
+        pullSetUp();
+
+//        System.out.println("In doCouchBaseSync");
+//		Replication push = database.createPushReplication(SYNC_URL);
+//        System.out.println("Replication push = database.createPushReplication(SYNC_URL);");
+//        Replication pull = database.createPullReplication(SYNC_URL);
+//        System.out.println("Replication pull = database.createPullReplication(SYNC_URL);");
+//        push.setContinuous(true);
+//        System.out.println("push.setContinuous(true);");
+//        pull.setContinuous(true);
+//        System.out.println("pull.setContinuous(true);");
+//		push.start();
+//        System.out.println("got past push.start()");
+//		pull.start();
+//        System.out.println("got past pull.start()");
+//
+//        String userName = UserProfile.getInstance(cachedContext).getUserEmail();
+//        String password = "password"; // Horrible security flaw but I just want to get this out for now...
+//
+//        pull.setAuthenticator(new BasicAuthenticator(userName, password));
+//        push.setAuthenticator(new BasicAuthenticator(userName, password));
+//
+//        pull.addChangeListener(this);
+//        push.addChangeListener(this);
+
+
+
+
+        //com.couchbase.lite.auth.Authenticator ourAuth = AuthenticatorFactory.createFacebookAuthenticator();
+
+/*
+        String cookieName = "SyncGatewaySession";
+        boolean isSecure = true;
+        boolean httpOnly = true;
+
+        // expiration date - 1 day from now
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        int numDaysToAdd = 1;
+        cal.add(Calendar.DATE, numDaysToAdd);
+        Date expirationDate = cal.getTime();
+
+        String cookieValue = GoogleAccountManagerAuth.getServerToken(cachedContext, userName);
+
+        System.out.println(cookieValue);
+
+        pull.setCookie(cookieName, cookieValue, "/", expirationDate, isSecure, httpOnly);
+        push.setCookie(cookieName, cookieValue, "/", expirationDate, isSecure, httpOnly);
+*/
+
+
+        //public static Authenticator a=  createFacebookAuthenticator();
+
+
+
+
+        //String ours =
+
+        //com.couchbase.lite.auth.Authenticator ourAuth = new BasicAuthenticator("")
+
+
+
+        //Authorizer
+/*        try {
+            login();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+/*
+        pull.setAuthenticator(new BasicAuthenticator(userName, GoogleAccountManagerAuth.getServerToken(cachedContext, userName)));
+        push.setAuthenticator(new BasicAuthenticator(userName, GoogleAccountManagerAuth.getServerToken(cachedContext, userName)));*/
+
+        //startReplicationSyncWithCustomCookie();
+
+
+/*        pull.addChangeListener(this);
+        push.addChangeListener(this);*/
 
 	}
 
+    public void startReplicationSyncWithCustomCookie() {
 
+        String cookieValue = GoogleAccountManagerAuth.getServerToken(cachedContext, userName);
+        System.out.println("SYNC: " + SYNC_URL.toString());
+        Synchronize sync = new Synchronize.Builder(this.database, SYNC_URL.toString(), true)
+                .cookieAuth(cookieValue)
+                .addChangeListener(getReplicationChangeListener())
+                .build();
+        sync.start();
+    }
+
+    static class OnSyncUnauthorizedObservable extends Observable {
+        private void notifyChanges() {
+            setChanged();
+            notifyObservers();
+        }
+    }
+
+    private Replication.ChangeListener getReplicationChangeListener() {
+        return new Replication.ChangeListener() {
+
+            @Override
+            public void changed(Replication.ChangeEvent event) {
+                Replication replication = event.getSource();
+                if (event.getError() != null) {
+                    Throwable lastError = event.getError();
+                    if (lastError.getMessage().contains("existing change tracker")) {
+                        //pushLocalNotification("Replication Event", String.format("Sync error: %s:", lastError.getMessage()));
+                    }
+                    if (lastError instanceof HttpResponseException) {
+                        HttpResponseException responseException = (HttpResponseException) lastError;
+                        System.out.println("Response code : " + responseException.getStatusCode());
+                        if (responseException.getStatusCode() == 401) {
+                            onSyncUnauthorizedObservable.notifyChanges();
+                            System.out.println("401 Error code");
+                        }
+                    }
+                }
+                Log.d(TAG, event.toString());
+                updateSyncProgress(
+                        replication.getCompletedChangesCount(),
+                        replication.getChangesCount(),
+                        replication.getStatus()
+                );
+            }
+        };
+    }
+
+    private synchronized void updateSyncProgress(int completedCount, int totalCount, Replication.ReplicationStatus status) {
+        onSyncProgressChangeObservable.notifyChanges(completedCount, totalCount, status);
+    }
+
+    private void login() throws IOException, JSONException{
+
+        String email = UserProfile.getInstance(cachedContext).getUserEmail();
+        String fullURL = "http://localhost:4985/db/_user/" + email;
+
+        HttpPost msg = new HttpPost(fullURL);
+        msg.setHeader("Content-Type", "application/json");
+
+        JSONObject toPush = new JSONObject();
+        toPush.put("name", email);
+        toPush.put("email", email);
+        toPush.put("password", GoogleAccountManagerAuth.getServerToken(cachedContext, userName));
+        msg.setEntity(new StringEntity(toPush.toString()));
+
+        System.out.println("Posting data to " + msg.getURI());
+
+        //create connection
+        AndroidHttpClient connection = AndroidHttpClient.newInstance(R.class.toString());
+        HttpResponse response = connection.execute(msg);
+        StatusLine statusLine = response.getStatusLine();
+
+
+    }
 
 
 /*
@@ -641,6 +809,24 @@ public class ConfirmTripsAdapter extends AbstractThreadedSyncAdapter implements 
 
 		nMgr.notify(messageId, builder.build());
 	}
+    static class OnSyncProgressChangeObservable extends Observable {
+        private void notifyChanges(int completedCount, int totalCount, Replication.ReplicationStatus status) {
+            SyncProgress progress = new SyncProgress();
+            progress.completedCount = completedCount;
+            progress.totalCount = totalCount;
+            progress.status = status;
+            setChanged();
+            notifyObservers(progress);
+        }
+    }
+
+        static class SyncProgress {
+            public int completedCount;
+            public int totalCount;
+            public Replication.ReplicationStatus status;
+        }
+
+
 
 	public String getPath(String serviceName) {
 		return "/"+userName+"/"+serviceName;
