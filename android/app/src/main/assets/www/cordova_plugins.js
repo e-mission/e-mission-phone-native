@@ -27,6 +27,11 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+        "id": "cordova-plugin-whitelist.whitelist",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -36,7 +41,8 @@ module.exports.metadata =
     "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0",
     "com.brodysoft.sqlitePlugin": "0.7.1",
-    "org.apache.cordova.statusbar": "0.1.10"
+    "org.apache.cordova.statusbar": "0.1.10",
+    "cordova-plugin-whitelist": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

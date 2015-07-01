@@ -133,7 +133,7 @@ angular.module('starter.controllers', ['ionic'])
 
       };
 
-      switch (date.getDay() - 2) {
+      switch (date.getDay()) {
         case 1:
           day = "Sunday";
           break;
