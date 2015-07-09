@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!--
-    The value for the connect_url depends on the way in which you are running the phone app and the server.
-
-    The following table can provide a quick summary:
-    phone app | server | hostname
-    ~~~~~~~~~~~~~~~~~~~~~~~~
-    emulator  | laptop | 10.0.2.2 or <IP address of laptop>
-    genymotion| laptop | 10.0.3.2 or <IP address of laptop>
-    device    | laptop | <IP address of laptop>
-    *         | server | server IP
-
-    IP address of laptop is the output of "ifconfig" or "ipconfig".
-    More details are here:
-    http://stackoverflow.com/questions/5806220/how-to-connect-to-my-http-localhost-web-server-from-android-emulator-in-eclips
-    <string name="connect_url">http://10.0.3.2:8080/</string>
-    -->
 <resources>
-    <string name="connect_url">http://10.0.2.2:8080</string>
-    <!--
-    In order to make it easier for developers to perform end-to-end testing, we skip authentication in development mode,
-    both on the server and on the client.
-    This needs to be CHANGED before working with any kind of real data over the wire.
-    DO NOT collect or transmit real data without authentication.
-    That is a terrible data and your IRB will hate you for it.
-
-    Note that this is the value listed under "Client ID for web application" -> "Client ID". Do NOT use
-    the client ID for the android app or the client secret
-    -->
-    <string name="google_webapp_client_id">Get from https://console.developers.google.com</string>
-    <string name="moves_client_id">Get from https://dev.moves-app.com</string>
-
+    <string name="connect_url">https://e-mission.eecs.berkeley.edu</string>
+    <string name="google_webapp_client_id">97387382925-j53gqihf7j4o0h1sp6r5cllhqikfoq6o.apps.googleusercontent.com</string>
+    <string name="moves_client_id">06RXi7h69ZGepj2x5z3yK6XJMaSU9gR_</string>
 </resources>
