@@ -5,6 +5,9 @@ them to make data available to urban planners and transportation engineers.
 It has two components, the backend server and the phone apps. These are the
 phone apps - the backend server is available in the e-mission-server repo.
 
+The current build status is:
+[![Build Status](https://amplab.cs.berkeley.edu/jenkins/buildStatus/icon?job=e-mission-phone-android-build)](https://amplab.cs.berkeley.edu/jenkins/view/E-Mission/job/e-mission-phone-android-build/)
+
 The phone apps are currently written in a mixture of native code and
 javascript. The onboarding screen, the trip list and the trip detail view are
 all written using native code, and the result screen is javascript from the
