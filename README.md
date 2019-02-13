@@ -1,3 +1,7 @@
+### This project is now obsolete and is only retained for historical reasons
+### Current phone development is at https://github.com/e-mission/e-mission-phone
+### Do not use!
+
 e-mission is a project to gather data about user travel patterns using phone
 apps, and use them to provide an personalized carbon footprint, and aggregate
 them to make data available to urban planners and transportation engineers.
